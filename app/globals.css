@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #e7e4dc;
+  --ink: #161616;
+  --muted: #6b6a66;
+  --border: rgba(22, 22, 22, 0.12);
+  --surface: rgba(22, 22, 22, 0.05);
+  --accent: #ff7d33;
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-serif: var(--font-cormorant);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 125, 51, 0.1), transparent 30%),
+    radial-gradient(circle at 90% 90%, rgba(0, 0, 0, 0.06), transparent 35%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.tool-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+.tool-textarea {
+  width: 100%;
+  height: clamp(240px, 45vh, 500px);
+  border-radius: 0.9rem;
+  border: 1px solid var(--border);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85rem;
+  padding: 1rem;
+  resize: none;
+  outline: none;
+}
+
+.tool-textarea:focus {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.tool-output-pre {
+  width: 100%;
+  min-height: clamp(240px, 45vh, 500px);
+  border-radius: 0.9rem;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--ink);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85rem;
+  padding: 1rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.tool-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.75rem 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.tool-btn-primary:hover {
+  opacity: 0.88;
+}
+
+.tool-btn-secondary {
+  border-radius: 0.9rem;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.tool-btn-secondary:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.tool-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.7rem;
+  border: 0;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 0.7rem;
+}
+
+@media (max-width: 640px) {
+  .tool-btn-primary,
+  .tool-btn-secondary {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .tool-label {
+    font-size: 0.62rem;
+  }
+
+  .tool-copy-btn {
+    font-size: 0.6rem;
+  }
+}
+
+.prose h1 {
+  font-size: 1.95rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol {
+  margin-bottom: 1rem;
+}
+
+.prose code {
+  background: rgba(22, 22, 22, 0.08);
+  border-radius: 0.3rem;
+  padding: 0.1rem 0.25rem;
+}
+
+.prose pre {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.8rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(22, 22, 22, 0.25);
+  border-radius: 999px;
+}
