@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import Base64Converter from "@/components/Base64Converter";
 import GradientGenerator from "@/components/GradientGenerator";
 import ImageBase64Converter from "@/components/ImageBase64Converter";
@@ -10,6 +10,7 @@ import MarkdownConverter from "@/components/MarkdownConverter";
 import RegexTester from "@/components/RegexTester";
 import UUIDGenerator from "@/components/UUIDGenerator";
 import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
+import NotFound from "@/app/not-found";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -81,7 +82,8 @@ export default async function ToolPage({ params }: Props) {
   const tool = toolCatalogBySlug[slug];
 
   if (!tool) {
-    notFound();
+    // notFound();
+    <NotFound />
   }
 
   const toolJsonLd = {
