@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
 import { toolCatalog } from "@/lib/toolCatalog";
+import ogImage from "../public/og-default.svg";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-const defaultOgImage = `${siteUrl}/og-default.svg`;
+// const defaultOgImage = `${siteUrl}/og-default.svg`;
+const defaultOgImage = ogImage;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
