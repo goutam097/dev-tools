@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const defaultOgImage = `${siteUrl}/og-default.svg`;
+
 export const metadata: Metadata = {
-  title: "Free Developer Tools",
+  metadataBase: new URL(siteUrl),
+  title: "Free Developer Tools | DevTools Hub",
   description:
-    "Use free online developer tools: JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
+    "Browse the entire DevTools Hub catalog for JSON formatting, JWT decoding, Base64 conversions, regex testing, UUID generation, Markdown preview, gradient creation, and image-to-Base64 conversion.",
   keywords: [
     "free developer tools",
     "json formatter",
@@ -16,6 +20,36 @@ export const metadata: Metadata = {
     "markdown preview",
     "image to base64",
   ],
+  alternates: {
+    canonical: "/tools",
+  },
+  openGraph: {
+    title: "Free Developer Tools | DevTools Hub",
+    description:
+      "DevTools Hub centralizes every utility you need for JSON, JWT, Base64, regex, UUID, Markdown, gradient, and image conversion work.",
+    url: `${siteUrl}/tools`,
+    siteName: "DevTools Hub",
+    type: "website",
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: "DevTools Hub tools catalog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Developer Tools | DevTools Hub",
+    description:
+      "DevTools Hub centralizes every utility you need for JSON, JWT, Base64, regex, UUID, Markdown, gradient, and image conversion work.",
+    images: [defaultOgImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function ToolsIndexPage() {

@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1d1e2f" />
+      <stop offset="100%" stop-color="#1b7e77" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grad)" />
+  <g transform="translate(80 80)">
+    <text x="0" y="90" fill="#ffffff" font-size="72" font-family="Manrope, Inter, system-ui, sans-serif" font-weight="700">
+      DevTools Hub
+    </text>
+    <text x="0" y="150" fill="#f8f8f8" font-size="32" font-family="Manrope, Inter, system-ui, sans-serif">
+      Fast browser utilities for developers
+    </text>
+    <rect x="0" y="220" width="520" height="120" rx="24" fill="#ffffff" opacity="0.1" />
+    <text x="30" y="270" fill="#ffffff" font-size="24" font-family="JetBrains Mono, monospace">
+      JSON Formatter · JWT Decoder · Base64 · Regex
+    </text>
+  </g>
+</svg>

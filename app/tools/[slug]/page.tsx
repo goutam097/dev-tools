@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-// import { notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import Base64Converter from "@/components/Base64Converter";
 import GradientGenerator from "@/components/GradientGenerator";
 import ImageBase64Converter from "@/components/ImageBase64Converter";
@@ -10,13 +10,13 @@ import MarkdownConverter from "@/components/MarkdownConverter";
 import RegexTester from "@/components/RegexTester";
 import UUIDGenerator from "@/components/UUIDGenerator";
 import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
-import NotFound from "@/app/not-found";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const defaultOgImage = `${SITE_URL}/og-default.svg`;
 
 function ToolRenderer({ slug }: { slug: string }) {
   switch (slug) {
@@ -57,6 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${tool.title} - Free Online Developer Tool`;
 
   return {
+    metadataBase: new URL(SITE_URL),
     title,
     description: tool.description,
     keywords: tool.keywords,
@@ -68,11 +69,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: tool.description,
       type: "website",
       url: canonical,
+      images: [
+        {
+          url: defaultOgImage,
+          width: 1200,
+          height: 630,
+          alt: `${tool.title} share card`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: tool.description,
+      images: [defaultOgImage],
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -82,8 +96,7 @@ export default async function ToolPage({ params }: Props) {
   const tool = toolCatalogBySlug[slug];
 
   if (!tool) {
-    // notFound();
-    <NotFound />
+    notFound();
   }
 
   const toolJsonLd = {

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { toolCatalog } from "@/lib/toolCatalog";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const defaultOgImage = `${siteUrl}/og-default.svg`;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
     changeFrequency: "weekly" as const,
     priority: 0.8,
+    images: [defaultOgImage],
   }));
 
   return [
@@ -18,12 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
+      images: [defaultOgImage],
     },
     {
       url: `${siteUrl}/tools`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
+      images: [defaultOgImage],
     },
     ...toolUrls,
   ];
