@@ -7,6 +7,9 @@
   --border: rgba(22, 22, 22, 0.12);
   --surface: rgba(22, 22, 22, 0.05);
   --accent: #ff7d33;
+  --font-manrope: "Manrope", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-jetbrains-mono: "JetBrains Mono", "IBM Plex Mono", "Fira Code", monospace;
+  --font-cormorant: "Cormorant Garamond", "Times New Roman", Georgia, serif;
 }
 
 @theme inline {

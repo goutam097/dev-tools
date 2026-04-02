@@ -83,9 +83,9 @@ export default function DevToolsApp() {
     );
   }
 
-  if (!user) {
-    return <AuthPage />;
-  }
+  // if (!user) {
+  //   return <AuthPage />;
+  // }
 
   return (
     <ToolLayout activeTool={activeTool} onToolSelect={setActiveTool}>
