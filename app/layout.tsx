@@ -143,9 +143,14 @@ export const metadata: Metadata = {
     images: [defaultOgImage],
   },
   icons: {
-    icon: "/favicon.webp",
-    shortcut: "/favicon.webp",
-    apple: "/favicon.webp",
+    // icon: "/favicon.webp",
+    // shortcut: "/favicon.webp",
+    // apple: "/favicon.webp",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
   },
   verification: {
     google: "HrN1X_laGO1ECJ9OddudyNdwhHSpTRGTowVqVqIAvBM",
