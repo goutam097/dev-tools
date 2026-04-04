@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.webcodeveloper.co.in
+
+# Sitemaps
+Sitemap: https://www.webcodeveloper.co.in/sitemap.xml
