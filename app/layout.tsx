@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { Suspense } from "react";
+import Script from "next/script";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const siteName = "DevTools Hub";
@@ -163,6 +164,21 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="antialiased">
+        <head>
+          <meta name="google-site-verification" content="HrN1X_laGO1ECJ9OddudyNdwhHSpTRGTowVqVqIAvBM" />
+        </head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RCXG9GNY5X"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RCXG9GNY5X');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           suppressHydrationWarning
