@@ -4,7 +4,8 @@ import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-const defaultOgImage = `${siteUrl}/og-default.svg`;
+// const defaultOgImage = `${siteUrl}/og-default.svg`;
+const defaultOgImage = `https://raw.githubusercontent.com/goutam097/dev-tools/8b2f0270e309b99fa218a60e523712b91268cd79/public/og-default.svg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -84,7 +85,7 @@ const whyList = [
 export default function HomePage() {
   return (
     <>
-      <main className="mx-auto max-w-6xl px-4 py-8 transition-[padding] duration-300 sm:px-6 sm:py-10 md:pl-[var(--app-left-offset,1rem)]">
+      <main className="mx-auto max-w-6xl px-4 py-8 transition-[padding] duration-300 sm:px-6 sm:py-10 md:pl-[var(--app-left-offset,16rem)]">
         <section>
           <h1 className="font-serif text-3xl italic text-[var(--ink)] sm:text-4xl">DevTools Hub</h1>
           <p className="mt-3 max-w-3xl text-sm text-[var(--muted)]">

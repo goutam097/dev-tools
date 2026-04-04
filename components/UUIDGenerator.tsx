@@ -47,7 +47,12 @@ export default function UUIDGenerator() {
           uuids.map((uuid, index) => (
             <div key={uuid} className="flex items-center justify-between gap-3 rounded-xl border border-[var(--border)] bg-white p-4">
               <code className="truncate font-mono text-xs sm:text-sm">{uuid}</code>
-              <button type="button" onClick={() => void copyLine(uuid, index)} className="rounded p-2 transition hover:bg-[var(--surface)]">
+              <button
+                type="button"
+                onClick={() => void copyLine(uuid, index)}
+                className="rounded p-2 transition hover:bg-[var(--surface)]"
+                aria-label={`Copy UUID ${index + 1}`}
+              >
                 {copiedIndex === index ? <Check size={16} className="text-emerald-600" /> : <Copy size={16} className="text-[var(--muted)]" />}
               </button>
             </div>

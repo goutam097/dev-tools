@@ -51,6 +51,7 @@ export default function Base64Converter() {
             setError("");
           }}
           className="rounded-full bg-[var(--ink)] p-3 text-[var(--bg)] transition hover:rotate-180"
+          aria-label="Toggle encode and decode modes"
         >
           <ArrowLeftRight size={20} />
         </button>

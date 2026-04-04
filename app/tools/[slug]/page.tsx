@@ -16,7 +16,8 @@ type Props = {
 };
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-const defaultOgImage = `${SITE_URL}/og-default.svg`;
+// const defaultOgImage = `${SITE_URL}/og-default.svg`;
+const defaultOgImage = `https://raw.githubusercontent.com/goutam097/dev-tools/8b2f0270e309b99fa218a60e523712b91268cd79/public/og-default.svg`;
 
 function ToolRenderer({ slug }: { slug: string }) {
   switch (slug) {

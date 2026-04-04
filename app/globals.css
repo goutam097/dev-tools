@@ -3,10 +3,11 @@
 :root {
   --bg: #e7e4dc;
   --ink: #161616;
-  --muted: #6b6a66;
-  --border: rgba(22, 22, 22, 0.12);
+  --muted: #3c3a34;
+  --border: rgba(22, 22, 22, 0.18);
   --surface: rgba(22, 22, 22, 0.05);
   --accent: #ff7d33;
+  --app-left-offset: 16rem;
   --font-manrope: "Manrope", "Inter", "Segoe UI", system-ui, sans-serif;
   --font-jetbrains-mono: "JetBrains Mono", "IBM Plex Mono", "Fira Code", monospace;
   --font-cormorant: "Cormorant Garamond", "Times New Roman", Georgia, serif;

@@ -50,7 +50,12 @@ export default function JSONFormatter() {
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <label className="tool-label">Input</label>
-          <button type="button" onClick={() => setInput("")} className="rounded p-2 text-red-500 transition hover:bg-red-100">
+          <button
+            type="button"
+            onClick={() => setInput("")}
+            className="rounded p-2 text-red-500 transition hover:bg-red-100"
+            aria-label="Clear input"
+          >
             <Trash2 size={16} />
           </button>
         </div>

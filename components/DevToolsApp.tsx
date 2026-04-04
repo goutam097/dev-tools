@@ -1,23 +1,43 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import { ComponentType, useEffect, useState } from "react";
 import { useAuthStore } from "@/lib/authStore";
 import { ToolId } from "@/lib/types";
-import AuthPage from "@/components/AuthPage";
 import ToolLayout from "@/components/ToolLayout";
-import JSONFormatter from "@/components/JSONFormatter";
-import JWTDecoder from "@/components/JWTDecoder";
-import Base64Converter from "@/components/Base64Converter";
-import RegexTester from "@/components/RegexTester";
-import UUIDGenerator from "@/components/UUIDGenerator";
-import MarkdownConverter from "@/components/MarkdownConverter";
-import GradientGenerator from "@/components/GradientGenerator";
-import ImageBase64Converter from "@/components/ImageBase64Converter";
-import HistoryView from "@/components/HistoryView";
+
+function ToolLoading({ label }: { label: string }) {
+  return (
+    <div className="rounded-3xl border border-dashed border-[var(--border)] bg-white/60 p-8 text-center text-sm text-[var(--muted)]">
+      Loading {label}…
+    </div>
+  );
+}
+
+const loadTool = (
+  importer: () => Promise<{ default: ComponentType<unknown> }>,
+  label: string,
+) =>
+  dynamic(importer, {
+    loading: () => <ToolLoading label={label} />,
+    ssr: false,
+  });
+
+const toolComponents: Record<ToolId, ComponentType<unknown>> = {
+  json: loadTool(() => import("./JSONFormatter"), "JSON Formatter"),
+  jwt: loadTool(() => import("./JWTDecoder"), "JWT Decoder"),
+  base64: loadTool(() => import("./Base64Converter"), "Base64 Converter"),
+  regex: loadTool(() => import("./RegexTester"), "Regex Tester"),
+  uuid: loadTool(() => import("./UUIDGenerator"), "UUID Generator"),
+  markdown: loadTool(() => import("./MarkdownConverter"), "Markdown Preview"),
+  gradient: loadTool(() => import("./GradientGenerator"), "Gradient Maker"),
+  "image-base64": loadTool(() => import("./ImageBase64Converter"), "Image to Base64"),
+  history: loadTool(() => import("./HistoryView"), "History"),
+};
 
 export default function DevToolsApp() {
   const [activeTool, setActiveTool] = useState<ToolId>("json");
-  const { user, setUser, isLoading, setIsLoading } = useAuthStore();
+  const { setUser, isLoading, setIsLoading } = useAuthStore();
 
   useEffect(() => {
     let mounted = true;
@@ -47,30 +67,7 @@ export default function DevToolsApp() {
     };
   }, [setIsLoading, setUser]);
 
-  const content = useMemo(() => {
-    switch (activeTool) {
-      case "json":
-        return <JSONFormatter />;
-      case "jwt":
-        return <JWTDecoder />;
-      case "base64":
-        return <Base64Converter />;
-      case "regex":
-        return <RegexTester />;
-      case "uuid":
-        return <UUIDGenerator />;
-      case "markdown":
-        return <MarkdownConverter />;
-      case "gradient":
-        return <GradientGenerator />;
-      case "image-base64":
-        return <ImageBase64Converter />;
-      case "history":
-        return <HistoryView />;
-      default:
-        return <JSONFormatter />;
-    }
-  }, [activeTool]);
+  const ToolComponent = toolComponents[activeTool] ?? toolComponents.json;
 
   if (isLoading) {
     return (
@@ -83,13 +80,9 @@ export default function DevToolsApp() {
     );
   }
 
-  // if (!user) {
-  //   return <AuthPage />;
-  // }
-
   return (
     <ToolLayout activeTool={activeTool} onToolSelect={setActiveTool}>
-      {content}
+      <ToolComponent />
     </ToolLayout>
   );
 }
