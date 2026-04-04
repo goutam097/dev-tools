@@ -164,9 +164,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="antialiased">
-        <head>
+        {/* <head>
           <meta name="google-site-verification" content="HrN1X_laGO1ECJ9OddudyNdwhHSpTRGTowVqVqIAvBM" />
-        </head>
+        </head> */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RCXG9GNY5X"
           strategy="afterInteractive"
