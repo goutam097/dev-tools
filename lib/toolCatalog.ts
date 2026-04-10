@@ -11,14 +11,16 @@ export const toolCatalog: ToolCatalogItem[] = [
     slug: "json-formatter",
     title: "JSON Formatter",
     shortTitle: "JSON Formatter",
-    description: "Format, validate, and beautify JSON data instantly in your browser.",
+    description:
+      "Format, validate, and beautify JSON data instantly in your browser.",
     keywords: ["json formatter", "json validator", "pretty print json"],
   },
   {
     slug: "jwt-decoder",
     title: "JWT Decoder",
     shortTitle: "JWT Decoder",
-    description: "Decode JWT tokens and inspect header, payload, and claims quickly.",
+    description:
+      "Decode JWT tokens and inspect header, payload, and claims quickly.",
     keywords: ["jwt decoder", "decode jwt token", "jwt payload viewer"],
   },
   {
@@ -32,8 +34,13 @@ export const toolCatalog: ToolCatalogItem[] = [
     slug: "regex-tester",
     title: "Regex Tester",
     shortTitle: "Regex Tester",
-    description: "Test and debug regular expressions with real-time pattern matching.",
-    keywords: ["regex tester", "regular expression tester", "regex online tool"],
+    description:
+      "Test and debug regular expressions with real-time pattern matching.",
+    keywords: [
+      "regex tester",
+      "regular expression tester",
+      "regex online tool",
+    ],
   },
   {
     slug: "uuid-generator",
@@ -53,16 +60,40 @@ export const toolCatalog: ToolCatalogItem[] = [
     slug: "gradient-marker",
     title: "Gradient Marker",
     shortTitle: "Gradient Marker",
-    description: "Create CSS gradients and copy production-ready gradient code.",
+    description:
+      "Create CSS gradients and copy production-ready gradient code.",
     keywords: ["gradient generator", "css gradient maker", "gradient marker"],
   },
   {
     slug: "image-to-base64",
     title: "Image to Base64",
     shortTitle: "Image to Base64",
-    description: "Convert images into Base64 strings for embedding and transport.",
-    keywords: ["image to base64", "convert image to base64", "base64 image encoder"],
+    description:
+      "Convert images into Base64 strings for embedding and transport.",
+    keywords: [
+      "image to base64",
+      "convert image to base64",
+      "base64 image encoder",
+    ],
+  },
+  {
+    slug: "html-formatter",
+    title: "HTML Formatter",
+    shortTitle: "HTML Formatter",
+    description:
+      "Free online HTML formatter to beautify and clean your code. Fix indentation, improve structure, and make HTML more readable instantly.",
+    keywords: [
+      "HTML formatter",
+      "HTML beautifier",
+      "HTML prettifier",
+      "format HTML online",
+      "HTML code formatter",
+      "free HTML formatter",
+      "HTML formatter online tool",
+    ],
   },
 ];
 
-export const toolCatalogBySlug = Object.fromEntries(toolCatalog.map((tool) => [tool.slug, tool]));
+export const toolCatalogBySlug = Object.fromEntries(
+  toolCatalog.map((tool) => [tool.slug, tool]),
+);

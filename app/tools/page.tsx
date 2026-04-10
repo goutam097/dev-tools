@@ -3,8 +3,7 @@ import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-// const defaultOgImage = `${siteUrl}/og-default.svg`;
-const defaultOgImage = `https://raw.githubusercontent.com/goutam097/dev-tools/8b2f0270e309b99fa218a60e523712b91268cd79/public/og-default.svg`;
+const defaultOgImage = `${siteUrl}/og-default.svg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

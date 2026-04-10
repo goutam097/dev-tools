@@ -6,9 +6,7 @@ import Script from "next/script";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 const siteName = "DevTools Hub";
-// const defaultOgImage = `${siteUrl}/og-default.svg`;
-const defaultOgImage =
-  "https://raw.githubusercontent.com/goutam097/dev-tools/8b2f0270e309b99fa218a60e523712b91268cd79/public/og-default.svg";
+const defaultOgImage = `${siteUrl}/og-default.svg`;
 const searchActionUrl = `${siteUrl}/tools?q={search_term_string}`;
 
 const structuredData = [
@@ -112,7 +110,14 @@ export const metadata: Metadata = {
     "best regex tester for developers",
     "online base64 encoder and decoder tool",
     "live markdown editor with preview",
-    "fast uuid generator online free"
+    "fast uuid generator online free",
+    "HTML formatter",
+    "HTML beautifier",
+    "HTML prettifier",
+    "format HTML online",
+    "HTML code formatter",
+    "free HTML formatter",
+    "HTML formatter online tool"
   ],
   authors: [{ name: "WebCodeveloper" }],
   themeColor: "#e7e4dc",
