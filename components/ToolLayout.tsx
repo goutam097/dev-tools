@@ -42,6 +42,7 @@ const tools: { id: ToolId; name: string; icon: typeof Code2 }[] = [
   { id: "markdown", name: "Markdown Preview", icon: FileText },
   { id: "gradient", name: "Gradient Maker", icon: Palette },
   { id: "image-base64", name: "Image to Base64", icon: ImageIcon },
+  { id: "html-formatter", name: "HTML Formatter", icon: ImageIcon },
   { id: "history", name: "History", icon: History },
 ];
 

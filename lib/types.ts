@@ -7,6 +7,7 @@ export type ToolId =
   | "markdown"
   | "gradient"
   | "image-base64"
+  | "html-formatter"
   | "history";
 
 export type User = {

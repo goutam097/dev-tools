@@ -32,6 +32,7 @@ const toolComponents: Record<ToolId, ComponentType<unknown>> = {
   markdown: loadTool(() => import("./MarkdownConverter"), "Markdown Preview"),
   gradient: loadTool(() => import("./GradientGenerator"), "Gradient Maker"),
   "image-base64": loadTool(() => import("./ImageBase64Converter"), "Image to Base64"),
+  "html-formatter": loadTool(() => import("./HTMLFormatter"), "HTML Formatter"),
   history: loadTool(() => import("./HistoryView"), "History"),
 };
 
