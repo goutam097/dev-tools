@@ -1,38 +1,35 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-const defaultOgImage = `${siteUrl}/og-default.svg`;
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
+import SidebarScaffold from "@/components/SidebarScaffold";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Free Developer Tools | DevTools Hub",
+  metadataBase: new URL(SITE_URL),
+  title: "Developer Tools Directory | DevTools Hub",
   description:
-    "Browse the entire DevTools Hub catalog for JSON formatting, JWT decoding, Base64 conversions, regex testing, UUID generation, Markdown preview, gradient creation, and image-to-Base64 conversion.",
+    "Explore all free online developer tools by category: JSON formatter, JWT decoder, Base64 encoder, regex tester, UUID generator, HTML formatter, and more.",
   keywords: [
-    "free developer tools",
-    "json formatter",
-    "jwt decoder",
-    "base64 converter",
-    "regex tester",
-    "uuid generator",
-    "markdown preview",
-    "image to base64",
+    "developer tools directory",
+    "developer tools online free",
+    "json formatter online free",
+    "base64 encoder online",
+    "regex tester javascript tool",
+    "html formatter online free",
   ],
   alternates: {
     canonical: "/tools",
   },
   openGraph: {
-    title: "Free Developer Tools | DevTools Hub",
+    title: "Developer Tools Directory | DevTools Hub",
     description:
-      "DevTools Hub centralizes every utility you need for JSON, JWT, Base64, regex, UUID, Markdown, gradient, and image conversion work.",
-    url: `${siteUrl}/tools`,
-    siteName: "DevTools Hub",
+      "Browse every DevTools Hub utility with direct links, use cases, and quick access for day-to-day engineering tasks.",
+    url: `${SITE_URL}/tools`,
+    siteName: SITE_NAME,
     type: "website",
     images: [
       {
-        url: defaultOgImage,
+        url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "DevTools Hub tools catalog",
@@ -41,10 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Developer Tools | DevTools Hub",
-    description:
-      "DevTools Hub centralizes every utility you need for JSON, JWT, Base64, regex, UUID, Markdown, gradient, and image conversion work.",
-    images: [defaultOgImage],
+    title: "Developer Tools Directory | DevTools Hub",
+    description: "Browse all browser-based developer tools in one indexable hub.",
+    images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,
@@ -52,12 +48,45 @@ export const metadata: Metadata = {
   },
 };
 
+const faqItems = [
+  {
+    q: "Are all tools free to use?",
+    a: "Yes. Every tool listed in this directory is free and accessible without mandatory sign-up.",
+  },
+  {
+    q: "Do tools process data in the browser?",
+    a: "Most utilities are designed for browser-first processing so developers can work faster with better privacy.",
+  },
+  {
+    q: "Which tools are best for API debugging?",
+    a: "Start with JSON Formatter, JWT Decoder, Base64 Converter, and Regex Tester for common API and payload workflows.",
+  },
+];
+
 export default function ToolsIndexPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
-      <h1 className="font-serif text-3xl italic text-[var(--ink)] sm:text-4xl">Free Developer Tools</h1>
+    <SidebarScaffold title="Free Developer Tools">
+      <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+
+      <h1 className="font-serif text-3xl italic text-[var(--ink)] sm:text-4xl">Free Developer Tools Directory</h1>
       <p className="mt-3 max-w-3xl text-sm text-[var(--muted)]">
-        Fast browser tools for developers. Pick a utility below and start using it immediately.
+        This page links every tool available on DevTools Hub so search engines and users can discover utilities quickly.
+        Use this as your starting point when you need JSON validation, Base64 conversion, regex debugging, UUID generation,
+        HTML formatting, Markdown preview, or JWT inspection.
       </p>
 
       <section className="mt-8 grid grid-cols-1 gap-4 md:mt-10 md:grid-cols-2">
@@ -74,6 +103,33 @@ export default function ToolsIndexPage() {
           </article>
         ))}
       </section>
-    </main>
+
+      <section className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
+        <h2 className="font-serif text-2xl italic text-[var(--ink)]">How to Choose the Right Tool Quickly</h2>
+        <p className="mt-3 text-sm text-[var(--muted)]">
+          For API payload cleanup, start with JSON Formatter. For token troubleshooting, use JWT Decoder. If you need text
+          encoding work, go to Base64 Converter or Image to Base64. Regex Tester is ideal when validation patterns fail,
+          while UUID Generator helps with unique IDs for databases and services. Markdown Preview and HTML Formatter support
+          documentation and frontend cleanup workflows.
+        </p>
+        <p className="mt-3 text-sm text-[var(--muted)]">
+          Keeping all tools in one crawlable directory improves technical SEO and user navigation at the same time. Google can
+          discover deeper pages through internal links, and users can move between related utilities in fewer clicks.
+        </p>
+      </section>
+
+      <section className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
+        <h2 className="font-serif text-2xl italic text-[var(--ink)]">Frequently Asked Questions</h2>
+        <div className="mt-4 space-y-4">
+          {faqItems.map((faq) => (
+            <article key={faq.q}>
+              <h3 className="font-serif text-xl italic text-[var(--ink)]">{faq.q}</h3>
+              <p className="mt-2 text-sm text-[var(--muted)]">{faq.a}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      </main>
+    </SidebarScaffold>
   );
 }

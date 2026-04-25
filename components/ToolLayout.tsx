@@ -16,6 +16,7 @@ import {
   User as UserIcon,
   X,
 } from "lucide-react";
+import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -33,16 +34,16 @@ type ToolLayoutProps = {
   children: ReactNode;
 };
 
-const tools: { id: ToolId; name: string; icon: typeof Code2 }[] = [
-  { id: "json", name: "JSON Formatter", icon: Code2 },
-  { id: "jwt", name: "JWT Decoder", icon: Key },
-  { id: "base64", name: "Base64 Converter", icon: Binary },
-  { id: "regex", name: "Regex Tester", icon: Hash },
-  { id: "uuid", name: "UUID Generator", icon: Fingerprint },
-  { id: "markdown", name: "Markdown Preview", icon: FileText },
-  { id: "gradient", name: "Gradient Maker", icon: Palette },
-  { id: "image-base64", name: "Image to Base64", icon: ImageIcon },
-  { id: "html-formatter", name: "HTML Formatter", icon: ImageIcon },
+const tools: { id: ToolId; name: string; icon: typeof Code2; href?: string }[] = [
+  { id: "json", name: "JSON Formatter", icon: Code2, href: "/tools/json-formatter" },
+  { id: "jwt", name: "JWT Decoder", icon: Key, href: "/tools/jwt-decoder" },
+  { id: "base64", name: "Base64 Converter", icon: Binary, href: "/tools/base64-converter" },
+  { id: "regex", name: "Regex Tester", icon: Hash, href: "/tools/regex-tester" },
+  { id: "uuid", name: "UUID Generator", icon: Fingerprint, href: "/tools/uuid-generator" },
+  { id: "markdown", name: "Markdown Preview", icon: FileText, href: "/tools/markdown-preview" },
+  { id: "gradient", name: "Gradient Maker", icon: Palette, href: "/tools/gradient-marker" },
+  { id: "image-base64", name: "Image to Base64", icon: ImageIcon, href: "/tools/image-to-base64" },
+  { id: "html-formatter", name: "HTML Formatter", icon: ImageIcon, href: "/tools/html-formatter" },
   { id: "history", name: "History", icon: History },
 ];
 
@@ -127,25 +128,47 @@ export default function ToolLayout({ activeTool, onToolSelect, children }: ToolL
           </div>
 
           <nav className="flex-1 space-y-2 px-3 py-4 md:py-6">
-            {tools.map((tool) => (
-              <button
-                key={tool.id}
-                type="button"
-                onClick={() => {
-                  onToolSelect(tool.id);
-                  setIsMobileMenuOpen(false);
-                }}
-                className={cn(
-                  "group flex w-full items-center gap-3 rounded-lg p-3 text-left transition",
-                  activeTool === tool.id
-                    ? "bg-[var(--bg)] text-[var(--ink)]"
-                    : "text-white/65 hover:bg-white/10 hover:text-white",
-                )}
-              >
-                <tool.icon size={20} className="transition group-hover:scale-105" />
-                {(isDesktopSidebarOpen || isMobileMenuOpen) && <span className="truncate text-sm font-medium">{tool.name}</span>}
-              </button>
-            ))}
+            {tools.map((tool) => {
+              const itemClassName = cn(
+                "group flex w-full items-center gap-3 rounded-lg p-3 text-left transition",
+                activeTool === tool.id
+                  ? "bg-[var(--bg)] text-[var(--ink)]"
+                  : "text-white/65 hover:bg-white/10 hover:text-white",
+              );
+
+              if (tool.href) {
+                return (
+                  <Link
+                    key={tool.id}
+                    href={tool.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={itemClassName}
+                  >
+                    <tool.icon size={20} className="transition group-hover:scale-105" />
+                    {(isDesktopSidebarOpen || isMobileMenuOpen) && (
+                      <span className="truncate text-sm font-medium">{tool.name}</span>
+                    )}
+                  </Link>
+                );
+              }
+
+              return (
+                <button
+                  key={tool.id}
+                  type="button"
+                  onClick={() => {
+                    onToolSelect(tool.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={itemClassName}
+                >
+                  <tool.icon size={20} className="transition group-hover:scale-105" />
+                  {(isDesktopSidebarOpen || isMobileMenuOpen) && (
+                    <span className="truncate text-sm font-medium">{tool.name}</span>
+                  )}
+                </button>
+              );
+            })}
           </nav>
 
           <div className="border-t border-white/10 p-4">

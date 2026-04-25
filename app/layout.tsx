@@ -3,24 +3,24 @@ import "./globals.css";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { Suspense } from "react";
 import Script from "next/script";
+import Link from "next/link";
+import { toolCatalog } from "@/lib/toolCatalog";
+import { DEFAULT_OG_IMAGE, SITE_BRAND, SITE_NAME, SITE_URL } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-const siteName = "DevTools Hub";
-const defaultOgImage = `${siteUrl}/og-default.svg`;
-const searchActionUrl = `${siteUrl}/tools?q={search_term_string}`;
+const searchActionUrl = `${SITE_URL}/tools?q={search_term_string}`;
 
 const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: siteName,
-    url: siteUrl,
+    name: SITE_NAME,
+    url: SITE_URL,
     description:
       "Browser-first developer tools for formatting JSON, decoding JWTs, testing regex, generating UUIDs, previewing Markdown, creating gradients, and converting images to Base64.",
     publisher: {
       "@type": "Organization",
-      name: siteName,
-      logo: defaultOgImage,
+      name: SITE_NAME,
+      logo: DEFAULT_OG_IMAGE,
     },
     potentialAction: {
       "@type": "SearchAction",
@@ -31,17 +31,17 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "WebCodeveloper",
-    url: siteUrl,
-    logo: defaultOgImage,
-    sameAs: [siteUrl],
+    name: SITE_BRAND,
+    url: SITE_URL,
+    logo: DEFAULT_OG_IMAGE,
+    sameAs: [SITE_URL],
   },
 ];
 const structuredDataJson = JSON.stringify(structuredData);
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  applicationName: siteName,
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
   title: {
     default: "DevTools Hub - Free Online Developer Tools",
     template: "%s | DevTools Hub",
@@ -57,69 +57,17 @@ export const metadata: Metadata = {
     "uuid generator",
     "markdown preview",
     "image to base64",
-    "gradient marker",
-    "developer tools online",
-    "free developer tools",
-    "web developer tools",
-    "online coding tools",
-    "developer utilities free",
     "json formatter online free",
-    "json beautifier tool",
-    "json validator online",
-    "format json online",
-    "json pretty print tool",
-    "fix invalid json online",
-    "jwt decoder online",
-    "decode jwt token online",
-    "jwt debugger tool",
-    "jwt parser online",
-    "verify jwt token online",
-    "jwt token viewer",
-    "base64 encode decode online",
-    "base64 to image converter",
-    "image to base64 converter online",
-    "base64 string decoder",
-    "encode file to base64",
-    "regex tester online free",
-    "regular expression tester",
-    "regex validator tool",
-    "test regex online",
-    "regex pattern checker",
+    "base64 encoder online",
+    "regex tester javascript tool",
     "uuid generator online",
-    "generate uuid v4 online",
-    "random uuid generator",
-    "unique id generator tool",
     "markdown preview online",
-    "markdown editor live preview",
-    "markdown to html converter",
-    "online markdown viewer",
-    "image to base64 online",
-    "convert image to base64 string",
-    "image encoder online tool",
     "css gradient generator online",
-    "gradient maker tool",
-    "css gradient background generator",
-    "how to format json online",
-    "how to decode jwt token",
-    "convert image to base64 online",
-    "how to test regex online",
-    "generate uuid for database",
-    "how to preview markdown online",
-    "free json formatter and validator online",
-    "decode jwt token without secret online",
-    "best regex tester for developers",
-    "online base64 encoder and decoder tool",
-    "live markdown editor with preview",
-    "fast uuid generator online free",
-    "HTML formatter",
-    "HTML beautifier",
-    "HTML prettifier",
-    "format HTML online",
-    "HTML code formatter",
-    "free HTML formatter",
-    "HTML formatter online tool"
+    "image to base64 converter online",
+    "html formatter online free",
+    "developer tools online free",
   ],
-  authors: [{ name: "WebCodeveloper" }],
+  authors: [{ name: SITE_BRAND }],
   themeColor: "#e7e4dc",
   alternates: {
     canonical: "/",
@@ -129,11 +77,11 @@ export const metadata: Metadata = {
     description:
       "A complete toolkit for developers: JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
     type: "website",
-    url: siteUrl,
-    siteName,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
-        url: defaultOgImage,
+        url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "DevTools Hub share card",
@@ -145,7 +93,7 @@ export const metadata: Metadata = {
     title: "DevTools Hub - Free Online Developer Tools",
     description:
       "Use JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
-    images: [defaultOgImage],
+    images: [DEFAULT_OG_IMAGE],
   },
   icons: {
     // icon: "/favicon.webp",
@@ -198,6 +146,39 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <AnalyticsTracker />
         </Suspense>
         {children}
+        <footer className="border-t border-[var(--border)] bg-white/70">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:px-6">
+            <div>
+              <p className="font-serif text-xl italic text-[var(--ink)]">{SITE_NAME}</p>
+              <p className="mt-2 text-sm text-[var(--muted)]">
+                Free online developer tools built for fast debugging and daily engineering workflows.
+              </p>
+            </div>
+            <nav aria-label="Footer links" className="flex flex-wrap gap-2">
+              <Link href="/" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+                Home
+              </Link>
+              <Link
+                href="/tools"
+                className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]"
+              >
+                All Tools
+              </Link>
+              <Link href="/blog" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+                Blog
+              </Link>
+              {toolCatalog.map((tool) => (
+                <Link
+                  key={tool.slug}
+                  href={`/tools/${tool.slug}`}
+                  className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]"
+                >
+                  {tool.shortTitle}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </footer>
       </body>
     </html>
   );
