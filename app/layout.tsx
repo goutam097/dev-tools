@@ -147,7 +147,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </Suspense>
         {children}
         <footer className="border-t border-[var(--border)] bg-white/70">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:px-6">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 transition-[padding] duration-300 sm:px-6 md:pl-[var(--app-left-offset,16rem)]">
             <div>
               <p className="font-serif text-xl italic text-[var(--ink)]">{SITE_NAME}</p>
               <p className="mt-2 text-sm text-[var(--muted)]">
