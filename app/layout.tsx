@@ -125,6 +125,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="antialiased">
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-4344677734190475"
+        />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RCXG9GNY5X"
