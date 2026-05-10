@@ -125,6 +125,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="antialiased">
+        {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RCXG9GNY5X"
           strategy="afterInteractive"
@@ -137,6 +138,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             gtag('config', 'G-RCXG9GNY5X');
           `}
         </Script>
+        {/* Google AdSense */}
+        <Script
+          async
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4344677734190475"
+          crossOrigin="anonymous"
+        />
         <script
           type="application/ld+json"
           suppressHydrationWarning
