@@ -3,4 +3,4 @@ export const SITE_URL =
 
 export const SITE_NAME = "DevTools Hub";
 export const SITE_BRAND = "WebCodeveloper";
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/devtools.png`;
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/devtools.jpg`;
