@@ -7,7 +7,7 @@ import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Developer Tools Online Free | DevTools Hub",
+  title: "Free Developer Utilities for Modern Web Developers",
   description:
     "Developer tools online free for JSON formatting, JWT decoding, Base64 conversion, regex testing, UUID generation, Markdown preview, and HTML formatting.",
   keywords: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Developer Tools Online Free | DevTools Hub",
+    title: "Free Developer Utilities for Modern Web Developers",
     description:
       "Access JSON formatting, JWT decoding, Base64 tools, regex testing, UUID generation, Markdown preview, and HTML formatting in your browser.",
     url: SITE_URL,
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Developer Tools Online Free | DevTools Hub",
+    title: "Free Developer Utilities for Modern Web Developers",
     description: "Use browser-native developer tools with zero uploads and fast, practical workflows.",
     images: [DEFAULT_OG_IMAGE],
   },
