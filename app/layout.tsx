@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: `${SITE_URL}/devtools.jpg`,
+        url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "DevTools Hub share card",
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
     title: "DevTools Hub - Free Online Developer Tools",
     description:
       "Use JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
-    images: [`${SITE_URL}/devtools.jpg`],
+    images: [DEFAULT_OG_IMAGE],
   },
   icons: {
     // icon: "/favicon.webp",
