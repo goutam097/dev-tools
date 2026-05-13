@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     images: [
       {
-        url: DEFAULT_OG_IMAGE,
+        url: `${SITE_URL}/devtools.jpg`,
         width: 1200,
         height: 630,
         alt: "DevTools Hub share card",
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
     title: "DevTools Hub - Free Online Developer Tools",
     description:
       "Use JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
-    images: [DEFAULT_OG_IMAGE],
+    images: [`${SITE_URL}/devtools.jpg`],
   },
   icons: {
     // icon: "/favicon.webp",
@@ -124,11 +124,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <meta
-          name="google-adsense-account"
-          content="ca-pub-4344677734190475"
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-4344677734190475" />
+        {/* Google AdSense */}
+        <Script
+          async
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4344677734190475"
+          crossOrigin="anonymous"
         />
+      </head>
+      <body className="antialiased">
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-RCXG9GNY5X"
@@ -142,13 +148,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             gtag('config', 'G-RCXG9GNY5X');
           `}
         </Script>
-        {/* Google AdSense */}
-        <Script
-          async
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4344677734190475"
-          crossOrigin="anonymous"
-        />
         <script
           type="application/ld+json"
           suppressHydrationWarning
