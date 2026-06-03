@@ -178,6 +178,21 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/blog" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
                 Blog
               </Link>
+              <Link href="/about" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+                About
+              </Link>
+              <Link href="/contact" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+                Contact
+              </Link>
+              <Link href="/privacy-policy" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-and-conditions" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+                Terms
+              </Link>
+              <Link href="/disclaimer" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+                Disclaimer
+              </Link>
               {toolCatalog.map((tool) => (
                 <Link
                   key={tool.slug}

@@ -18,12 +18,89 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
-
+    {
+      url: `${SITE_URL}/tools/json-formatter`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/tools/jwt-decoder`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/tools/base64-converter`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/tools/regex-tester`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/tools/uuid-generator`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/tools/markdown-preview`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/tools/gradient-marker`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/tools/image-to-base64`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
     {
       url: `${SITE_URL}/blog`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.85,
+    },
+    {
+      url: `${SITE_URL}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
+      url: `${SITE_URL}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
+      url: `${SITE_URL}/privacy-policy`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}/terms-and-conditions`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}/disclaimer`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.3,
     },
 
     // 🔥 TOOL PAGES
@@ -43,14 +120,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 }
-
-
-
-
-
-
-
-
 
 /* import type { MetadataRoute } from "next";
 import { toolCatalog } from "@/lib/toolCatalog";
