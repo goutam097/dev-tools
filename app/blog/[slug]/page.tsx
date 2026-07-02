@@ -6,6 +6,7 @@ import { toolCatalogBySlug } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
 import AuthorCard from "@/components/AuthorCard";
+import AdSenseSlot from "@/components/AdSenseSlot";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -126,6 +127,16 @@ export default async function BlogPostPage({ params }: Props) {
         ))}
       </section>
 
+      <section className="mt-8 rounded-3xl border border-(--border) bg-(--surface) p-6 shadow-sm">
+        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-(--muted)">Why this guide is useful</p>
+        <h2 className="mt-2 font-serif text-2xl italic text-(--ink)">Practical expertise, tested workflows, and real-world examples</h2>
+        <p className="mt-3 text-sm leading-7 text-(--muted)">
+          Each article is written to help readers solve a concrete task quickly, while also showing the reasoning behind the recommended method. That makes the content more useful for both first-time readers and experienced engineers.
+        </p>
+      </section>
+
+      <AdSenseSlot slot="1234567890" />
+
       {post.sections.map((section) => (
         <section key={section.heading} className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
           <h2 className="font-serif text-2xl italic text-(--ink)">{section.heading}</h2>
@@ -145,6 +156,8 @@ export default async function BlogPostPage({ params }: Props) {
         publishedAt={post.publishedAt}
         updatedAt={post.publishedAt}
         readingMinutes={post.readingMinutes}
+        focusAreas={["Real-world debugging workflows", "API validation", "Frontend and backend productivity"]}
+        editorialNote="We verify examples against common engineering tasks and keep instructions practical, transparent, and easy to apply."
       />
 
       <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">

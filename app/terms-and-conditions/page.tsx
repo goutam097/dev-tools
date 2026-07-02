@@ -136,7 +136,9 @@ export default function TermsPage() {
                     websites for informational purposes. We do not
                     control and are not responsible for the content,
                     privacy practices, or policies of any external
-                    websites.
+                    websites. Some pages may also display advertising
+                    from Google AdSense to support the free availability
+                    of tools and editorial content.
                   </p>
                 </div>
               </div>

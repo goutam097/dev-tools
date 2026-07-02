@@ -138,6 +138,19 @@ export default function DisclaimerPage() {
                   </p>
                 </div>
               </div>
+              <div className="flex gap-5">
+                <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center text-2xl">
+                  📢
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                    Advertising and Monetization
+                  </h3>
+                  <p className="leading-relaxed">
+                    Some pages may display Google AdSense advertising to support the free availability of tools and tutorials. Ads are shown for monetization purposes and do not constitute endorsements of third-party products or services.
+                  </p>
+                </div>
+              </div>
             </div>
             {/* Acceptance Notice */}
             <div className="bg-orange-50 border-t border-orange-100 p-10">

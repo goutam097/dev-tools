@@ -9,6 +9,8 @@ type AuthorCardProps = {
   publishedAt: string;
   updatedAt: string;
   readingMinutes: number;
+  focusAreas?: string[];
+  editorialNote?: string;
 };
 
 export default function AuthorCard({
@@ -19,6 +21,8 @@ export default function AuthorCard({
   publishedAt,
   updatedAt,
   readingMinutes,
+  focusAreas = ["Practical developer workflows", "Clear implementation guidance", "Accessible technical education"],
+  editorialNote = "We publish with a focus on accuracy, clarity, and real-world usefulness for developers.",
 }: AuthorCardProps) {
   return (
     <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
@@ -48,6 +52,23 @@ export default function AuthorCard({
         <span>Updated {updatedAt}</span>
         <span>•</span>
         <span>{readingMinutes} min read</span>
+      </div>
+
+      <div className="mt-5 grid gap-4 md:grid-cols-[1.2fr_0.8fr]">
+        <div className="rounded-2xl border border-(--border) bg-(--surface) p-4">
+          <p className="font-semibold text-(--ink)">Editorial standards</p>
+          <p className="mt-2 text-sm leading-7 text-(--muted)">{editorialNote}</p>
+        </div>
+        <div className="rounded-2xl border border-(--border) bg-(--surface) p-4">
+          <p className="font-semibold text-(--ink)">Focus areas</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {focusAreas.map((area) => (
+              <span key={area} className="rounded-full border border-(--border) px-2.5 py-1 text-xs uppercase tracking-widest text-(--muted)">
+                {area}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="mt-5 flex flex-wrap gap-3">

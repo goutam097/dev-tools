@@ -4,8 +4,8 @@ import { SITE_URL } from "@/lib/site";
 import ContactForm from "./contact-form";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contact WebCodeveloper for support, bug reports, partnerships, and service inquiries.",
+  title: "Contact DevTools Hub | Support",
+  description: "Reach WebCodeveloper for support, bug reports, partnership questions, or general inquiries about DevTools Hub.",
   alternates: { canonical: `${SITE_URL}/contact` },
 };
 
@@ -66,14 +66,14 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                      📱
+                      ⏱️
                     </div>
                     <div>
                       <h3 className="font-semibold text-slate-900">
-                        Phone
+                        Response Time
                       </h3>
                       <p className="text-slate-600">
-                        +91 XXXXX XXXXX
+                        We aim to respond to support and partnership messages within a few business days.
                       </p>
                     </div>
                   </div>

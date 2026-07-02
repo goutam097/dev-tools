@@ -3,8 +3,8 @@ import Link from "next/link";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description: "Learn about WebCodeveloper and DevTools Hub, our mission, and how we build privacy-first developer tools.",
+  title: "About DevTools Hub | Publisher Information",
+  description: "Learn about DevTools Hub, its publisher WebCodeveloper, editorial standards, and the privacy-first developer tools and tutorials we publish.",
   alternates: { canonical: `${SITE_URL}/about` },
 };
 
@@ -111,6 +111,30 @@ export default function AboutPage() {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 md:p-10">
+            <h2 className="text-3xl font-bold text-slate-900">Publisher Information and Standards</h2>
+            <p className="mt-4 text-lg leading-relaxed text-slate-700">
+              DevTools Hub is published by WebCodeveloper as a practical resource for developers who need fast, browser-based tools and clear educational guidance.
+            </p>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <h3 className="font-semibold text-slate-900">What we publish</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">
+                  We publish free developer tools, tutorials, and reference content that help people solve everyday technical tasks with useful examples and clear explanations.
+                </p>
+              </div>
+              <div className="rounded-2xl bg-white p-5 shadow-sm">
+                <h3 className="font-semibold text-slate-900">Editorial and ad transparency</h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">
+                  We may display Google AdSense advertising to support free access to our site. Ads do not influence the accuracy of our tool output or the factual quality of our educational content.
+                </p>
               </div>
             </div>
           </div>

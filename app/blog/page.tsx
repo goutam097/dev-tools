@@ -3,6 +3,7 @@ import Link from "next/link";
 import { blogPosts } from "@/lib/blogPosts";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
+import AdSenseSlot from "@/components/AdSenseSlot";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,6 +50,8 @@ export default function BlogIndexPage() {
         Explore long-tail focused guides designed to support ranking growth and user intent. Every article links directly
         to relevant tools so readers can apply examples instantly.
       </p>
+
+      <AdSenseSlot slot="1111111111" />
 
       <section className="mt-8 grid gap-4 md:mt-10">
         {blogPosts.map((post) => (

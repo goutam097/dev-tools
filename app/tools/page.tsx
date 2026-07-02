@@ -3,6 +3,7 @@ import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
+import AdSenseSlot from "@/components/AdSenseSlot";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -88,6 +89,8 @@ export default function ToolsIndexPage() {
         Use this as your starting point when you need JSON validation, Base64 conversion, regex debugging, UUID generation,
         HTML formatting, Markdown preview, or JWT inspection.
       </p>
+
+      <AdSenseSlot slot="2222222222" />
 
       <section className="mt-8 grid grid-cols-1 gap-4 md:mt-10 md:grid-cols-2">
         {toolCatalog.map((tool) => (

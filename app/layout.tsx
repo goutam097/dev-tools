@@ -35,6 +35,11 @@ const structuredData = [
     url: SITE_URL,
     logo: DEFAULT_OG_IMAGE,
     sameAs: [SITE_URL],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "support",
+      email: "webcodeveloper731@gmail.com",
+    },
   },
 ];
 const structuredDataJson = JSON.stringify(structuredData);
@@ -165,7 +170,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <div>
               <p className="font-serif text-xl italic text-(--ink)">{SITE_NAME}</p>
               <p className="mt-2 text-sm text-(--muted)">
-                Free online developer tools built for fast debugging and daily engineering workflows.
+                Free online developer tools and educational guides published by WebCodeveloper for practical engineering workflows.
+              </p>
+              <p className="mt-2 text-sm text-(--muted)">
+                Contact: <a href="mailto:webcodeveloper731@gmail.com" className="underline decoration-(--border) underline-offset-4">webcodeveloper731@gmail.com</a>
+              </p>
+              <p className="mt-2 text-sm text-(--muted)">
+                This site may display Google AdSense advertising to support free access to tools and tutorials. Advertising does not influence the accuracy of our tool output or educational content.
               </p>
             </div>
             <nav aria-label="Footer links" className="flex flex-wrap gap-2">

@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 text-white">
+      <section className="bg-linear-to-r from-blue-700 via-indigo-700 to-purple-700 text-white">
         <div className="max-w-6xl mx-auto px-6 py-20 text-center">
           <span className="inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-sm font-medium">
             Legal Information
@@ -51,6 +51,9 @@ export default function PrivacyPolicyPage() {
                 to protecting your personal information. This Privacy
                 Policy explains how we collect, use, and safeguard
                 information when you visit our website or use our services.
+              </p>
+              <p className="mt-4 text-lg leading-relaxed">
+                We collect only the information needed to respond to contact requests and to understand how visitors use our tools and educational content. We do not sell personal data to third parties.
               </p>
             </div>
             {/* Information We Collect */}
@@ -124,7 +127,9 @@ export default function PrivacyPolicyPage() {
                 <p className="leading-relaxed">
                   🍪 Our website may use cookies and analytics tools
                   to improve functionality, enhance user experience,
-                  and better understand visitor behavior.
+                  and better understand visitor behavior. Google Analytics
+                  and Google AdSense may collect usage data in accordance
+                  with their own privacy policies.
                 </p>
               </div>
             </div>
