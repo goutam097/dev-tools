@@ -3,18 +3,20 @@ import { toolCatalog } from "@/lib/toolCatalog";
 import { blogPosts } from "@/lib/blogPosts";
 import { SITE_URL } from "@/lib/site";
 
+const now = new Date();
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
     },
 
     {
       url: `${SITE_URL}/tools`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },

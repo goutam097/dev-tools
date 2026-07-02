@@ -44,23 +44,23 @@ export default function BlogIndexPage() {
   return (
     <SidebarScaffold title="Developer Blog">
       <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
-      <h1 className="font-serif text-3xl italic text-[var(--ink)] sm:text-4xl">Developer SEO and Tooling Blog</h1>
-      <p className="mt-3 max-w-3xl text-sm text-[var(--muted)]">
+      <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Developer SEO and Tooling Blog</h1>
+      <p className="mt-3 max-w-3xl text-sm text-(--muted)">
         Explore long-tail focused guides designed to support ranking growth and user intent. Every article links directly
         to relevant tools so readers can apply examples instantly.
       </p>
 
       <section className="mt-8 grid gap-4 md:mt-10">
         {blogPosts.map((post) => (
-          <article key={post.slug} className="rounded-2xl border border-[var(--border)] bg-white p-5">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
+          <article key={post.slug} className="rounded-2xl border border-(--border) bg-white p-5">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">
               Keyword: {post.targetKeyword}
             </p>
-            <h2 className="mt-2 font-serif text-2xl italic text-[var(--ink)]">{post.title}</h2>
-            <p className="mt-2 text-sm text-[var(--muted)]">{post.description}</p>
+            <h2 className="mt-2 font-serif text-2xl italic text-(--ink)">{post.title}</h2>
+            <p className="mt-2 text-sm text-(--muted)">{post.description}</p>
             <Link
               href={`/blog/${post.slug}`}
-              className="mt-4 inline-flex rounded-lg bg-[var(--ink)] px-3 py-2 font-mono text-xs uppercase tracking-widest text-[var(--bg)]"
+              className="mt-4 inline-flex rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
             >
               Read article
             </Link>

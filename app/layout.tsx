@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { Suspense } from "react";
@@ -67,13 +67,12 @@ export const metadata: Metadata = {
     "html formatter online free",
     "developer tools online free",
   ],
-  authors: [{ name: SITE_BRAND }],
-  themeColor: "#e7e4dc",
+  authors: [{ name: SITE_BRAND, url: SITE_URL }],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "DevTools Hub - Free Online Developer Tools",
+    title: "DevTools Hub - Free Online Developer Tools & Tutorials",
     description:
       "A complete toolkit for developers: JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
     type: "website",
@@ -90,7 +89,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevTools Hub - Free Online Developer Tools",
+    title: "DevTools Hub - Free Online Developer Tools & Tutorials",
     description:
       "Use JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
     images: [DEFAULT_OG_IMAGE],
@@ -119,6 +118,10 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#e7e4dc",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -157,47 +160,47 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <AnalyticsTracker />
         </Suspense>
         {children}
-        <footer className="border-t border-[var(--border)] bg-white/70">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 transition-[padding] duration-300 sm:px-6 md:pl-[var(--app-left-offset,16rem)]">
+        <footer className="border-t border-(--border) bg-white/70">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 transition-[padding] duration-300 sm:px-6 md:pl-(--app-left-offset,16rem)">
             <div>
-              <p className="font-serif text-xl italic text-[var(--ink)]">{SITE_NAME}</p>
-              <p className="mt-2 text-sm text-[var(--muted)]">
+              <p className="font-serif text-xl italic text-(--ink)">{SITE_NAME}</p>
+              <p className="mt-2 text-sm text-(--muted)">
                 Free online developer tools built for fast debugging and daily engineering workflows.
               </p>
             </div>
             <nav aria-label="Footer links" className="flex flex-wrap gap-2">
-              <Link href="/" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+              <Link href="/" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 Home
               </Link>
               <Link
                 href="/tools"
-                className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]"
+                className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)"
               >
                 All Tools
               </Link>
-              <Link href="/blog" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+              <Link href="/blog" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 Blog
               </Link>
-              <Link href="/about" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+              <Link href="/about" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 About
               </Link>
-              <Link href="/contact" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+              <Link href="/contact" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 Contact
               </Link>
-              <Link href="/privacy-policy" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+              <Link href="/privacy-policy" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 Privacy Policy
               </Link>
-              <Link href="/terms-and-conditions" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+              <Link href="/terms-and-conditions" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 Terms
               </Link>
-              <Link href="/disclaimer" className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]">
+              <Link href="/disclaimer" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 Disclaimer
               </Link>
               {toolCatalog.map((tool) => (
                 <Link
                   key={tool.slug}
                   href={`/tools/${tool.slug}`}
-                  className="rounded-md border border-[var(--border)] px-3 py-2 text-sm text-[var(--ink)]"
+                  className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)"
                 >
                   {tool.shortTitle}
                 </Link>

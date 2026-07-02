@@ -14,6 +14,7 @@ import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
 import { buildToolKeywords, toolSeoContentBySlug } from "@/lib/toolSeoContent";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
+import AuthorCard from "@/components/AuthorCard";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -174,25 +175,25 @@ export default async function ToolPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <header className="mb-8">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">Developer Utility</p>
-        <h1 className="mt-2 font-serif text-3xl italic text-[var(--ink)] sm:text-4xl">{seoContent.metaTitle}</h1>
-        <p className="mt-3 max-w-3xl text-sm text-[var(--muted)]">{seoContent.metaDescription}</p>
+        <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Developer Utility</p>
+        <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-4xl">{seoContent.metaTitle}</h1>
+        <p className="mt-3 max-w-3xl text-sm text-(--muted)">{seoContent.metaDescription}</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link
             href="/tools"
-            className="rounded-lg border border-[var(--border)] bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-[var(--ink)]"
+            className="rounded-lg border border-(--border) bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)"
           >
             All tools
           </Link>
           <Link
             href="/blog"
-            className="rounded-lg border border-[var(--border)] bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-[var(--ink)]"
+            className="rounded-lg border border-(--border) bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)"
           >
             SEO blog
           </Link>
           <Link
             href="/"
-            className="rounded-lg bg-[var(--ink)] px-3 py-2 font-mono text-xs uppercase tracking-widest text-[var(--bg)]"
+            className="rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
           >
             Open app shell
           </Link>
@@ -203,17 +204,17 @@ export default async function ToolPage({ params }: Props) {
         <ToolRenderer slug={slug} />
       </section>
 
-      <section className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
+      <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         {seoContent.intro.map((paragraph) => (
-          <p key={paragraph} className="mb-4 text-sm leading-7 text-[var(--muted)] last:mb-0">
+          <p key={paragraph} className="mb-4 text-sm leading-7 text-(--muted) last:mb-0">
             {paragraph}
           </p>
         ))}
       </section>
 
-      <section className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
-        <h2 className="font-serif text-2xl italic text-[var(--ink)]">How to Use This Tool</h2>
-        <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-7 text-[var(--muted)]">
+      <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+        <h2 className="font-serif text-2xl italic text-(--ink)">How to Use This Tool</h2>
+        <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-7 text-(--muted)">
           {seoContent.howToSteps.map((step) => (
             <li key={step}>{step}</li>
           ))}
@@ -221,32 +222,42 @@ export default async function ToolPage({ params }: Props) {
       </section>
 
       {seoContent.sections.map((section) => (
-        <section key={section.heading} className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
-          <h2 className="font-serif text-2xl italic text-[var(--ink)]">{section.heading}</h2>
+        <section key={section.heading} className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">{section.heading}</h2>
           {section.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-3 text-sm leading-7 text-[var(--muted)]">
+            <p key={paragraph} className="mt-3 text-sm leading-7 text-(--muted)">
               {paragraph}
             </p>
           ))}
         </section>
       ))}
 
-      <section className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
-        <h2 className="font-serif text-2xl italic text-[var(--ink)]">Frequently Asked Questions</h2>
+      <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+        <h2 className="font-serif text-2xl italic text-(--ink)">Frequently Asked Questions</h2>
         <div className="mt-4 space-y-4">
           {seoContent.faqs.map((faq) => (
             <article key={faq.question}>
-              <h3 className="font-serif text-xl italic text-[var(--ink)]">{faq.question}</h3>
-              <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{faq.answer}</p>
+              <h3 className="font-serif text-xl italic text-(--ink)">{faq.question}</h3>
+              <p className="mt-2 text-sm leading-7 text-(--muted)">{faq.answer}</p>
             </article>
           ))}
         </div>
       </section>
 
+      <AuthorCard
+        title="WebCodeveloper Editorial Team"
+        description="We create developer-focused tutorials and utility guides that emphasize practical value, accessibility, and trustworthiness for modern engineering workflows."
+        experience="15+ years building fast, reliable web products"
+        stack={["Next.js", "TypeScript", "React", "Node.js"]}
+        publishedAt="2026-04-25"
+        updatedAt="2026-04-25"
+        readingMinutes={6}
+      />
+
       {relatedTools.length > 0 && (
-        <section className="mt-10 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
-          <h2 className="font-serif text-2xl italic text-[var(--ink)]">Related Developer Tools</h2>
-          <p className="mt-3 text-sm text-[var(--muted)]">
+        <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Related Developer Tools</h2>
+          <p className="mt-3 text-sm text-(--muted)">
             Explore these related utilities to complete your workflow faster and help search engines discover connected pages.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
@@ -254,7 +265,7 @@ export default async function ToolPage({ params }: Props) {
               <Link
                 key={relatedTool.slug}
                 href={`/tools/${relatedTool.slug}`}
-                className="rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm text-[var(--ink)]"
+                className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)"
               >
                 {relatedTool.title}
               </Link>

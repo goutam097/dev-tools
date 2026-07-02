@@ -5,6 +5,7 @@ import { blogPosts, blogPostsBySlug } from "@/lib/blogPosts";
 import { toolCatalogBySlug } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
+import AuthorCard from "@/components/AuthorCard";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -110,36 +111,64 @@ export default async function BlogPostPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
       <header>
-        <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)]">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">
           Published {post.publishedAt} | {post.readingMinutes} min read
         </p>
-        <h1 className="mt-2 font-serif text-3xl italic text-[var(--ink)] sm:text-4xl">{post.title}</h1>
-        <p className="mt-3 text-sm text-[var(--muted)]">{post.description}</p>
+        <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-4xl">{post.title}</h1>
+        <p className="mt-3 text-sm text-(--muted)">{post.description}</p>
       </header>
 
-      <section className="mt-8 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
+      <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         {post.intro.map((paragraph) => (
-          <p key={paragraph} className="mb-4 text-sm leading-7 text-[var(--muted)] last:mb-0">
+          <p key={paragraph} className="mb-4 text-sm leading-7 text-(--muted) last:mb-0">
             {paragraph}
           </p>
         ))}
       </section>
 
       {post.sections.map((section) => (
-        <section key={section.heading} className="mt-8 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
-          <h2 className="font-serif text-2xl italic text-[var(--ink)]">{section.heading}</h2>
+        <section key={section.heading} className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">{section.heading}</h2>
           {section.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-3 text-sm leading-7 text-[var(--muted)]">
+            <p key={paragraph} className="mt-3 text-sm leading-7 text-(--muted)">
               {paragraph}
             </p>
           ))}
         </section>
       ))}
 
+      <AuthorCard
+        title="WebCodeveloper Editorial Team"
+        description="Our team publishes practical developer education content grounded in real-world engineering work, browser-based tooling, and modern frontend and backend workflows."
+        experience="15+ years building web apps, developer platforms, and content systems"
+        stack={["Next.js", "TypeScript", "Node.js", "MongoDB"]}
+        publishedAt={post.publishedAt}
+        updatedAt={post.publishedAt}
+        readingMinutes={post.readingMinutes}
+      />
+
+      <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+        <h2 className="font-serif text-2xl italic text-(--ink)">Continue Exploring</h2>
+        <p className="mt-3 text-sm text-(--muted)">
+          These internal links help readers move between related tutorials, tools, and learning paths without losing context.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link href="/blog" className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)">
+            Browse all tutorials
+          </Link>
+          <Link href="/tools" className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)">
+            Visit the tools directory
+          </Link>
+          <Link href="/about" className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)">
+            Learn about the publisher
+          </Link>
+        </div>
+      </section>
+
       {relatedToolLinks.length > 0 && (
-        <section className="mt-8 rounded-3xl border border-[var(--border)] bg-white p-6 shadow-sm">
-          <h2 className="font-serif text-2xl italic text-[var(--ink)]">Related Tools</h2>
-          <p className="mt-3 text-sm text-[var(--muted)]">
+        <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Related Tools</h2>
+          <p className="mt-3 text-sm text-(--muted)">
             Apply the concepts from this article with the linked tools below.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
@@ -147,7 +176,7 @@ export default async function BlogPostPage({ params }: Props) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-lg border border-[var(--border)] bg-white px-3 py-2 text-sm text-[var(--ink)]"
+                className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)"
               >
                 {item.title}
               </Link>
