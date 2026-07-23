@@ -62,7 +62,7 @@ export default function SidebarScaffold({ title, children }: SidebarScaffoldProp
   );
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--ink)]">
+    <div className="min-h-screen bg-(--bg) text-(--ink)">
       {isMobileMenuOpen && (
         <button
           type="button"
@@ -74,7 +74,7 @@ export default function SidebarScaffold({ title, children }: SidebarScaffoldProp
 
       <aside
         className={cn(
-          "fixed left-0 top-0 z-50 h-full overflow-y-auto bg-[var(--ink)] text-[var(--bg)] transition-all duration-300 md:translate-x-0",
+          "fixed left-0 top-0 z-50 h-full overflow-y-auto bg-(--ink) text-(--bg) transition-all duration-300 md:translate-x-0",
           isMobileMenuOpen ? "w-72 translate-x-0" : "w-72 -translate-x-full",
           sidebarWidthClass,
         )}
@@ -124,18 +124,18 @@ export default function SidebarScaffold({ title, children }: SidebarScaffoldProp
       </aside>
 
       <main className={cn("min-h-screen transition-all duration-300", isDesktopSidebarOpen ? "md:pl-64" : "md:pl-20")}>
-        <header className="sticky top-0 z-30 flex min-h-16 items-center justify-between gap-3 border-b border-[var(--border)] bg-[var(--bg)] px-4 py-3 backdrop-blur md:h-20 md:px-8">
+        <header className="sticky top-0 z-30 flex min-h-16 items-center justify-between gap-3 border-b border-(--border) bg-(--bg) px-4 py-3 backdrop-blur md:h-20 md:px-8">
           <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="inline-flex rounded-md border border-[var(--border)] p-2 md:hidden"
+              className="inline-flex rounded-md border border-(--border) p-2 md:hidden"
               aria-label="Open menu"
             >
               <Menu size={16} />
             </button>
             <h1 className="font-serif text-xl italic md:text-2xl">{title}</h1>
-            <span className="hidden font-mono text-xs uppercase tracking-widest text-[var(--muted)] sm:inline">v2 secure</span>
+            <span className="hidden font-mono text-xs uppercase tracking-widest text-(--muted) sm:inline">v2 secure</span>
           </div>
           <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-center font-mono text-[10px] uppercase tracking-widest text-emerald-700">
             system online

@@ -12,7 +12,7 @@ export default function DisclaimerPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-orange-600 via-red-500 to-pink-600 text-white">
+      <section className="bg-linear-to-r from-orange-600 via-red-500 to-pink-600 text-white">
         <div className="max-w-6xl mx-auto px-6 py-20 text-center">
           <span className="inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-sm font-medium">
             Legal Notice

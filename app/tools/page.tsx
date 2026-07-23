@@ -4,6 +4,7 @@ import { toolCatalog } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
 import AdSenseSlot from "@/components/AdSenseSlot";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -81,6 +82,7 @@ export default function ToolsIndexPage() {
   return (
     <SidebarScaffold title="Free Developer Tools">
       <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+      <Breadcrumbs items={[{ label: "Tools" }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Free Developer Tools Directory</h1>
@@ -97,12 +99,17 @@ export default function ToolsIndexPage() {
           <article key={tool.slug} className="rounded-2xl border border-(--border) bg-white p-5">
             <h2 className="font-serif text-2xl italic text-(--ink)">{tool.title}</h2>
             <p className="mt-2 text-sm text-(--muted)">{tool.description}</p>
-            <Link
-              href={`/tools/${tool.slug}`}
-              className="mt-4 inline-flex rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
-            >
-              Open tool
-            </Link>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link
+                href={`/tools/${tool.slug}`}
+                className="inline-flex rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
+              >
+                Open tool
+              </Link>
+              <Link href="/blog" className="inline-flex rounded-lg border border-(--border) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)">
+                Read related guides
+              </Link>
+            </div>
           </article>
         ))}
       </section>

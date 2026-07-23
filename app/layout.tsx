@@ -198,6 +198,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <Link href="/contact" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 Contact
               </Link>
+              <Link href="/author" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
+                Author
+              </Link>
+              <Link href="/editorial-policy" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
+                Editorial Policy
+              </Link>
+              <Link href="/content-update-policy" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
+                Update Policy
+              </Link>
+              <Link href="/code-testing-policy" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
+                Code Testing Policy
+              </Link>
               <Link href="/privacy-policy" className="rounded-md border border-(--border) px-3 py-2 text-sm text-(--ink)">
                 Privacy Policy
               </Link>

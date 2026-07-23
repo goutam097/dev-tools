@@ -135,6 +135,10 @@ export default function AboutPage() {
                 <p className="mt-2 text-sm leading-7 text-slate-600">
                   We may display Google AdSense advertising to support free access to our site. Ads do not influence the accuracy of our tool output or the factual quality of our educational content.
                 </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link href="/author" className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700">Author profile</Link>
+                  <Link href="/editorial-policy" className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700">Editorial policy</Link>
+                </div>
               </div>
             </div>
           </div>

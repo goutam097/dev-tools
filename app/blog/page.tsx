@@ -4,6 +4,7 @@ import { blogPosts } from "@/lib/blogPosts";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
 import AdSenseSlot from "@/components/AdSenseSlot";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -45,6 +46,7 @@ export default function BlogIndexPage() {
   return (
     <SidebarScaffold title="Developer Blog">
       <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+      <Breadcrumbs items={[{ label: "Blog" }]} />
       <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Developer SEO and Tooling Blog</h1>
       <p className="mt-3 max-w-3xl text-sm text-(--muted)">
         Explore long-tail focused guides designed to support ranking growth and user intent. Every article links directly
@@ -61,12 +63,17 @@ export default function BlogIndexPage() {
             </p>
             <h2 className="mt-2 font-serif text-2xl italic text-(--ink)">{post.title}</h2>
             <p className="mt-2 text-sm text-(--muted)">{post.description}</p>
-            <Link
-              href={`/blog/${post.slug}`}
-              className="mt-4 inline-flex rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
-            >
-              Read article
-            </Link>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link
+                href={`/blog/${post.slug}`}
+                className="inline-flex rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
+              >
+                Read article
+              </Link>
+              <Link href="/tools" className="inline-flex rounded-lg border border-(--border) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)">
+                Related tools
+              </Link>
+            </div>
           </article>
         ))}
       </section>

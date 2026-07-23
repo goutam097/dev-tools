@@ -8,7 +8,7 @@ import ToolLayout from "@/components/ToolLayout";
 
 function ToolLoading({ label }: { label: string }) {
   return (
-    <div className="rounded-3xl border border-dashed border-[var(--border)] bg-white/60 p-8 text-center text-sm text-[var(--muted)]">
+    <div className="rounded-3xl border border-dashed border-(--border) bg-white/60 p-8 text-center text-sm text-(--muted)">
       Loading {label}…
     </div>
   );
@@ -72,10 +72,10 @@ export default function DevToolsApp() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[var(--bg)] flex items-center justify-center">
+      <div className="min-h-screen bg-(--bg) flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="h-12 w-12 animate-spin rounded-full border-4 border-[var(--ink)] border-t-transparent" />
-          <p className="font-mono text-xs uppercase tracking-widest text-[var(--muted)]">Initializing suite...</p>
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-(--ink) border-t-transparent" />
+          <p className="font-mono text-xs uppercase tracking-widest text-(--muted)">Initializing suite...</p>
         </div>
       </div>
     );

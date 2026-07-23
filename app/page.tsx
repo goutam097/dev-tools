@@ -4,6 +4,7 @@ import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
 import { blogPosts } from "@/lib/blogPosts";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const featuredLearningPaths = [
   {
@@ -103,6 +104,7 @@ export default function HomePage() {
   return (
     <>
       <main className="mx-auto max-w-6xl px-4 py-8 transition-[padding] duration-300 sm:px-6 sm:py-10 md:pl-(--app-left-offset,16rem)">
+        <Breadcrumbs items={[{ label: "Developer tools" }]} />
         <section className="rounded-4xl border border-(--border) bg-white/80 p-6 shadow-sm sm:p-8">
           <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Trusted developer education hub</p>
           <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-4xl">
@@ -123,6 +125,9 @@ export default function HomePage() {
             </Link>
             <Link href="/about" className="rounded-lg border border-(--border) bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)">
               About the publisher
+            </Link>
+            <Link href="/author" className="rounded-lg border border-(--border) bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)">
+              Meet the author
             </Link>
           </div>
         </section>
