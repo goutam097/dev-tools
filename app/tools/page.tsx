@@ -85,29 +85,31 @@ export default function ToolsIndexPage() {
       <Breadcrumbs items={[{ label: "Tools" }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-      <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Free Developer Tools Directory</h1>
-      <p className="mt-3 max-w-3xl text-sm text-(--muted)">
-        This page links every tool available on DevTools Hub so search engines and users can discover utilities quickly.
-        Use this as your starting point when you need JSON validation, Base64 conversion, regex debugging, UUID generation,
-        HTML formatting, Markdown preview, or JWT inspection.
+      <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Developer Tools Directory</h1>
+      <p className="mt-3 max-w-3xl text-sm leading-7 text-(--muted)">
+        Access a curated suite of free, browser-native developer utilities designed for speed and privacy. 
+        Whether you are validating API payloads, decoding authentication tokens, or optimizing frontend assets, 
+        our directory provides instant access to the tools you need for efficient engineering workflows.
       </p>
 
       <AdSenseSlot slot="2222222222" />
 
-      <section className="mt-8 grid grid-cols-1 gap-4 md:mt-10 md:grid-cols-2">
+      <section className="mt-8 grid grid-cols-1 gap-4 md:mt-10 md:grid-cols-2 lg:grid-cols-3">
         {toolCatalog.map((tool) => (
-          <article key={tool.slug} className="rounded-2xl border border-(--border) bg-white p-5">
-            <h2 className="font-serif text-2xl italic text-(--ink)">{tool.title}</h2>
-            <p className="mt-2 text-sm text-(--muted)">{tool.description}</p>
-            <div className="mt-4 flex flex-wrap gap-3">
+          <article key={tool.slug} className="flex flex-col justify-between rounded-3xl border border-(--border) bg-white p-6 shadow-sm transition hover:shadow-md">
+            <div>
+              <h2 className="font-serif text-2xl italic text-(--ink)">{tool.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-(--muted)">{tool.description}</p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2">
               <Link
                 href={`/tools/${tool.slug}`}
-                className="inline-flex rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
+                className="inline-flex rounded-xl bg-(--ink) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--bg)"
               >
                 Open tool
               </Link>
-              <Link href="/blog" className="inline-flex rounded-lg border border-(--border) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)">
-                Read related guides
+              <Link href={`/tools/${tool.slug}#how-to-use`} className="inline-flex rounded-xl border border-(--border) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--ink)">
+                Learn more
               </Link>
             </div>
           </article>

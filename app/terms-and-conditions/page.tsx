@@ -22,14 +22,17 @@ export default function TermsPage() {
           </h1>
           <p className="mt-6 text-lg text-blue-100 max-w-3xl mx-auto">
             Please read these terms carefully before using
-            WebCodeDeveloper and its services.
+            DevTools Hub and its browser-native utilities.
+          </p>
+          <p className="mt-4 text-sm text-blue-200">
+            Last Updated: October 2026
           </p>
         </div>
       </section>
       {/* Home Redirect */}
       <section className="py-8 bg-slate-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <Link href="/" className="inline-flex items-center px-6 py-3 bg-orange-100 hover:bg-slate-200 text-slate-900 rounded-lg font-semibold transition">
+          <Link href="/" className="inline-flex items-center px-6 py-3 bg-white hover:bg-slate-200 text-slate-900 rounded-lg font-semibold transition border border-slate-200">
             ← Back to Home
           </Link>
         </div>
@@ -44,7 +47,7 @@ export default function TermsPage() {
                 Agreement to Terms
               </h2>
               <p className="text-lg leading-relaxed">
-                By accessing and using WebCodeDeveloper, you agree to
+                By accessing and using DevTools Hub (webcodeveloper.co.in), you agree to
                 comply with and be bound by these Terms and Conditions.
                 If you do not agree with any part of these terms,
                 please discontinue use of this website.

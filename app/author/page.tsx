@@ -17,38 +17,38 @@ export default function AuthorPage() {
         <section className="rounded-4xl border border-(--border) bg-white p-8 shadow-sm sm:p-10">
           <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-(--muted)">Experience-led publishing</p>
           <h1 className="mt-3 font-serif text-3xl italic text-(--ink) sm:text-4xl">
-            Written by a practical engineer who builds, ships, and debugs real products.
+            Practical engineering expertise behind every tool and tutorial.
           </h1>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-(--muted)">
-            DevTools Hub is published by a developer who has spent years building production web applications, troubleshooting APIs,
-            and creating developer-facing experiences. Every article, tool description, and workflow guide is shaped by hands-on experience,
-            not generic automation.
+            DevTools Hub is curated by a team of software engineers at **WebCodeveloper** who specialize in modern web architectures, API design, and developer experience. We build real products for the real world, and this hub is where we share the utilities and workflows that keep our own teams productive.
           </p>
         </section>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <article className="rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
-            <h2 className="font-serif text-2xl italic text-(--ink)">What the author brings to the site</h2>
+            <h2 className="font-serif text-2xl italic text-(--ink)">Technical Background</h2>
+            <p className="mt-3 text-sm leading-7 text-(--muted)">
+              Our editorial team brings a combined decade of experience in:
+            </p>
             <ul className="mt-4 space-y-3 text-sm leading-7 text-(--muted)">
-              <li>• Experience building modern Next.js, React, Node.js, and MongoDB applications.</li>
-              <li>• A focus on performance, accessibility, and clear technical communication.</li>
-              <li>• An emphasis on practical debugging workflows that match real developer tasks.</li>
-              <li>• A long-term commitment to keeping tutorials useful, current, and trustworthy.</li>
+              <li>• **Frontend Architecture:** Building scalable Next.js and React applications with a focus on performance and Core Web Vitals.</li>
+              <li>• **API Engineering:** Designing and debugging RESTful and GraphQL APIs using Node.js, Express, and specialized validation tools.</li>
+              <li>• **Security & Privacy:** Implementing secure authentication flows (JWT, OAuth2) and ensuring data privacy through client-side processing.</li>
+              <li>• **Technical Writing:** Distilling complex engineering concepts into actionable, step-by-step guides for the developer community.</li>
             </ul>
           </article>
 
           <article className="rounded-3xl border border-(--border) bg-(--surface) p-6 shadow-sm">
-            <h2 className="font-serif text-2xl italic text-(--ink)">Editorial principles</h2>
+            <h2 className="font-serif text-2xl italic text-(--ink)">Editorial Standards</h2>
             <p className="mt-3 text-sm leading-7 text-(--muted)">
-              Content is reviewed for clarity, technical accuracy, and usefulness before publication. The goal is to help developers solve
-              real problems quickly and confidently.
+              Every tool is rigorously tested for accuracy and every guide is reviewed for technical depth. We don't publish generic filler; we publish solutions we've used in our own production environments.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Link href="/editorial-policy" className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)">
                 Editorial policy
               </Link>
-              <Link href="/content-update-policy" className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)">
-                Update policy
+              <Link href="/code-testing-policy" className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)">
+                Testing policy
               </Link>
             </div>
           </article>

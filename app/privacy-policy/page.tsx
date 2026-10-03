@@ -25,14 +25,14 @@ export default function PrivacyPolicyPage() {
             collects, uses, and protects your information.
           </p>
           <p className="mt-4 text-sm text-blue-200">
-            Last Updated: May 2026
+            Last Updated: October 2026
           </p>
         </div>
       </section>
       {/* Home Redirect */}
       <section className="py-8 bg-slate-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <Link href="/" className="inline-flex items-center px-6 py-3 bg-orange-100 hover:bg-slate-200 text-slate-900 rounded-lg font-semibold transition">
+          <Link href="/" className="inline-flex items-center px-6 py-3 bg-white hover:bg-slate-200 text-slate-900 rounded-lg font-semibold transition border border-slate-200">
             ← Back to Home
           </Link>
         </div>
@@ -47,13 +47,13 @@ export default function PrivacyPolicyPage() {
                 Introduction
               </h2>
               <p className="text-lg leading-relaxed">
-                WebCodeDeveloper respects your privacy and is committed
+                WebCodeDeveloper ("we", "us", "our") respects your privacy and is committed
                 to protecting your personal information. This Privacy
                 Policy explains how we collect, use, and safeguard
-                information when you visit our website or use our services.
+                information when you visit our website, DevTools Hub.
               </p>
               <p className="mt-4 text-lg leading-relaxed">
-                We collect only the information needed to respond to contact requests and to understand how visitors use our tools and educational content. We do not sell personal data to third parties.
+                Our tools are designed with a **privacy-first approach**. Most interactive utilities on this site—including the JSON Formatter, JWT Decoder, and Base64 Converter—process data entirely within your browser (client-side). We do not transmit your input data to our servers.
               </p>
             </div>
             {/* Information We Collect */}

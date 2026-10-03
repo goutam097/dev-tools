@@ -22,14 +22,17 @@ export default function DisclaimerPage() {
           </h1>
           <p className="mt-6 text-lg text-orange-100 max-w-3xl mx-auto">
             Please read this disclaimer carefully before using
-            WebCodeDeveloper and the information provided on this website.
+            DevTools Hub and the interactive utilities provided on this website.
+          </p>
+          <p className="mt-4 text-sm text-orange-200">
+            Last Updated: October 2026
           </p>
         </div>
       </section>
       {/* Home Redirect */}
       <section className="py-8 bg-orange-50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <Link href="/" className="inline-flex items-center px-6 py-3 bg-orange-100 hover:bg-orange-200 text-orange-900 rounded-lg font-semibold transition">
+          <Link href="/" className="inline-flex items-center px-6 py-3 bg-white hover:bg-orange-200 text-orange-900 rounded-lg font-semibold transition border border-orange-200">
             ← Back to Home
           </Link>
         </div>
@@ -44,8 +47,8 @@ export default function DisclaimerPage() {
                 Website Disclaimer
               </h2>
               <p className="text-lg leading-relaxed text-slate-600">
-                The information provided on this website is intended
-                for general informational purposes only. By using this
+                The tools and information provided on DevTools Hub (webcodeveloper.co.in) are intended
+                for general informational and technical purposes only. By using this
                 website, you acknowledge and agree to the terms outlined
                 in this disclaimer.
               </p>

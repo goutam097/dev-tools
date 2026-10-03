@@ -8,27 +8,27 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 const featuredLearningPaths = [
   {
-    title: "API debugging workflow",
-    description: "Learn how to inspect payloads, validate JSON, and debug auth flows with browser-based tools.",
+    title: "API Debugging Workflow",
+    description: "Master the art of inspecting payloads, validating JSON structure, and troubleshooting authentication flows with browser-based tools.",
     href: "/blog/how-to-format-json-in-javascript",
   },
   {
-    title: "Developer productivity stack",
-    description: "Build a repeatable toolkit for formatting, encoding, and documentation tasks that save hours weekly.",
+    title: "Developer Productivity Stack",
+    description: "Build a high-efficiency toolkit for formatting, encoding, and documentation tasks that save hours of manual work every week.",
     href: "/blog/best-free-online-tools-for-developers",
   },
   {
-    title: "Modern engineering essentials",
-    description: "See how the right utilities improve throughput for frontend, backend, and QA teams alike.",
+    title: "Modern Engineering Essentials",
+    description: "Discover how specialized utilities improve throughput for frontend, backend, and QA teams in modern software delivery.",
     href: "/blog/top-10-developer-tools-2026",
   },
 ];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Free Developer Utilities for Modern Web Developers",
+  title: "DevTools Hub | Free Browser-Native Developer Utilities & Guides",
   description:
-    "Developer tools online free for JSON formatting, JWT decoding, Base64 conversion, regex testing, UUID generation, Markdown preview, and HTML formatting.",
+    "Fast, private, and browser-native developer tools for JSON formatting, JWT decoding, Base64 conversion, regex testing, and more. No data uploads, 100% client-side.",
   keywords: [
     "developer tools online free",
     "json formatter online free",
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Free Developer Utilities for Modern Web Developers",
+    title: "DevTools Hub | Free Browser-Native Developer Utilities & Guides",
     description:
-      "Access JSON formatting, JWT decoding, Base64 tools, regex testing, UUID generation, Markdown preview, and HTML formatting in your browser.",
+      "Access JSON formatting, JWT decoding, Base64 tools, regex testing, and HTML formatting instantly in your browser with 100% privacy.",
     url: SITE_URL,
     siteName: SITE_NAME,
     type: "website",
@@ -56,131 +56,137 @@ export const metadata: Metadata = {
         url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "DevTools Hub share card",
+        alt: "DevTools Hub - Developer Utilities",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Developer Utilities for Modern Web Developers",
+    title: "DevTools Hub | Free Browser-Native Developer Utilities & Guides",
     description: "Use browser-native developer tools with zero uploads and fast, practical workflows.",
     images: [DEFAULT_OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
   },
 };
 
 const heroHighlights = [
   {
-    title: "Client-side privacy",
-    description: "All tools run entirely in the browser so your data never leaves the tab.",
+    title: "100% Client-Side",
+    description: "All tools run entirely in your browser. Your sensitive data never leaves your machine.",
   },
   {
-    title: "Zero friction",
-    description: "Launch any utility instantly without signing up or waiting for modules to load.",
+    title: "No Account Required",
+    description: "Launch any utility instantly without signing up or waiting for heavy modules to load.",
   },
   {
-    title: "History and persistence",
-    description: "Save frequently used data points and tooling workflows with built-in history.",
+    title: "Built for Speed",
+    description: "Optimized for low latency and fast interaction, even on mobile and slow connections.",
   },
-];
-
-const whyList = [
-  "No account gate for instant access; open the browser and start debugging.",
-  "Consistent responsive experience across desktop and mobile with utility-first design.",
-  "SEO-first routing keeps each utility indexable, with clean URLs and descriptive metadata.",
 ];
 
 export default function HomePage() {
   return (
     <>
       <main className="mx-auto max-w-6xl px-4 py-8 transition-[padding] duration-300 sm:px-6 sm:py-10 md:pl-(--app-left-offset,16rem)">
-        <Breadcrumbs items={[{ label: "Developer tools" }]} />
-        <section className="rounded-4xl border border-(--border) bg-white/80 p-6 shadow-sm sm:p-8">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Trusted developer education hub</p>
-          <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-4xl">
-            Practical developer tools and tutorials for modern engineering teams
+        <Breadcrumbs items={[{ label: "Developer Tools" }]} />
+        <section className="rounded-4xl border border-(--border) bg-white/80 p-6 shadow-sm sm:p-10">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Practical Developer Resource</p>
+          <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-5xl lg:text-6xl">
+            Streamline your workflow with private, browser-native tools.
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-(--muted)">
-            DevTools Hub combines browser-based utilities with actionable tutorials so developers can validate APIs, debug authentication, format content, and ship faster without leaving their workflow.
+          <p className="mt-6 max-w-3xl text-base leading-7 text-(--muted) sm:text-lg">
+            DevTools Hub provides essential utilities and technical guides to help developers validate APIs, debug authentication, and format code faster. Every tool runs 100% client-side to ensure your data stays private.
           </p>
-          <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/tools"
-              className="rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
+              className="rounded-xl bg-(--ink) px-5 py-3 font-mono text-sm uppercase tracking-widest text-(--bg) transition hover:opacity-90"
             >
               Explore all tools
             </Link>
-            <Link href="/blog" className="rounded-lg border border-(--border) bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)">
-              Read the blog
-            </Link>
-            <Link href="/about" className="rounded-lg border border-(--border) bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)">
-              About the publisher
-            </Link>
-            <Link href="/author" className="rounded-lg border border-(--border) bg-white px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--ink)">
-              Meet the author
+            <Link href="/blog" className="rounded-xl border border-(--border) bg-white px-5 py-3 font-mono text-sm uppercase tracking-widest text-(--ink) transition hover:bg-slate-50">
+              Read guides
             </Link>
           </div>
         </section>
 
-        <section aria-label="Featured learning paths" className="mt-8 grid gap-4 md:grid-cols-3">
-          {featuredLearningPaths.map((path) => (
-            <article key={path.title} className="rounded-3xl border border-(--border) bg-white p-5 shadow-sm">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Learning path</p>
-              <h2 className="mt-2 font-serif text-xl italic text-(--ink)">{path.title}</h2>
-              <p className="mt-2 text-sm leading-7 text-(--muted)">{path.description}</p>
-              <Link href={path.href} className="mt-4 inline-flex text-sm font-semibold text-(--ink)">
-                Continue reading →
-              </Link>
-            </article>
+        <section aria-label="Why use DevTools Hub" className="mt-8 grid gap-4 md:grid-cols-3">
+          {heroHighlights.map((item) => (
+            <div key={item.title} className="rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+              <h3 className="font-serif text-xl italic text-(--ink)">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-(--muted)">{item.description}</p>
+            </div>
           ))}
         </section>
 
-        <section aria-label="Developer tools overview" className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
-          <div className="flex flex-wrap items-center justify-between gap-3">
+        <section aria-label="Core developer utilities" className="mt-12">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-(--border) pb-6">
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Developer tools</p>
-              <h2 className="mt-2 font-serif text-2xl italic text-(--ink)">Core utilities for everyday engineering work</h2>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Toolbox</p>
+              <h2 className="mt-2 font-serif text-3xl italic text-(--ink)">Core Utilities</h2>
             </div>
-            <Link href="/tools" className="text-sm font-semibold text-(--ink)">
+            <Link href="/tools" className="text-sm font-semibold text-(--ink) hover:underline">
               Browse the full directory →
             </Link>
           </div>
-          <div className="mt-5 grid gap-3 md:grid-cols-2">
-            {toolCatalog.map((tool) => (
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {toolCatalog.slice(0, 6).map((tool) => (
               <Link
                 key={tool.slug}
                 href={`/tools/${tool.slug}`}
-                className="rounded-2xl border border-(--border) bg-(--surface) p-4 transition hover:-translate-y-0.5"
+                className="group flex flex-col justify-between rounded-3xl border border-(--border) bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
               >
-                <h3 className="font-serif text-xl italic text-(--ink)">{tool.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-(--muted)">{tool.description}</p>
+                <div>
+                  <h3 className="font-serif text-xl italic text-(--ink) group-hover:underline">{tool.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-(--muted)">{tool.description}</p>
+                </div>
+                <span className="mt-4 inline-flex text-xs font-mono uppercase tracking-widest text-(--muted)">Open Tool →</span>
               </Link>
             ))}
           </div>
         </section>
 
-        <section aria-label="Latest tutorials" className="mt-8 space-y-4 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Latest tutorials</p>
-            <h2 className="mt-2 text-2xl font-serif italic text-(--ink)">Educational guides that support search intent and real-world practice</h2>
+        <section aria-label="Latest learning paths" className="mt-16">
+          <div className="border-b border-(--border) pb-6">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Learning</p>
+            <h2 className="mt-2 font-serif text-3xl italic text-(--ink)">Educational Paths</h2>
           </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            {blogPosts.map((post) => (
-              <article key={post.slug} className="rounded-2xl border border-(--border) p-4">
-                <h3 className="font-serif text-xl italic text-(--ink)">{post.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-(--muted)">{post.description}</p>
-                <Link href={`/blog/${post.slug}`} className="mt-3 inline-flex rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)">
-                  Read article
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {featuredLearningPaths.map((path) => (
+              <article key={path.title} className="flex flex-col justify-between rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+                <div>
+                  <h3 className="font-serif text-xl italic text-(--ink)">{path.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-(--muted)">{path.description}</p>
+                </div>
+                <Link href={path.href} className="mt-6 inline-flex items-center text-sm font-bold text-(--ink) hover:underline">
+                  Read Guide <span className="ml-1 text-xs">→</span>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section aria-label="Recent blog posts" className="mt-16 rounded-4xl border border-(--border) bg-slate-50 p-8">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-(--border)/50 pb-6">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Latest Updates</p>
+              <h2 className="mt-2 font-serif text-3xl italic text-(--ink)">Technical Blog</h2>
+            </div>
+            <Link href="/blog" className="text-sm font-semibold text-(--ink) hover:underline">
+              View all posts →
+            </Link>
+          </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {blogPosts.slice(0, 4).map((post) => (
+              <article key={post.slug} className="group rounded-3xl border border-(--border) bg-white p-6 transition hover:shadow-md">
+                <p className="font-mono text-[10px] text-(--muted)">{post.publishedAt} • {post.readingMinutes} min read</p>
+                <h3 className="mt-2 font-serif text-xl italic text-(--ink) group-hover:underline">{post.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-(--muted)">{post.description}</p>
+                <Link href={`/blog/${post.slug}`} className="mt-4 inline-flex rounded-lg bg-(--ink) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--bg)">
+                  Read Full Post
                 </Link>
               </article>
             ))}
