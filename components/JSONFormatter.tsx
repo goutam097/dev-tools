@@ -7,7 +7,7 @@ import { saveHistory } from "@/lib/clientHistory";
 
 export default function JSONFormatter() {
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState<any>(null);
+  const [output, setOutput] = useState<unknown>(null);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
 

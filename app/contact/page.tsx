@@ -23,7 +23,7 @@ export default function ContactPage() {
           </h1>
           <p className="mt-6 text-lg text-blue-100 max-w-3xl mx-auto">
             Have a project idea, business inquiry, or need technical assistance?
-            We'd love to hear from you.
+            We&apos;d love to hear from you.
           </p>
         </div>
       </section>
@@ -116,7 +116,7 @@ export default function ContactPage() {
                   Send an Inquiry
                 </h2>
                 <p className="text-slate-600 mb-8">
-                  Fill out the form below and we'll get back to you
+                  Fill out the form below and we&apos;ll get back to you
                   as soon as possible.
                 </p>
                 <ContactForm />

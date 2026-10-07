@@ -25,7 +25,7 @@ export default function TermsPage() {
             DevTools Hub and its browser-native utilities.
           </p>
           <p className="mt-4 text-sm text-blue-200">
-            Last Updated: October 2026
+            Review the current terms before use.
           </p>
         </div>
       </section>

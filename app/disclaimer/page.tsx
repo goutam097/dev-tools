@@ -25,7 +25,7 @@ export default function DisclaimerPage() {
             DevTools Hub and the interactive utilities provided on this website.
           </p>
           <p className="mt-4 text-sm text-orange-200">
-            Last Updated: October 2026
+            Review the current terms before use.
           </p>
         </div>
       </section>

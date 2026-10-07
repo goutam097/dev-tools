@@ -14,8 +14,6 @@ import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
 import { buildToolKeywords, toolSeoContentBySlug } from "@/lib/toolSeoContent";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
-import AuthorCard from "@/components/AuthorCard";
-import AdSenseSlot from "@/components/AdSenseSlot";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -213,16 +211,6 @@ export default async function ToolPage({ params }: Props) {
         ))}
       </section>
 
-      <section className="mt-10 rounded-3xl border border-(--border) bg-(--surface) p-6 shadow-sm">
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-(--muted)">Author expertise</p>
-        <h2 className="mt-2 font-serif text-2xl italic text-(--ink)">Built for real developer problems, not generic automation</h2>
-        <p className="mt-3 text-sm leading-7 text-(--muted)">
-          This utility is designed to help developers solve common formatting, parsing, and debugging tasks quickly, with clear output and accessible guidance for everyday workflows.
-        </p>
-      </section>
-
-      <AdSenseSlot slot="0987654321" />
-
       <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         <h2 className="font-serif text-2xl italic text-(--ink)">How to Use This Tool</h2>
         <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-7 text-(--muted)">
@@ -255,23 +243,11 @@ export default async function ToolPage({ params }: Props) {
         </div>
       </section>
 
-      <AuthorCard
-        title="WebCodeveloper Editorial Team"
-        description="We create developer-focused tutorials and utility guides that emphasize practical value, accessibility, and trustworthiness for modern engineering workflows."
-        experience="Full Stack Developer building modern, scalable web applications and developer tools with a focus on performance, clean architecture, and user experience."
-        stack={["Next.js", "TypeScript", "React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"]}
-        publishedAt="2026-04-25"
-        updatedAt="2026-04-25"
-        readingMinutes={6}
-        focusAreas={["Browser-based utility design", "Accessibility", "Workflow speed and privacy"]}
-        editorialNote="Each utility is designed around common developer tasks, with clear guidance and no unnecessary friction in day-to-day use."
-      />
-
       {relatedTools.length > 0 && (
         <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
           <h2 className="font-serif text-2xl italic text-(--ink)">Related Developer Tools</h2>
           <p className="mt-3 text-sm text-(--muted)">
-            Explore these related utilities to complete your workflow faster and help search engines discover connected pages.
+            These tools are commonly used alongside this one.
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             {relatedTools.map((relatedTool) => (

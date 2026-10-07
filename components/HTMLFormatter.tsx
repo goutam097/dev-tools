@@ -9,7 +9,7 @@ type NodeType = {
   type: "tag" | "text";
   name?: string;
   attributes?: Record<string, string>;
-  children?: NodeType[]| any;
+  children?: NodeType[];
   content?: string;
 };
 
@@ -18,29 +18,30 @@ function parseHTMLToTree(htmlString: string): NodeType[] {
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlString, "text/html");
 
-  const traverse = (node: any): NodeType | null => {
+  const traverse = (node: Node): NodeType | null => {
     // TEXT NODE
     if (node.nodeType === 3) {
-      const text = node.textContent.trim();
+      const text = node.textContent?.trim() ?? "";
       if (!text) return null;
       return { type: "text", content: text };
     }
 
     // ELEMENT NODE
     if (node.nodeType === 1) {
+      const element = node as Element;
       const attrs: Record<string, string> = {};
 
-      for (let attr of node.attributes) {
+      for (const attr of element.attributes) {
         attrs[attr.name] = attr.value;
       }
 
       return {
         type: "tag",
-        name: node.tagName.toLowerCase(),
+        name: element.tagName.toLowerCase(),
         attributes: attrs,
-        children: Array.from(node.childNodes)
+        children: Array.from(element.childNodes)
           .map(traverse)
-          .filter(Boolean),
+          .filter((child): child is NodeType => child !== null),
       };
     }
 
@@ -104,7 +105,7 @@ const TreeNode = ({ node }: { node: NodeType }) => {
                 {key}
               </span>
               =
-              <span className="text-green-600">"{value}"</span>
+              <span className="text-green-600">&quot;{value}&quot;</span>
             </span>
           ))}
 
@@ -114,7 +115,7 @@ const TreeNode = ({ node }: { node: NodeType }) => {
       {/* CHILDREN */}
       {open && hasChildren && (
         <div className="ml-4 border-l pl-2">
-          {node.children!.map((child:any, i:any) => (
+          {node.children!.map((child, i) => (
             <TreeNode key={i} node={child} />
           ))}
         </div>
@@ -143,7 +144,7 @@ export default function HTMLFormatter() {
       const parsedTree = parseHTMLToTree(formatted);
       setTree(parsedTree);
       setError("");
-    } catch (err) {
+    } catch {
       setError("Invalid HTML");
     }
   };

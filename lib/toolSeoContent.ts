@@ -28,7 +28,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     metaDescription:
       "Use our JSON formatter online free to beautify, validate, and minify JSON instantly in your browser. Fast, private, and built for developers.",
     intro: [
-      "This JSON formatter online free tool helps you clean up raw JSON strings in seconds, whether you are debugging API responses, validating configuration files, or preparing payloads for documentation. Everything runs in the browser, so there is no upload step and no delay caused by server-side processing.",
+      "Paste a JSON string to check its syntax, format it with indentation, or minify it. Parsing happens in your browser. If signed in, submitted input and output are also saved to account history.",
       "When JSON is hard to read, bugs become hard to spot. The formatter makes nested objects readable, highlights parsing errors, and gives you copy-ready output for code reviews, Postman collections, frontend fixtures, and backend logging workflows.",
     ],
     howToSteps: [
@@ -64,12 +64,12 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
       {
         question: "Is this JSON formatter online free for unlimited use?",
         answer:
-          "Yes. You can format and validate JSON as often as needed without sign-up, usage caps, or hidden limits.",
+          "The formatter is available without signing in. Signed-in use may save submitted input and output to account history.",
       },
       {
         question: "Does my JSON data leave the browser?",
         answer:
-          "No. The formatter runs client-side in your browser tab, so your JSON stays local while you work.",
+          "Formatting runs in your browser. When signed in, this tool sends input and output to the site history API. Avoid entering secrets or sensitive production data.",
       },
       {
         question: "Can I minify JSON after formatting it?",
@@ -83,10 +83,10 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     primaryKeyword: "base64 encoder online",
     metaTitle: "Base64 Encoder & Decoder Online - Fast & Private",
     metaDescription:
-      "Free Base64 encoder and decoder tool. Convert text to Base64 or decode Base64 strings instantly in your browser. Secure, private, and developer-friendly.",
+      "Convert text to Base64 or decode Base64 strings in your browser. Base64 is encoding, not encryption; signed-in use may save values to account history.",
     intro: [
-      "This Base64 encoder online utility provides a secure way to transform text into Base64 format or decode existing Base64 strings. Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format by translating it into a radix-64 representation. This is essential for transmitting data over channels that only reliably support text.",
-      "Our tool runs entirely client-side, ensuring that your data—whether it's an API key, a configuration snippet, or a data URI—never leaves your browser. This makes it a safer alternative to server-side converters for sensitive developer tasks.",
+      "Encode text as Base64 or decode a Base64 string. Base64 represents bytes with printable characters; it is an encoding, not encryption, and does not protect secrets.",
+      "Conversion runs in your browser. When signed in, this tool also sends input and result to account history. Avoid submitting keys or confidential values.",
     ],
     howToSteps: [
       "Input your plain text or Base64 string into the converter.",
@@ -196,10 +196,10 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     primaryKeyword: "jwt decoder online",
     metaTitle: "JWT Decoder Online - Inspect Header, Payload & Claims",
     metaDescription:
-      "Decode JSON Web Tokens (JWT) instantly. View header data, payload claims, and expiration dates. Fast, private, and 100% client-side decoding.",
+      "Decode JSON Web Tokens (JWT) instantly. View header data, payload claims, and expiration dates. Browser-side decoding; signed-in use may save the token to account history. Decoding does not verify signatures.",
     intro: [
-      "JSON Web Tokens (JWT) are a standard for securely transmitting information between parties as a JSON object. This JWT decoder online utility allows you to 'crack open' a token and see exactly what information is being passed, which is crucial for debugging authentication and authorization issues.",
-      "The tool decodes the Base64Url-encoded segments of the token to reveal the Header and Payload. Since this process is entirely client-side, your tokens (which may contain sensitive user data) are never transmitted over the network to our servers.",
+      "JSON Web Tokens (JWT) are a standard for securely transmitting information between parties as a JSON object. Use this utility to inspect decoded claims while debugging. It does not authenticate users or verify token signatures.",
+      "The tool decodes the Base64Url-encoded header and payload. Decoding does not verify the signature, issuer, audience, or expiry and must not be treated as authentication. When signed in, submitted tokens and decoded output are sent to account history. Avoid production credentials.",
     ],
     howToSteps: [
       "Paste your encoded JWT into the input field.",
@@ -422,7 +422,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
       "Convert images to Base64 strings with this free online tool. Great for data URIs, testing, and embedding assets in HTML, CSS, and JSON payloads.",
     intro: [
       "This image to Base64 converter online utility helps you encode image files into text strings for embedding and transfer. It is useful for quick prototyping, transport-safe payloads, and debugging asset handling workflows.",
-      "By converting locally in the browser, you avoid uploading files to third-party servers and keep sensitive design assets private during development.",
+      "The image is read in your browser and is not uploaded by this converter. Use only files you are comfortable processing in your browser environment.",
     ],
     howToSteps: [
       "Upload or drop an image file into the converter.",

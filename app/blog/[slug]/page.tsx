@@ -5,8 +5,7 @@ import { blogPosts, blogPostsBySlug } from "@/lib/blogPosts";
 import { toolCatalogBySlug } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
-import AuthorCard from "@/components/AuthorCard";
-import AdSenseSlot from "@/components/AdSenseSlot";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -111,6 +110,8 @@ export default async function BlogPostPage({ params }: Props) {
       <main className="mx-auto min-h-screen max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
+      <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
+
       <header>
         <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">
           Published {post.publishedAt} | {post.readingMinutes} min read
@@ -127,16 +128,6 @@ export default async function BlogPostPage({ params }: Props) {
         ))}
       </section>
 
-      <section className="mt-8 rounded-3xl border border-(--border) bg-(--surface) p-6 shadow-sm">
-        <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-(--muted)">Why this guide is useful</p>
-        <h2 className="mt-2 font-serif text-2xl italic text-(--ink)">Practical expertise, tested workflows, and real-world examples</h2>
-        <p className="mt-3 text-sm leading-7 text-(--muted)">
-          Each article is written to help readers solve a concrete task quickly, while also showing the reasoning behind the recommended method. That makes the content more useful for both first-time readers and experienced engineers.
-        </p>
-      </section>
-
-      <AdSenseSlot slot="1234567890" />
-
       {post.sections.map((section) => (
         <section key={section.heading} className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
           <h2 className="font-serif text-2xl italic text-(--ink)">{section.heading}</h2>
@@ -148,17 +139,9 @@ export default async function BlogPostPage({ params }: Props) {
         </section>
       ))}
 
-      <AuthorCard
-        title="WebCodeveloper Editorial Team"
-        description="Our team publishes practical developer education content grounded in real-world engineering work, browser-based tooling, and modern frontend and backend workflows."
-        experience="15+ years building web apps, developer platforms, and content systems"
-        stack={["Next.js", "TypeScript", "Node.js", "MongoDB"]}
-        publishedAt={post.publishedAt}
-        updatedAt={post.publishedAt}
-        readingMinutes={post.readingMinutes}
-        focusAreas={["Real-world debugging workflows", "API validation", "Frontend and backend productivity"]}
-        editorialNote="We verify examples against common engineering tasks and keep instructions practical, transparent, and easy to apply."
-      />
+      <p className="mt-8 text-sm text-(--muted)">
+        Published by WebCodeveloper. Found an error or have a suggested correction? <Link href="/contact" className="underline underline-offset-4">Contact us</Link>.
+      </p>
 
       <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         <h2 className="font-serif text-2xl italic text-(--ink)">Continue Exploring</h2>
@@ -201,4 +184,3 @@ export default async function BlogPostPage({ params }: Props) {
     </SidebarScaffold>
   );
 }
-

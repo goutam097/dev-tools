@@ -57,7 +57,7 @@ const faqItems = [
   },
   {
     q: "Do tools process data in the browser?",
-    a: "Most utilities are designed for browser-first processing so developers can work faster with better privacy.",
+    a: "Transformations run in your browser. If you are signed in, tools that save history send submitted input and output to your account history. Avoid entering secrets or production credentials.",
   },
   {
     q: "Which tools are best for API debugging?",
@@ -125,8 +125,7 @@ export default function ToolsIndexPage() {
           documentation and frontend cleanup workflows.
         </p>
         <p className="mt-3 text-sm text-(--muted)">
-          Keeping all tools in one crawlable directory improves technical SEO and user navigation at the same time. Google can
-          discover deeper pages through internal links, and users can move between related utilities in fewer clicks.
+          Each tool page includes usage notes and links to related tools. Check the handling notes before entering sensitive data; signed-in history may retain inputs and outputs.
         </p>
       </section>
 

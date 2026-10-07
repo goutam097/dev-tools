@@ -22,11 +22,6 @@ const structuredData = [
       name: SITE_NAME,
       logo: DEFAULT_OG_IMAGE,
     },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: searchActionUrl,
-      "query-input": "required name=search_term_string",
-    },
   },
   {
     "@context": "https://schema.org",

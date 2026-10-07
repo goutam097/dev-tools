@@ -8,16 +8,16 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Developer Blog | SEO and Tooling Guides",
+  title: "Developer Guides | DevTools Hub",
   description:
-    "Read practical developer SEO and tooling guides, including JSON formatting, Base64 encoding, and online utility workflows.",
+    "Read practical guides about JSON formatting, Base64 encoding, and common developer workflows.",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Developer Blog | SEO and Tooling Guides",
+    title: "Developer Guides | DevTools Hub",
     description:
-      "Actionable blog posts about developer tools, technical SEO, and productivity workflows.",
+      "Explanations and examples for common developer tools and workflows.",
     url: `${SITE_URL}/blog`,
     siteName: SITE_NAME,
     type: "website",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Developer Blog | SEO and Tooling Guides",
-    description: "Actionable blog posts about developer tools and technical SEO.",
+    title: "Developer Guides | DevTools Hub",
+    description: "Guides about developer tools and practical workflows.",
     images: [DEFAULT_OG_IMAGE],
   },
   robots: {
@@ -47,10 +47,9 @@ export default function BlogIndexPage() {
     <SidebarScaffold title="Developer Blog">
       <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
       <Breadcrumbs items={[{ label: "Blog" }]} />
-      <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Developer SEO and Tooling Blog</h1>
+      <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Developer Guides</h1>
       <p className="mt-3 max-w-3xl text-sm text-(--muted)">
-        Explore long-tail focused guides designed to support ranking growth and user intent. Every article links directly
-        to relevant tools so readers can apply examples instantly.
+        Practical explanations and examples for common developer tasks, with links to tools where they help you try a workflow.
       </p>
 
       <AdSenseSlot slot="1111111111" />
@@ -58,9 +57,6 @@ export default function BlogIndexPage() {
       <section className="mt-8 grid gap-4 md:mt-10">
         {blogPosts.map((post) => (
           <article key={post.slug} className="rounded-2xl border border-(--border) bg-white p-5">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">
-              Keyword: {post.targetKeyword}
-            </p>
             <h2 className="mt-2 font-serif text-2xl italic text-(--ink)">{post.title}</h2>
             <p className="mt-2 text-sm text-(--muted)">{post.description}</p>
             <div className="mt-4 flex flex-wrap gap-3">

@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
             collects, uses, and protects your information.
           </p>
           <p className="mt-4 text-sm text-blue-200">
-            Last Updated: October 2026
+            This policy should be reviewed whenever data practices change.
           </p>
         </div>
       </section>
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
                 Introduction
               </h2>
               <p className="text-lg leading-relaxed">
-                WebCodeDeveloper ("we", "us", "our") respects your privacy and is committed
+                WebCodeDeveloper (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) respects your privacy and is committed
                 to protecting your personal information. This Privacy
                 Policy explains how we collect, use, and safeguard
                 information when you visit our website, DevTools Hub.
@@ -202,7 +202,7 @@ export default function PrivacyPolicyPage() {
             Questions About Your Privacy?
           </h2>
           <p className="text-slate-300 text-lg mb-8">
-            We're committed to transparency and protecting your personal
+            We&apos;re committed to transparency and protecting your personal
             information. Feel free to contact us anytime.
           </p>
           <a href="/contact" className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold transition">

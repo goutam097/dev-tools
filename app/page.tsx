@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import DevToolsApp from "@/components/DevToolsApp";
 import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
 import { blogPosts } from "@/lib/blogPosts";
@@ -13,41 +12,24 @@ const featuredLearningPaths = [
     href: "/blog/how-to-format-json-in-javascript",
   },
   {
-    title: "Developer Productivity Stack",
-    description: "Build a high-efficiency toolkit for formatting, encoding, and documentation tasks that save hours of manual work every week.",
-    href: "/blog/best-free-online-tools-for-developers",
-  },
-  {
-    title: "Modern Engineering Essentials",
-    description: "Discover how specialized utilities improve throughput for frontend, backend, and QA teams in modern software delivery.",
-    href: "/blog/top-10-developer-tools-2026",
+    title: "Working with Base64",
+    description: "Understand what Base64 does, where it is useful, and how to handle text and binary data in common JavaScript environments.",
+    href: "/blog/what-is-base64-encoding-with-examples",
   },
 ];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "DevTools Hub | Free Browser-Native Developer Utilities & Guides",
+  title: "Online Developer Tools and Practical Guides | DevTools Hub",
   description:
-    "Fast, private, and browser-native developer tools for JSON formatting, JWT decoding, Base64 conversion, regex testing, and more. No data uploads, 100% client-side.",
-  keywords: [
-    "developer tools online free",
-    "json formatter online free",
-    "jwt decoder online",
-    "base64 encoder online",
-    "regex tester javascript tool",
-    "uuid generator online",
-    "markdown preview online",
-    "css gradient generator online",
-    "image to base64 converter online",
-    "html formatter online free",
-  ],
+    "Use practical browser-based tools to format JSON, decode JWTs, convert Base64, test regular expressions, and work with common developer formats.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "DevTools Hub | Free Browser-Native Developer Utilities & Guides",
+    title: "Online Developer Tools and Practical Guides | DevTools Hub",
     description:
-      "Access JSON formatting, JWT decoding, Base64 tools, regex testing, and HTML formatting instantly in your browser with 100% privacy.",
+      "Format JSON, decode JWTs, convert Base64, test regular expressions, and read practical guides for developer workflows.",
     url: SITE_URL,
     siteName: SITE_NAME,
     type: "website",
@@ -62,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevTools Hub | Free Browser-Native Developer Utilities & Guides",
-    description: "Use browser-native developer tools with zero uploads and fast, practical workflows.",
+    title: "Online Developer Tools and Practical Guides | DevTools Hub",
+    description: "Use practical tools for common developer tasks and browse concise technical guides.",
     images: [DEFAULT_OG_IMAGE],
   },
   robots: {
@@ -74,8 +56,8 @@ export const metadata: Metadata = {
 
 const heroHighlights = [
   {
-    title: "100% Client-Side",
-    description: "All tools run entirely in your browser. Your sensitive data never leaves your machine.",
+    title: "Browser-based processing",
+    description: "Conversions run in your browser. If you are signed in, some tools save input and output to your account history; see the privacy policy.",
   },
   {
     title: "No Account Required",
@@ -98,7 +80,7 @@ export default function HomePage() {
             Streamline your workflow with private, browser-native tools.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-(--muted) sm:text-lg">
-            DevTools Hub provides essential utilities and technical guides to help developers validate APIs, debug authentication, and format code faster. Every tool runs 100% client-side to ensure your data stays private.
+            DevTools Hub provides browser-based utilities and technical guides for common development tasks. Tool inputs are processed in your browser; when signed in, tools that support history can also send input and output to your account history.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -193,7 +175,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <DevToolsApp />
     </>
   );
 }

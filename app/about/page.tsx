@@ -45,7 +45,7 @@ export default function AboutPage() {
                 DevTools Hub was born out of a simple frustration: many online developer tools either upload sensitive data to their servers or are buried under layers of intrusive advertising and sign-up gates.
               </p>
               <p className="text-lg leading-relaxed mb-5">
-                We believe that essential utilities—like JSON formatters, JWT decoders, and regex testers—should be **fast, free, and 100% private**. That's why every tool on this site is built to run entirely in your browser. Your data never leaves your machine.
+                The transformations run in your browser. Some tools also save submitted inputs and outputs to account history when a user is signed in. Avoid entering secrets or production credentials, and see our privacy policy for details.
               </p>
               <p className="text-lg leading-relaxed">
                 Published by <span className="font-semibold text-blue-600">WebCodeveloper</span>, we combine high-performance engineering with practical educational guides to help modern developers ship faster and with more confidence.
@@ -63,7 +63,7 @@ export default function AboutPage() {
                   <div>
                     <h4 className="font-semibold">Client-Side Privacy</h4>
                     <p className="text-slate-600">
-                      100% browser-native processing. No data uploads, ever.
+                      Tool calculations run in the browser; signed-in history may send values to the site.
                     </p>
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export default function AboutPage() {
                   <div>
                     <h4 className="font-semibold">Active Curation</h4>
                     <p className="text-slate-600">
-                      Tools and tutorials are regularly updated for modern standards.
+                      Tool and article pages include contact links for suggested corrections.
                     </p>
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export default function AboutPage() {
           </h2>
           <p className="text-slate-300 text-lg mb-8">
             We are constantly expanding our toolkit. If you have a suggestion 
-            for a new utility or a content correction, we'd love to hear from you.
+            for a new utility or a content correction, we&apos;d love to hear from you.
           </p>
           <a href="/contact" className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold transition">
             Contact the Team

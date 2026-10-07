@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 type Props = {
-  data: any;
+  data: unknown;
   level?: number;
 };
 
@@ -21,7 +21,7 @@ export default function JsonViewer({ data, level = 0 }: Props) {
   }
 
   const isArray = Array.isArray(data);
-  const entries = isArray ? data : Object.entries(data);
+  const entries: unknown[] = isArray ? data : Object.entries(data as Record<string, unknown>);
 
   return (
     <div className="font-mono text-sm" style={{ paddingLeft: level * 14 }}>
@@ -48,9 +48,10 @@ export default function JsonViewer({ data, level = 0 }: Props) {
       {/* Content */}
       {!collapsed && (
         <div className="mt-1">
-          {entries.map((item: any, index: number) => {
-            const key = isArray ? index : item[0];
-            const value = isArray ? item : item[1];
+          {entries.map((item, index: number) => {
+            const pair = item as [string, unknown];
+            const key = isArray ? index : pair[0];
+            const value = isArray ? item : pair[1];
 
             return (
               <div
@@ -59,7 +60,7 @@ export default function JsonViewer({ data, level = 0 }: Props) {
               >
                 {!isArray && (
                   <span className="text-purple-400 mr-2">
-                    "{key}":
+                    &quot;{key}&quot;:
                   </span>
                 )}
 

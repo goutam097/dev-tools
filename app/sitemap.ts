@@ -3,63 +3,79 @@ import { toolCatalog } from "@/lib/toolCatalog";
 import { blogPosts } from "@/lib/blogPosts";
 import { SITE_URL } from "@/lib/site";
 
-const now = new Date();
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/tools`,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${SITE_URL}/blog`,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "weekly",
       priority: 0.85,
     },
     {
       url: `${SITE_URL}/about`,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "monthly",
       priority: 0.4,
     },
     {
       url: `${SITE_URL}/contact`,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "monthly",
       priority: 0.4,
     },
     {
       url: `${SITE_URL}/author`,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "monthly",
       priority: 0.4,
     },
     {
       url: `${SITE_URL}/privacy-policy`,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "monthly",
       priority: 0.3,
     },
     {
       url: `${SITE_URL}/terms-and-conditions`,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "monthly",
       priority: 0.3,
     },
     {
       url: `${SITE_URL}/disclaimer`,
-      lastModified: now,
+      lastModified: new Date("2026-04-25"),
       changeFrequency: "monthly",
       priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}/editorial-policy`,
+      lastModified: new Date("2026-04-25"),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${SITE_URL}/content-update-policy`,
+      lastModified: new Date("2026-04-25"),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${SITE_URL}/code-testing-policy`,
+      lastModified: new Date("2026-04-25"),
+      changeFrequency: "yearly",
+      priority: 0.2,
     },
   ];
 
