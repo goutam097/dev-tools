@@ -213,12 +213,13 @@ function renderObject(
       return `  ${propertyName}${optional ? "?" : ""}: ${renderType(type)};`;
     })
     .join("\n");
+  const body = properties ? `\n${properties}\n` : "\n";
 
   if (style === "interface") {
-    return `${prefix}interface ${object.name} {${properties ? `\n${properties}\n` : "\n"}}`;
+    return `${prefix}interface ${object.name} {${body}}`;
   }
 
-  return `${prefix}type ${object.name} = {${properties ? `\n${properties}\n` : "\n"  }};`;
+  return `${prefix}type ${object.name} = {${body}};`;
 }
 
 export function convertJsonToTypeScript(

@@ -84,7 +84,7 @@ export default function JSONToTypeScriptConverter() {
     const filename = rootTypeName.trim().replace(/[^A-Za-z0-9_$-]+/g, "-").replace(/^-+|-+$/g, "");
     anchor.download = `${filename || "Root"}.ts`;
     anchor.click();
-    setTimeout(() => URL.revokeObjectURL(url), 0);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
     setNotice("TypeScript file downloaded.");
   };
 
