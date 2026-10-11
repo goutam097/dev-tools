@@ -2,6 +2,7 @@
 
 import {
   Binary,
+  Braces,
   Code2,
   FileText,
   Fingerprint,
@@ -36,6 +37,7 @@ type ToolLayoutProps = {
 
 const tools: { id: ToolId; name: string; icon: typeof Code2; href?: string }[] = [
   { id: "json", name: "JSON Formatter", icon: Code2, href: "/tools/json-formatter" },
+  { id: "json-to-typescript", name: "JSON to TypeScript", icon: Braces, href: "/tools/json-to-typescript" },
   { id: "jwt", name: "JWT Decoder", icon: Key, href: "/tools/jwt-decoder" },
   { id: "base64", name: "Base64 Converter", icon: Binary, href: "/tools/base64-converter" },
   { id: "regex", name: "Regex Tester", icon: Hash, href: "/tools/regex-tester" },

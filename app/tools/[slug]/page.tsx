@@ -5,6 +5,7 @@ import Base64Converter from "@/components/Base64Converter";
 import GradientGenerator from "@/components/GradientGenerator";
 import ImageBase64Converter from "@/components/ImageBase64Converter";
 import JSONFormatter from "@/components/JSONFormatter";
+import JSONToTypeScriptConverter from "@/components/JSONToTypeScriptConverter";
 import JWTDecoder from "@/components/JWTDecoder";
 import MarkdownConverter from "@/components/MarkdownConverter";
 import RegexTester from "@/components/RegexTester";
@@ -25,6 +26,8 @@ function ToolRenderer({ slug }: { slug: string }) {
   switch (slug) {
     case "json-formatter":
       return <JSONFormatter />;
+    case "json-to-typescript":
+      return <JSONToTypeScriptConverter />;
     case "jwt-decoder":
       return <JWTDecoder />;
     case "base64-converter":

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import {
   Binary,
+  Braces,
   BookOpen,
   Code2,
   FileText,
@@ -34,6 +35,7 @@ const navLinks = [
   { href: "/tools", label: "All Tools", icon: Wrench },
   { href: "/blog", label: "Blog", icon: BookOpen },
   { href: "/tools/json-formatter", label: "JSON Formatter", icon: Code2 },
+  { href: "/tools/json-to-typescript", label: "JSON to TypeScript", icon: Braces },
   { href: "/tools/jwt-decoder", label: "JWT Decoder", icon: Terminal },
   { href: "/tools/base64-converter", label: "Base64 Converter", icon: Binary },
   { href: "/tools/regex-tester", label: "Regex Tester", icon: Hash },

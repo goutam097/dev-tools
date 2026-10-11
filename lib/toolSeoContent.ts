@@ -527,6 +527,56 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     ],
     relatedSlugs: ["markdown-preview", "json-formatter", "gradient-marker"],
   },
+  "json-to-typescript": {
+    primaryKeyword: "json to typescript converter",
+    metaTitle: "JSON to TypeScript Converter - Generate Interfaces Online",
+    metaDescription:
+      "Convert JSON samples into TypeScript interfaces or type aliases in your browser. Infer nested objects, arrays, nullable fields, and optional properties.",
+    intro: [
+      "Paste a representative JSON payload to generate clean TypeScript interfaces or type aliases. Nested objects, mixed value types, nullable fields, and arrays are inferred automatically.",
+      "Conversion runs locally in your browser. Configure the root type name, choose interfaces or aliases, then copy the generated code or download it as a TypeScript file.",
+    ],
+    howToSteps: [
+      "Paste JSON into the input editor or load the included sample.",
+      "Set the name of the root type and choose interface or type output.",
+      "Resolve any JSON validation error shown below the editor.",
+      "Copy the generated TypeScript or download it as a .ts file.",
+    ],
+    sections: [
+      {
+        heading: "How JSON Types Are Inferred",
+        paragraphs: [
+          "The converter maps JSON strings, numbers, booleans, and null values to their corresponding TypeScript types. Nested objects become separately named declarations, while arrays infer their element type from the supplied values.",
+          "When object entries in an array have different fields, properties missing from some entries are marked optional. Fields that contain both a value and null are represented as a union with null.",
+        ],
+      },
+      {
+        heading: "Choose Interfaces or Type Aliases",
+        paragraphs: [
+          "Interface output creates reusable declarations for object shapes and is convenient for extending application models. Type output expresses objects as aliases and also supports roots that are arrays or primitive values.",
+          "The result reflects the sample you provide. If an API can return additional variants or optional fields not present in the sample, update the generated declarations to match the full API contract.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I generate TypeScript from nested JSON?",
+        answer:
+          "Yes. Nested objects are emitted as named types and referenced from their parent properties.",
+      },
+      {
+        question: "What happens when a JSON field can be null?",
+        answer:
+          "The generated property type includes null alongside the inferred non-null value type.",
+      },
+      {
+        question: "Does this tool upload my JSON?",
+        answer:
+          "No. Parsing and type generation happen in your browser; this converter does not send JSON to a server.",
+      },
+    ],
+    relatedSlugs: ["json-formatter", "html-formatter", "jwt-decoder"],
+  },
 };
 
 export function buildToolKeywords(tool: ToolCatalogItem, primaryKeyword: string): string[] {

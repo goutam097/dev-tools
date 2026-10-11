@@ -292,6 +292,38 @@ Useful for debugging and improving code quality.
 
     relatedTools: ["markdown-preview"],
   },
+  {
+    slug: "json-to-typescript",
+    title: "JSON to TypeScript Converter",
+    shortTitle: "JSON to TypeScript",
+    description: "Convert JSON samples into TypeScript interfaces or type aliases.",
+    metaTitle: "JSON to TypeScript Converter Online",
+    metaDescription:
+      "Convert JSON into TypeScript interfaces and type aliases, including nested objects, arrays, nullable values, and optional properties.",
+    keywords: [
+      "json to typescript",
+      "json to typescript interface",
+      "json type generator",
+      "typescript interface generator",
+      "json schema to typescript",
+    ],
+    updatedAt: "2026-10-11",
+    content: `
+Generate TypeScript interfaces and type aliases from representative JSON data.
+The converter infers nested structures, array element types, nullable values, and optional fields.
+`,
+    faqs: [
+      {
+        q: "How are nested JSON objects represented?",
+        a: "Nested objects are generated as named interfaces or type aliases and referenced by their parent type.",
+      },
+      {
+        q: "Does the converter support null values and arrays?",
+        a: "Yes. Null is included in the inferred union type, and array types are inferred from their item values.",
+      },
+    ],
+    relatedTools: ["json-formatter", "html-formatter"],
+  },
 ];
 
 export const toolCatalogBySlug = Object.fromEntries(
