@@ -324,6 +324,40 @@ The converter infers nested structures, array element types, nullable values, an
     ],
     relatedTools: ["json-formatter", "html-formatter"],
   },
+  {
+    slug: "url-encoder-decoder",
+    title: "URL Encoder / Decoder",
+    shortTitle: "URL Encoder / Decoder",
+    description: "Encode and decode URLs or individual URL components.",
+    metaTitle: "URL Encoder and Decoder Online",
+    metaDescription:
+      "Encode or decode text and URLs using encodeURIComponent, encodeURI, decodeURIComponent, and decodeURI.",
+    keywords: [
+      "url encoder",
+      "url decoder",
+      "url encode online",
+      "url decode online",
+      "percent encoding",
+      "encodeURIComponent online",
+      "decodeURIComponent online",
+    ],
+    updatedAt: "2026-10-11",
+    content: `
+Encode and decode URL text and full URLs using the standard JavaScript URI encoding functions.
+Choose component mode to encode reserved characters, or full URL mode to preserve URL delimiters.
+`,
+    faqs: [
+      {
+        q: "What is the difference between URL and URL component encoding?",
+        a: "URL component encoding also escapes reserved delimiters, while full URL encoding preserves them so the URL structure remains intact.",
+      },
+      {
+        q: "Why does decoding sometimes fail?",
+        a: "A percent-encoded value must use valid hexadecimal escape sequences and valid UTF-8. Malformed sequences cannot be decoded.",
+      },
+    ],
+    relatedTools: ["json-formatter", "base64-converter"],
+  },
 ];
 
 export const toolCatalogBySlug = Object.fromEntries(

@@ -29,6 +29,10 @@ const toolComponents: Record<ToolId, ComponentType<unknown>> = {
     () => import("./JSONToTypeScriptConverter"),
     "JSON to TypeScript",
   ),
+  "url-encoder-decoder": loadTool(
+    () => import("./UrlEncoderDecoder"),
+    "URL Encoder / Decoder",
+  ),
   jwt: loadTool(() => import("./JWTDecoder"), "JWT Decoder"),
   base64: loadTool(() => import("./Base64Converter"), "Base64 Converter"),
   regex: loadTool(() => import("./RegexTester"), "Regex Tester"),

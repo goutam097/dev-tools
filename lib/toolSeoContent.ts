@@ -577,6 +577,56 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     ],
     relatedSlugs: ["json-formatter", "html-formatter", "jwt-decoder"],
   },
+  "url-encoder-decoder": {
+    primaryKeyword: "url encoder and decoder online",
+    metaTitle: "URL Encoder and Decoder Online - Encode URL Components",
+    metaDescription:
+      "Encode and decode URL components or complete URLs with JavaScript's standard URI functions. Validate malformed escapes and copy converted text.",
+    intro: [
+      "Convert text and URLs with separate Encode and Decode actions. Choose URL component mode to escape reserved characters, or full URL mode to preserve URL separators and structure.",
+      "The tool uses JavaScript's built-in encodeURIComponent, encodeURI, decodeURIComponent, and decodeURI functions. All conversion runs locally in your browser.",
+    ],
+    howToSteps: [
+      "Paste text or a URL into the input editor, or load the sample URL.",
+      "Choose URL component mode for a query value or Full URL mode for a complete URL.",
+      "Select Encode or Decode to convert the input.",
+      "Copy the result, swap it back into the input, or clear the editors.",
+    ],
+    sections: [
+      {
+        heading: "Full URL Encoding vs URL Component Encoding",
+        paragraphs: [
+          "encodeURI and decodeURI are intended for a complete URI. They preserve characters that have structural meaning in URLs, such as slashes, question marks, ampersands, and equals signs.",
+          "encodeURIComponent and decodeURIComponent are intended for individual values, such as a query parameter. They escape those reserved characters so the value cannot accidentally change the surrounding URL structure.",
+        ],
+      },
+      {
+        heading: "Handling Invalid Percent-Encoding",
+        paragraphs: [
+          "A percent-encoded sequence starts with % followed by exactly two hexadecimal digits. Decoding also validates UTF-8 sequences, so truncated, malformed, or invalidly encoded input produces a clear error instead of an incorrect result.",
+          "Encode or decode only once for each corresponding step. Double encoding changes percent signs into encoded text and can require more than one decoding pass to restore the original value.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Should I use encodeURI or encodeURIComponent?",
+        answer:
+          "Use encodeURI for a complete URL whose separators should remain intact. Use encodeURIComponent for individual query values or other URL components.",
+      },
+      {
+        question: "Does this tool preserve URL delimiters?",
+        answer:
+          "Full URL mode preserves URL delimiters. Component mode encodes reserved characters, including delimiters.",
+      },
+      {
+        question: "Is the input sent to a server?",
+        answer:
+          "No. URI encoding and decoding happen in your browser using built-in JavaScript functions.",
+      },
+    ],
+    relatedSlugs: ["json-formatter", "base64-converter", "json-to-typescript"],
+  },
 };
 
 export function buildToolKeywords(tool: ToolCatalogItem, primaryKeyword: string): string[] {
