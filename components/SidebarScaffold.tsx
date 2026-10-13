@@ -88,7 +88,7 @@ export default function SidebarScaffold({ title, children }: SidebarScaffoldProp
             {(isDesktopSidebarOpen || isMobileMenuOpen) && (
               <div className="flex items-center gap-2 font-mono text-base font-bold md:text-lg">
                 <Terminal size={22} />
-                <span>DEV_HUB</span>
+                <span>DEV_HUB.</span>
               </div>
             )}
             <button
