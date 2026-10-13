@@ -33,6 +33,7 @@ const toolComponents: Record<ToolId, ComponentType<unknown>> = {
     () => import("./UrlEncoderDecoder"),
     "URL Encoder / Decoder",
   ),
+  timestamp: loadTool(() => import("./TimestampConverter"), "Timestamp Converter"),
   jwt: loadTool(() => import("./JWTDecoder"), "JWT Decoder"),
   base64: loadTool(() => import("./Base64Converter"), "Base64 Converter"),
   regex: loadTool(() => import("./RegexTester"), "Regex Tester"),

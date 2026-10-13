@@ -12,6 +12,7 @@ import RegexTester from "@/components/RegexTester";
 import UUIDGenerator from "@/components/UUIDGenerator";
 import HTMLFormatter from "@/components/HTMLFormatter";
 import UrlEncoderDecoder from "@/components/UrlEncoderDecoder";
+import TimestampConverter from "@/components/TimestampConverter";
 import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
 import { buildToolKeywords, toolSeoContentBySlug } from "@/lib/toolSeoContent";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -31,6 +32,8 @@ function ToolRenderer({ slug }: { slug: string }) {
       return <JSONToTypeScriptConverter />;
     case "url-encoder-decoder":
       return <UrlEncoderDecoder />;
+    case "timestamp-converter":
+      return <TimestampConverter />;
     case "jwt-decoder":
       return <JWTDecoder />;
     case "base64-converter":

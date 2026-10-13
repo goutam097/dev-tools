@@ -2,6 +2,7 @@ export type ToolId =
   | "json"
   | "json-to-typescript"
   | "url-encoder-decoder"
+  | "timestamp"
   | "jwt"
   | "base64"
   | "regex"

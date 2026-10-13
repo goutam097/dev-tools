@@ -358,6 +358,39 @@ Choose component mode to encode reserved characters, or full URL mode to preserv
     ],
     relatedTools: ["json-formatter", "base64-converter"],
   },
+  {
+    slug: "timestamp-converter",
+    title: "Timestamp Converter",
+    shortTitle: "Timestamp Converter",
+    description: "Convert Unix timestamps and dates with local, UTC, and ISO 8601 output.",
+    metaTitle: "Unix Timestamp Converter - Convert Epoch Time to Date",
+    metaDescription:
+      "Convert Unix timestamps to local time, UTC, and ISO 8601, or turn a date and time into seconds and milliseconds.",
+    keywords: [
+      "unix timestamp converter",
+      "epoch converter",
+      "timestamp to date",
+      "date to unix timestamp",
+      "unix time milliseconds",
+      "timestamp converter online",
+    ],
+    updatedAt: "2026-10-12",
+    content: `
+Convert Unix timestamps in seconds or milliseconds to readable local and UTC dates, or convert a selected date and time into Unix timestamps.
+Results include ISO 8601 format and both timestamp units.
+`,
+    faqs: [
+      {
+        q: "How can I tell whether a timestamp uses seconds or milliseconds?",
+        a: "Select the unit explicitly. Unix timestamps in seconds are typically 10 digits, while millisecond timestamps are typically 13 digits.",
+      },
+      {
+        q: "Which timezone is used for date and time input?",
+        a: "Choose your browser's local timezone or UTC before converting. The results always include local time, UTC, and ISO 8601.",
+      },
+    ],
+    relatedTools: ["json-formatter", "url-encoder-decoder"],
+  },
 ];
 
 export const toolCatalogBySlug = Object.fromEntries(

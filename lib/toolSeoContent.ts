@@ -627,6 +627,56 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     ],
     relatedSlugs: ["json-formatter", "base64-converter", "json-to-typescript"],
   },
+  "timestamp-converter": {
+    primaryKeyword: "unix timestamp converter",
+    metaTitle: "Unix Timestamp Converter - Convert Epoch Time to Date",
+    metaDescription:
+      "Convert Unix timestamps to local time, UTC, and ISO 8601, or convert a date and time to Unix seconds and milliseconds.",
+    intro: [
+      "Convert Unix epoch timestamps in seconds or milliseconds into local time, UTC, and ISO 8601, or select a date and time to get both timestamp units.",
+      "Date and time inputs can be interpreted in your browser's local timezone or UTC. Conversion happens locally in your browser.",
+    ],
+    howToSteps: [
+      "Choose Timestamp to date or Date to timestamp.",
+      "Enter a timestamp and select seconds or milliseconds, or choose a date and time.",
+      "For date inputs, choose whether to interpret the value in local time or UTC.",
+      "Review local, UTC, ISO 8601, and Unix timestamp results, then copy individual values or all results.",
+    ],
+    sections: [
+      {
+        heading: "Unix Timestamp Seconds and Milliseconds",
+        paragraphs: [
+          "A Unix timestamp is the number of elapsed seconds from January 1, 1970 at 00:00:00 UTC. Many programming APIs use milliseconds instead, so select the unit to avoid interpreting the date at the wrong scale.",
+          "This converter displays both seconds and milliseconds for each date. Negative timestamps represent dates before the Unix epoch, and sub-millisecond precision is discarded.",
+        ],
+      },
+      {
+        heading: "Local Time, UTC, and ISO 8601",
+        paragraphs: [
+          "The same instant can appear as different wall-clock times in different timezones. Local output uses the timezone configured by your browser; UTC output is normalized to Coordinated Universal Time.",
+          "ISO 8601 output includes the UTC designator (Z), making it unambiguous when shared between systems. Date inputs allow either local timezone or UTC interpretation, and nonexistent local times during daylight-saving changes are rejected.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "How can I tell whether a timestamp is in seconds or milliseconds?",
+        answer:
+          "Select the unit explicitly. Current Unix timestamps are usually 10 digits in seconds or 13 digits in milliseconds.",
+      },
+      {
+        question: "Does local time use my computer's timezone?",
+        answer:
+          "Yes. Local output and local date input use the timezone configured in your browser. You can also interpret date input as UTC.",
+      },
+      {
+        question: "What is the ISO 8601 result?",
+        answer:
+          "It is an unambiguous UTC date-time string ending in Z, for example 2023-11-14T22:13:20.000Z.",
+      },
+    ],
+    relatedSlugs: ["json-formatter", "url-encoder-decoder"],
+  },
 };
 
 export function buildToolKeywords(tool: ToolCatalogItem, primaryKeyword: string): string[] {
