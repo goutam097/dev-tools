@@ -42,6 +42,11 @@ const toolComponents: Record<ToolId, ComponentType<unknown>> = {
   gradient: loadTool(() => import("./GradientGenerator"), "Gradient Maker"),
   "image-base64": loadTool(() => import("./ImageBase64Converter"), "Image to Base64"),
   "html-formatter": loadTool(() => import("./HTMLFormatter"), "HTML Formatter"),
+  "csv-cleaner": loadTool(() => import("./CsvDataCleaner"), "CSV Data Cleaner"),
+  "cron-builder": loadTool(() => import("./CronExpressionBuilder"), "Cron Expression Builder"),
+  "json-schema": loadTool(() => import("./JsonSchemaPlayground"), "JSON Schema Playground"),
+  "css-grid": loadTool(() => import("./CssGridGenerator"), "CSS Grid Generator"),
+  "meta-tags": loadTool(() => import("./MetaTagGenerator"), "Meta Tag Generator"),
   history: loadTool(() => import("./HistoryView"), "History"),
 };
 

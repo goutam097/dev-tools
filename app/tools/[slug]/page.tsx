@@ -13,6 +13,11 @@ import UUIDGenerator from "@/components/UUIDGenerator";
 import HTMLFormatter from "@/components/HTMLFormatter";
 import UrlEncoderDecoder from "@/components/UrlEncoderDecoder";
 import TimestampConverter from "@/components/TimestampConverter";
+import CsvDataCleaner from "@/components/CsvDataCleaner";
+import CronExpressionBuilder from "@/components/CronExpressionBuilder";
+import JsonSchemaPlayground from "@/components/JsonSchemaPlayground";
+import CssGridGenerator from "@/components/CssGridGenerator";
+import MetaTagGenerator from "@/components/MetaTagGenerator";
 import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
 import { buildToolKeywords, toolSeoContentBySlug } from "@/lib/toolSeoContent";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -50,6 +55,16 @@ function ToolRenderer({ slug }: { slug: string }) {
       return <ImageBase64Converter />;
     case "html-formatter":
       return <HTMLFormatter />;
+    case "csv-data-cleaner":
+      return <CsvDataCleaner />;
+    case "cron-expression-builder":
+      return <CronExpressionBuilder />;
+    case "json-schema-playground":
+      return <JsonSchemaPlayground />;
+    case "css-grid-generator":
+      return <CssGridGenerator />;
+    case "meta-tag-generator":
+      return <MetaTagGenerator />;
     default:
       return null;
   }

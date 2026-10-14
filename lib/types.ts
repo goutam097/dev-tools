@@ -11,6 +11,11 @@ export type ToolId =
   | "gradient"
   | "image-base64"
   | "html-formatter"
+  | "csv-cleaner"
+  | "cron-builder"
+  | "json-schema"
+  | "css-grid"
+  | "meta-tags"
   | "history";
 
 export type User = {

@@ -18,6 +18,10 @@ import {
   Link2,
   X,
   Clock3,
+  CalendarClock,
+  FileSpreadsheet,
+  Grid2X2,
+  Tags,
 } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
@@ -50,6 +54,11 @@ const tools: { id: ToolId; name: string; icon: typeof Code2; href?: string }[] =
   { id: "gradient", name: "Gradient Maker", icon: Palette, href: "/tools/gradient-marker" },
   { id: "image-base64", name: "Image to Base64", icon: ImageIcon, href: "/tools/image-to-base64" },
   { id: "html-formatter", name: "HTML Formatter", icon: ImageIcon, href: "/tools/html-formatter" },
+  { id: "csv-cleaner", name: "CSV Data Cleaner", icon: FileSpreadsheet, href: "/tools/csv-data-cleaner" },
+  { id: "cron-builder", name: "Cron Builder", icon: CalendarClock, href: "/tools/cron-expression-builder" },
+  { id: "json-schema", name: "JSON Schema", icon: Braces, href: "/tools/json-schema-playground" },
+  { id: "css-grid", name: "CSS Grid Generator", icon: Grid2X2, href: "/tools/css-grid-generator" },
+  { id: "meta-tags", name: "Meta Tag Generator", icon: Tags, href: "/tools/meta-tag-generator" },
   { id: "history", name: "History", icon: History },
 ];
 
