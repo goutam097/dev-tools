@@ -109,23 +109,39 @@ It helps you understand token structure, debug authentication, and verify payloa
     slug: "base64-converter",
     title: "Base64 Converter",
     shortTitle: "Base64 Converter",
-    description: "Encode and decode Base64 strings instantly.",
-    metaTitle: "Base64 Encode & Decode Online Tool",
+    description: "Encode text to Base64 and decode Base64 strings with UTF-8-safe handling.",
+    metaTitle: "Base64 Encode & Decode Online – Free Text Converter",
     metaDescription:
-      "Convert text to Base64 and decode Base64 instantly using this free tool.",
-    keywords: ["base64 encode", "base64 decode", "base64 converter"],
+      "Encode text to Base64 or decode Base64 strings online. Supports UTF-8 text, clean validation, and browser-based conversion for developers.",
+    keywords: [
+      "base64 encode",
+      "base64 decode",
+      "base64 converter",
+      "encode text to base64",
+      "decode base64 string",
+      "base64 online tool",
+      "utf8 base64 converter",
+      "base64 encoder decoder",
+      "base64 utility",
+      "base64 examples",
+      "learn base64 encoding",
+    ],
     updatedAt: "2026-04-25",
 
     content: `
-Base64 Converter helps encode and decode data using Base64 format.
+Base64 Converter helps encode text to Base64 and decode Base64 strings accurately in the browser.
 
-It is commonly used for transmitting binary data and embedding images.
+It is useful for data URIs, API payloads, email-safe transport, and debugging binary/text conversion issues. Learn how Base64 encoding works in the guide linked above, then use the converter to test real examples.
 `,
 
     faqs: [
       {
         q: "What is Base64?",
-        a: "A method to encode binary data into text format.",
+        a: "Base64 is a text-safe way to represent binary data using a 64-character alphabet.",
+      },
+      {
+        q: "Does it handle UTF-8 characters?",
+        a: "Yes. The converter uses UTF-8 encoding so emojis and non-English text round-trip correctly.",
       },
     ],
 
