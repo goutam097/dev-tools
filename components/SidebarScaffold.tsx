@@ -17,6 +17,10 @@ import {
   Palette,
   Terminal,
   Wrench,
+  CalendarClock,
+  FileSpreadsheet,
+  Grid2X2,
+  Tags,
   X,
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
@@ -45,6 +49,11 @@ const navLinks = [
   { href: "/tools/markdown-preview", label: "Markdown Preview", icon: FileText },
   { href: "/tools/gradient-marker", label: "Gradient Marker", icon: Palette },
   { href: "/tools/image-to-base64", label: "Image to Base64", icon: ImageIcon },
+  { href: "/tools/csv-data-cleaner", label: "CSV Data Cleaner", icon: FileSpreadsheet },
+  { href: "/tools/cron-expression-builder", label: "Cron Expression Builder", icon: CalendarClock },
+  { href: "/tools/json-schema-playground", label: "JSON Schema Playground", icon: Braces },
+  { href: "/tools/css-grid-generator", label: "CSS Grid Generator", icon: Grid2X2 },
+  { href: "/tools/meta-tag-generator", label: "Meta Tag Generator", icon: Tags },
 ];
 
 export default function SidebarScaffold({ title, children }: SidebarScaffoldProps) {
