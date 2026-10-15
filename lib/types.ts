@@ -16,6 +16,7 @@ export type ToolId =
   | "json-schema"
   | "css-grid"
   | "meta-tags"
+  | "qr-code"
   | "history";
 
 export type User = {
