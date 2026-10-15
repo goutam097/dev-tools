@@ -730,6 +730,36 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     faqs: [{ question: "Will generated metadata be published automatically?", answer: "No. The tool creates a downloadable or copyable snippet; you must add it to your website's document head." }],
     relatedSlugs: ["html-formatter", "json-formatter"],
   },
+  "bulk-qr-code-generator": {
+    primaryKeyword: "bulk qr code generator",
+    metaTitle: "Bulk QR Code Generator - Create and Download QR Codes",
+    metaDescription: "Generate custom QR codes from text, URLs, and local CSV or TXT files. Download separate PNG images or a ZIP without sending your data to an external API.",
+    intro: [
+      "Create one QR code per line of text or URL, or load entries from a local TXT file or the first column of a CSV. Customize the size and colors before generating.",
+      "Everything runs locally in your browser. Download individual PNGs or bundle the complete batch into a ZIP file; entries are not sent to an external API.",
+    ],
+    howToSteps: [
+      "Enter one text value or URL per line, or choose a CSV or TXT file from your device.",
+      "For CSV files, select whether to skip the header row; the first column is used for each code.",
+      "Choose the QR image size and foreground and background colors.",
+      "Select Generate QR Codes, then download each PNG or download the complete batch as a ZIP.",
+    ],
+    sections: [
+      {
+        heading: "Bulk QR code generation in your browser",
+        paragraphs: [
+          "The generator creates a separate PNG for each non-empty entry and skips blank lines or rows. A batch is capped at 100 entries to keep the workload manageable in a browser.",
+          "The CSV importer reads only the first column so other columns can hold labels or notes. TXT files and pasted text use one entry per line.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Are my entries uploaded to a server?", answer: "No. Files are read locally, QR codes are generated in your browser, and no entries are sent to an external API." },
+      { question: "How many entries can I generate at once?", answer: "The tool supports up to 100 non-empty entries per batch. Split larger lists into multiple batches." },
+      { question: "How are CSV files read?", answer: "Each CSV row uses its first column. You can choose whether to skip the first row as a header." },
+    ],
+    relatedSlugs: ["url-encoder-decoder", "meta-tag-generator"],
+  },
 };
 
 export function buildToolKeywords(tool: ToolCatalogItem, primaryKeyword: string): string[] {

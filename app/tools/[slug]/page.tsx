@@ -18,6 +18,7 @@ import CronExpressionBuilder from "@/components/CronExpressionBuilder";
 import JsonSchemaPlayground from "@/components/JsonSchemaPlayground";
 import CssGridGenerator from "@/components/CssGridGenerator";
 import MetaTagGenerator from "@/components/MetaTagGenerator";
+import BulkQrCodeGenerator from "@/components/BulkQrCodeGenerator";
 import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
 import { buildToolKeywords, toolSeoContentBySlug } from "@/lib/toolSeoContent";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -65,6 +66,8 @@ function ToolRenderer({ slug }: { slug: string }) {
       return <CssGridGenerator />;
     case "meta-tag-generator":
       return <MetaTagGenerator />;
+    case "bulk-qr-code-generator":
+      return <BulkQrCodeGenerator />;
     default:
       return null;
   }

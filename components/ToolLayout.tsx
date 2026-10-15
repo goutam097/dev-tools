@@ -22,6 +22,7 @@ import {
   FileSpreadsheet,
   Grid2X2,
   Tags,
+  QrCode,
 } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
@@ -59,6 +60,7 @@ const tools: { id: ToolId; name: string; icon: typeof Code2; href?: string }[] =
   { id: "json-schema", name: "JSON Schema", icon: Braces, href: "/tools/json-schema-playground" },
   { id: "css-grid", name: "CSS Grid Generator", icon: Grid2X2, href: "/tools/css-grid-generator" },
   { id: "meta-tags", name: "Meta Tag Generator", icon: Tags, href: "/tools/meta-tag-generator" },
+  { id: "qr-code", name: "Bulk QR Code Generator", icon: QrCode, href: "/tools/bulk-qr-code-generator" },
   { id: "history", name: "History", icon: History },
 ];
 

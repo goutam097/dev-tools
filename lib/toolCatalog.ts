@@ -109,7 +109,8 @@ It helps you understand token structure, debug authentication, and verify payloa
     slug: "base64-converter",
     title: "Base64 Converter",
     shortTitle: "Base64 Converter",
-    description: "Encode text to Base64 and decode Base64 strings with UTF-8-safe handling.",
+    description:
+      "Encode text to Base64 and decode Base64 strings with UTF-8-safe handling.",
     metaTitle: "Base64 Encode & Decode Online – Free Text Converter",
     metaDescription:
       "Encode text to Base64 or decode Base64 strings online. Supports UTF-8 text, clean validation, and browser-based conversion for developers.",
@@ -312,7 +313,8 @@ Useful for debugging and improving code quality.
     slug: "json-to-typescript",
     title: "JSON to TypeScript Converter",
     shortTitle: "JSON to TypeScript",
-    description: "Convert JSON samples into TypeScript interfaces or type aliases.",
+    description:
+      "Convert JSON samples into TypeScript interfaces or type aliases.",
     metaTitle: "JSON to TypeScript Converter Online",
     metaDescription:
       "Convert JSON into TypeScript interfaces and type aliases, including nested objects, arrays, nullable values, and optional properties.",
@@ -378,7 +380,8 @@ Choose component mode to encode reserved characters, or full URL mode to preserv
     slug: "timestamp-converter",
     title: "Timestamp Converter",
     shortTitle: "Timestamp Converter",
-    description: "Convert Unix timestamps and dates with local, UTC, and ISO 8601 output.",
+    description:
+      "Convert Unix timestamps and dates with local, UTC, and ISO 8601 output.",
     metaTitle: "Unix Timestamp Converter - Convert Epoch Time to Date",
     metaDescription:
       "Convert Unix timestamps to local time, UTC, and ISO 8601, or turn a date and time into seconds and milliseconds.",
@@ -411,39 +414,78 @@ Results include ISO 8601 format and both timestamp units.
     slug: "csv-data-cleaner",
     title: "CSV Data Cleaner",
     shortTitle: "CSV Cleaner",
-    description: "Clean CSV rows, remove duplicates, trim whitespace, and fill missing values.",
+    description:
+      "Clean CSV rows, remove duplicates, trim whitespace, and fill missing values.",
     metaTitle: "CSV Data Cleaner Online - Clean and Download CSV Files",
-    metaDescription: "Clean CSV data in your browser by removing blank rows and duplicates, trimming whitespace, and filling missing values.",
-    keywords: ["csv cleaner", "clean csv online", "remove duplicate csv rows", "csv whitespace cleaner"],
+    metaDescription:
+      "Clean CSV data in your browser by removing blank rows and duplicates, trimming whitespace, and filling missing values.",
+    keywords: [
+      "csv cleaner",
+      "clean csv online",
+      "remove duplicate csv rows",
+      "csv whitespace cleaner",
+    ],
     updatedAt: "2026-10-13",
-    content: "Clean pasted or uploaded CSV data locally, preview the results, and download the cleaned file.",
-    faqs: [{ q: "Is my CSV uploaded?", a: "No. The file is read and processed locally in your browser." }],
+    content:
+      "Clean pasted or uploaded CSV data locally, preview the results, and download the cleaned file.",
+    faqs: [
+      {
+        q: "Is my CSV uploaded?",
+        a: "No. The file is read and processed locally in your browser.",
+      },
+    ],
     relatedTools: ["json-formatter", "json-schema-playground"],
   },
   {
     slug: "cron-expression-builder",
     title: "Cron Expression Builder",
     shortTitle: "Cron Builder",
-    description: "Build, validate, and explain five-field cron expressions with common schedules.",
+    description:
+      "Build, validate, and explain five-field cron expressions with common schedules.",
     metaTitle: "Cron Expression Builder - Create and Explain Cron Schedules",
-    metaDescription: "Configure cron minute, hour, day, month, and weekday fields and see a plain-language schedule explanation.",
-    keywords: ["cron expression builder", "cron generator", "cron schedule generator", "cron expression parser"],
+    metaDescription:
+      "Configure cron minute, hour, day, month, and weekday fields and see a plain-language schedule explanation.",
+    keywords: [
+      "cron expression builder",
+      "cron generator",
+      "cron schedule generator",
+      "cron expression parser",
+    ],
     updatedAt: "2026-10-13",
-    content: "Compose and validate standard five-field cron expressions with human-readable explanations.",
-    faqs: [{ q: "Which cron format is supported?", a: "The builder supports standard five-field cron expressions for minute, hour, day of month, month, and day of week." }],
+    content:
+      "Compose and validate standard five-field cron expressions with human-readable explanations.",
+    faqs: [
+      {
+        q: "Which cron format is supported?",
+        a: "The builder supports standard five-field cron expressions for minute, hour, day of month, month, and day of week.",
+      },
+    ],
     relatedTools: ["timestamp-converter", "json-formatter"],
   },
   {
     slug: "json-schema-playground",
     title: "JSON Schema Playground",
     shortTitle: "JSON Schema",
-    description: "Generate JSON Schema from sample JSON and validate data against an editable schema.",
+    description:
+      "Generate JSON Schema from sample JSON and validate data against an editable schema.",
     metaTitle: "JSON Schema Playground - Generate and Validate JSON Schema",
-    metaDescription: "Infer a JSON Schema from sample data, edit schemas, validate JSON, and inspect clear field-level errors.",
-    keywords: ["json schema generator", "json schema validator", "generate schema from json", "json validation playground"],
+    metaDescription:
+      "Infer a JSON Schema from sample data, edit schemas, validate JSON, and inspect clear field-level errors.",
+    keywords: [
+      "json schema generator",
+      "json schema validator",
+      "generate schema from json",
+      "json validation playground",
+    ],
     updatedAt: "2026-10-13",
-    content: "Infer a starting schema from JSON or validate an instance against an editable JSON Schema in your browser.",
-    faqs: [{ q: "Which schema keywords are validated?", a: "The playground supports common types, required properties, properties, arrays, enum, const, and basic size and value constraints." }],
+    content:
+      "Infer a starting schema from JSON or validate an instance against an editable JSON Schema in your browser.",
+    faqs: [
+      {
+        q: "Which schema keywords are validated?",
+        a: "The playground supports common types, required properties, properties, arrays, enum, const, and basic size and value constraints.",
+      },
+    ],
     relatedTools: ["json-formatter", "json-to-typescript"],
   },
   {
@@ -452,25 +494,93 @@ Results include ISO 8601 format and both timestamp units.
     shortTitle: "CSS Grid",
     description: "Configure a live CSS Grid layout and copy the generated CSS.",
     metaTitle: "CSS Grid Generator - Build and Preview CSS Grid Layouts",
-    metaDescription: "Adjust grid rows, columns, gaps, alignment, and preview items while generating copy-ready CSS.",
-    keywords: ["css grid generator", "css grid builder", "grid layout generator", "css grid preview"],
+    metaDescription:
+      "Adjust grid rows, columns, gaps, alignment, and preview items while generating copy-ready CSS.",
+    keywords: [
+      "css grid generator",
+      "css grid builder",
+      "grid layout generator",
+      "css grid preview",
+    ],
     updatedAt: "2026-10-13",
-    content: "Adjust grid dimensions, spacing, alignment, and preview labels to generate a live CSS Grid example.",
-    faqs: [{ q: "Can I customize the preview items?", a: "Yes. Change the number of items and edit each label; the preview updates immediately." }],
+    content:
+      "Adjust grid dimensions, spacing, alignment, and preview labels to generate a live CSS Grid example.",
+    faqs: [
+      {
+        q: "Can I customize the preview items?",
+        a: "Yes. Change the number of items and edit each label; the preview updates immediately.",
+      },
+    ],
     relatedTools: ["gradient-marker", "html-formatter"],
   },
   {
     slug: "meta-tag-generator",
     title: "Meta Tag Generator",
     shortTitle: "Meta Tags",
-    description: "Generate HTML, Open Graph, and Twitter Card metadata with live previews.",
+    description:
+      "Generate HTML, Open Graph, and Twitter Card metadata with live previews.",
     metaTitle: "Meta Tag Generator - Create HTML, Open Graph and Twitter Tags",
-    metaDescription: "Create copy-ready HTML title, description, canonical, robots, Open Graph, and Twitter Card tags with previews.",
-    keywords: ["meta tag generator", "open graph tag generator", "twitter card generator", "seo meta tags"],
+    metaDescription:
+      "Create copy-ready HTML title, description, canonical, robots, Open Graph, and Twitter Card tags with previews.",
+    keywords: [
+      "seo meta tags",
+      "meta tag generator",
+      "free meta tag generator",
+      "seo meta tag generator",
+      "keywords meta tag generator",
+      "open graph tag generator",
+      "twitter card generator",
+      "meta tags for SEO",
+    ],
     updatedAt: "2026-10-13",
-    content: "Generate search and social metadata from editable page details, preview how they may appear, and download the HTML.",
-    faqs: [{ q: "Does the generator publish metadata to my site?", a: "No. It generates an HTML snippet and a downloadable example; add the tags to your own page to publish them." }],
+    content:
+      "Generate search and social metadata from editable page details, preview how they may appear, and download the HTML.",
+    faqs: [
+      {
+        q: "Does the generator publish metadata to my site?",
+        a: "No. It generates an HTML snippet and a downloadable example; add the tags to your own page to publish them.",
+      },
+    ],
     relatedTools: ["html-formatter", "json-formatter"],
+  },
+  {
+    slug: "bulk-qr-code-generator",
+    title: "Bulk QR Code Generator",
+    shortTitle: "Bulk QR Codes",
+    description:
+      "Generate and download custom PNG QR codes from text, URLs, or local CSV and TXT files.",
+    metaTitle: "Bulk QR Code Generator - Create and Download QR Codes",
+    metaDescription:
+      "Generate up to 100 custom QR codes from text, URLs, CSV, or TXT files. Download individual PNGs or export a ZIP locally in your browser.",
+    keywords: [
+      "bulk qr code generator",
+      "bulk qr code generator free",
+      "bulk qr code generator 128",
+      "bulk qr code generator from excel",
+      "free bulk qr code generator",
+      "bulk qr code generator with text",
+      "bulk qr code generator excel",
+      "bulk qr code generator download",
+      "online bulk qr code generator",
+      "bulk qr code generator mobile",
+      "qr code generator",
+      "generate qr codes from csv",
+      "batch qr code png",
+    ],
+    updatedAt: "2026-10-14",
+    content:
+      "Create a separate, customizable QR code for each line or CSV row, then download PNG files individually or as a ZIP.",
+    faqs: [
+      {
+        q: "Are my entries uploaded?",
+        a: "No. QR generation and downloads happen in your browser; your text and URLs are not sent to an external API.",
+      },
+      {
+        q: "How many QR codes can I generate at once?",
+        a: "You can generate up to 100 QR codes per batch to keep browser memory use manageable.",
+      },
+    ],
+    relatedTools: ["meta-tag-generator", "url-encoder-decoder"],
   },
 ];
 

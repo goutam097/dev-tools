@@ -47,6 +47,7 @@ const toolComponents: Record<ToolId, ComponentType<unknown>> = {
   "json-schema": loadTool(() => import("./JsonSchemaPlayground"), "JSON Schema Playground"),
   "css-grid": loadTool(() => import("./CssGridGenerator"), "CSS Grid Generator"),
   "meta-tags": loadTool(() => import("./MetaTagGenerator"), "Meta Tag Generator"),
+  "qr-code": loadTool(() => import("./BulkQrCodeGenerator"), "Bulk QR Code Generator"),
   history: loadTool(() => import("./HistoryView"), "History"),
 };
 
