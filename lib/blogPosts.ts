@@ -2,9 +2,8 @@ export type BlogPost = {
   slug: string;
   title: string;
   description: string;
-  targetKeyword: string;
   publishedAt: string;
-  readingMinutes: number;
+  updatedAt?: string;
   intro: string[];
   sections: {
     heading: string;
@@ -15,49 +14,45 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "top-10-developer-tools-2026",
-    title: "Top 10 Developer Tool Categories in 2026: A Productivity Guide",
+    slug: "five-developer-tool-workflows",
+    title: "Five Developer Tool Workflows for Everyday Tasks",
     description:
-      "Explore the essential developer tool categories for 2026. Learn how to build a lean, high-performance stack with browser-based utilities and automation.",
-    targetKeyword: "top developer tools 2026",
+      "A task-based guide to inspecting JSON, decoding JWTs safely, converting Base64, testing regular expressions, and generating frontend snippets.",
     publishedAt: "2026-04-25",
-    readingMinutes: 8,
+    updatedAt: "2026-10-26",
     intro: [
-      "In 2026, the developer's productivity landscape has shifted from 'tool overload' to 'precision utilities'. The most successful engineering teams aren't those with the most complex setups, but those who have mastered a lean stack of reliable, fast, and accessible tools for every stage of the development lifecycle.",
-      "In this guide, we break down the top ten developer tool categories that are making the biggest impact this year, focusing on how browser-native utilities can save hours of setup and context-switching time.",
+      "A small utility is useful when it removes a specific step from a developer task and makes its limits clear. This guide walks through five common jobs and the checks that matter before you reuse a result.",
+      "Examples use the tools available in this directory; their browser-side processing does not prevent account-history storage when you are signed in. Avoid entering production secrets or credentials.",
     ],
     sections: [
       {
-        heading: "1. Payload Formatting and API Validation",
+        heading: "1. Inspecting an API payload",
         paragraphs: [
-          "As microservices and headless architectures continue to dominate, the ability to quickly format and validate JSON, XML, and HTML is more important than ever. A fast in-browser JSON formatter is often the first line of defense when debugging an unexpected 400 Bad Request or a malformed webhook payload.",
-          "Tools that highlight syntax errors in real-time allow developers to iterate faster on API designs and configuration files without waiting for a full build or deployment cycle.",
+          "When an API response arrives as one long line, paste a non-sensitive sample into the JSON Formatter and choose Format. For example, `{\"ok\":true,\"items\":[1,2]}` becomes a multi-line object that is easier to inspect. A trailing comma or single-quoted string is invalid JSON; correct the input rather than treating the formatter as a schema checker.",
         ],
       },
       {
-        heading: "2. Secure Token and Auth Inspection",
+        heading: "2. Reading a JWT without confusing it with verification",
         paragraphs: [
-          "With the rise of decentralized identity and complex OAuth flows, JWT (JSON Web Token) inspection has become a daily requirement. Developers need to verify claims, check expiration timestamps, and audit header information without compromising the security of their signing keys.",
-          "Client-side decoders provide a safe environment for this inspection, ensuring that sensitive session tokens never leave the local machine while being audited.",
+          "A JWT decoder can display the token's header and payload so you can inspect fields such as `exp` and `iss`. Decoding only reverses Base64URL encoding: it does not verify the signature, establish who issued the token, or make an untrusted token safe to use. Use a test token, and never share a live credential.",
         ],
       },
       {
-        heading: "3. Text-Safe Encoding and Transport Utilities",
+        heading: "3. Converting text with Base64",
         paragraphs: [
-          "Base64 encoding remains the gold standard for transporting binary data through text-safe channels. Whether you're embedding small assets as Data URIs or preparing binary buffers for a JSON-based file upload, having a reliable encoder/decoder is essential for modern web development.",
-          "In 2026, the focus is on tools that handle multi-byte UTF-8 characters correctly, preventing the 'mojibake' issues that often plagued older encoding utilities.",
+          "Use Base64 when a text-only format must carry bytes, such as a small Data URI or an API field defined to contain Base64. It is an encoding, not encryption or compression, and adds overhead. UTF-8 text needs byte-aware encoding; the Base64 Converter handles Unicode text instead of passing arbitrary characters directly to `btoa()`.",
         ],
       },
       {
-        heading: "4. Regular Expression Debuggers",
+        heading: "4. Testing a regular expression",
         paragraphs: [
-          "Regular expressions are powerful but can be dangerous if not tested properly. Modern regex testers that offer live pattern matching and capture group visualization are critical for preventing performance bottlenecks like ReDoS (Regular Expression Denial of Service) and ensuring robust input validation.",
+          "Enter a pattern and representative text in the Regex Tester, then check both matches and non-matches. Include empty strings, punctuation, newlines, and long inputs where relevant. A successful sample match is not proof that a pattern is correct for all inputs or safe from excessive backtracking.",
         ],
       },
       {
-        heading: "5. Frontend Design-to-Code Utilities",
+        heading: "5. Generating frontend snippets",
         paragraphs: [
-          "Visual tools like CSS gradient generators and image-to-Base64 converters bridge the gap between design and implementation. They allow frontend developers to generate production-ready code snippets instantly, maintaining high visual quality while keeping the engineering workflow fast and frictionless.",
+          "Use the CSS Grid Generator to adjust rows, columns, gaps, and alignment while watching the preview, then copy the CSS into a project and test it at the target viewport sizes. Generated styles are a starting point; the tool does not know your container size, breakpoints, or surrounding design system.",
         ],
       },
     ],
@@ -67,19 +62,18 @@ export const blogPosts: BlogPost[] = [
     slug: "how-to-format-json-in-javascript",
     title: "How to Format JSON in JavaScript: A Practical Guide",
     description:
-      "Master JSON formatting, validation, and minification in JavaScript. Learn how to use JSON.stringify for readable logs and efficient API payloads.",
-    targetKeyword: "how to format json in javascript",
+      "Format JavaScript data with JSON.stringify, handle common serialization limits, and choose between readable and compact JSON.",
     publishedAt: "2026-04-25",
-    readingMinutes: 7,
+    updatedAt: "2026-10-26",
     intro: [
-      "Formatting JSON in JavaScript is a fundamental skill for any web developer. Whether you are debugging a complex API response, logging state changes in a React application, or preparing data for a configuration file, clear structure is essential for efficiency and accuracy.",
-      "In this guide, we'll dive deep into the native `JSON` object, exploring how to transform messy, single-line strings into readable, indented blocks, and when you should prefer minification for production performance.",
+      "JavaScript's JSON methods are useful when debugging a response, writing a fixture, or saving configuration. This guide focuses on the built-in `JSON.stringify` method and explains what it can and cannot serialize.",
+      "JSON uses a strict data syntax. See [RFC 8259](https://www.rfc-editor.org/rfc/rfc8259.html) for the format definition; JavaScript object literals may contain constructs that are not valid JSON.",
     ],
     sections: [
       {
         heading: "The Power of JSON.stringify() Parameters",
         paragraphs: [
-          "Most developers are familiar with `JSON.stringify(obj)`, but the function actually accepts three parameters: `value`, `replacer`, and `space`. The third parameter, `space`, is the key to formatting.",
+          "Most developers are familiar with `JSON.stringify(obj)`, but the function accepts `value`, `replacer`, and `space`. The `space` parameter controls indentation. See the [MDN reference for JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) for its exact behavior and limits.",
           "By passing a number (like `2`) or a string (like `\\t`), you tell JavaScript to add indentation and newlines to the output. For example: `JSON.stringify(userData, null, 2)` will produce a beautifully indented string that is easy for humans to read and audit during debugging.",
         ],
       },
@@ -93,8 +87,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Minification for Production Payloads",
         paragraphs: [
-          "While formatting is great for developers, it's 'heavy' for networks. Every space and newline added during formatting increases the payload size. In production, you should always minify your JSON by omitting the space parameter: `JSON.stringify(data)`. ",
-          "Minified JSON is functionally identical to formatted JSON but can be significantly smaller, leading to faster API response times and reduced bandwidth costs. A good workflow involves using our JSON Formatter tool to inspect these minified strings when things go wrong in production.",
+          "Omitting `space` produces compact JSON, while passing `2` produces readable indentation. Choose the representation appropriate for the consumer: source files and debugging often benefit from formatting, while APIs commonly send compact JSON and may use HTTP compression. Measure payload and response performance rather than assuming whitespace is the bottleneck.",
         ],
       },
       {
@@ -107,42 +100,32 @@ export const blogPosts: BlogPost[] = [
     relatedTools: ["json-formatter", "regex-tester", "base64-converter"],
   },
   {
-    slug: "best-free-online-tools-for-developers",
-    title: "Best Free Online Tools for Developers: A Curated 2026 Collection",
+    slug: "evaluate-online-developer-tools",
+    title: "How to Evaluate an Online Developer Tool Before Using It",
     description:
-      "Discover the best free online tools for developers that prioritize speed, privacy, and technical accuracy. A hand-picked list for modern engineering workflows.",
-    targetKeyword: "best free online tools for developers",
+      "A practical checklist for checking an online tool's behavior, data handling, validation, and generated output before use.",
     publishedAt: "2026-04-25",
-    readingMinutes: 7,
+    updatedAt: "2026-10-26",
     intro: [
-      "Online developer utilities can help with small tasks such as formatting data or checking a pattern. Their suitability depends on the task, the quality of the implementation, and how they handle your input. Avoid pasting secrets into tools unless you have verified their data handling.",
-      "This curated collection highlights the essential categories of free online tools that every developer should have bookmarked in 2026 to speed up debugging, formatting, and prototyping tasks.",
+      "An online utility may save a few steps, but verify that it performs the specific operation you need and understand what happens to submitted data. Use the following checks before using any tool with real project content.",
     ],
     sections: [
       {
-        heading: "What Defines a 'High-Value' Online Tool?",
+        heading: "Check what runs locally and what is sent elsewhere",
         paragraphs: [
-          "For a tool to be truly useful in a professional setting, it must meet three key criteria: it must be browser-native (processing data locally for privacy), it must be instant (no signup gates or loading spinners), and it must be accurate (matching the behavior of native languages and platforms).",
-          "Utilities that fail on privacy—by uploading your sensitive API keys or JSON payloads to a server—are a security risk and should be avoided in production environments.",
+          "A page may run its calculation in your browser and still send data for account history, analytics, or third-party services. Read the site's data-handling notes and policy; use synthetic or redacted samples for sensitive workflows. For DevTools Hub, history-enabled tools can send input and output to account history when signed in.",
         ],
       },
       {
-        heading: "Essential Tooling: The Core Four",
+        heading: "Check the actual operation and edge cases",
         paragraphs: [
-          "Every developer's toolkit should include at least one reliable version of the following: a JSON Formatter/Validator for API work, a JWT Decoder for auth debugging, a Base64 Encoder/Decoder for data transport, and a Regex Tester for pattern matching.",
-          "These utilities cover common formatting, inspection, and pattern-testing tasks. Choose a tool based on its limitations and the sensitivity of the data you plan to enter.",
+          "Compare the output with a known sample and test one invalid input. A JWT decoder is not a signature verifier; a JSON formatter is not a JSON Schema validator; and a regular-expression tester does not guarantee safe execution for every long input. Prefer a tool page that explains these distinctions.",
         ],
       },
       {
-        heading: "Bridging the Design-Development Gap",
+        heading: "Review and reuse generated output",
         paragraphs: [
-          "Online tools aren't just for backend tasks. Frontend developers benefit immensely from utilities that generate CSS (like gradient markers) or convert assets (like image-to-Base64). These tools allow you to experiment with visual styles and asset delivery strategies in seconds, rather than opening heavy design software or writing complex scripts.",
-        ],
-      },
-      {
-        heading: "The Importance of Browser-Native Processing",
-        paragraphs: [
-          "Browser-side processing can avoid sending tool inputs to a remote conversion service, but it does not by itself guarantee privacy or speed. This site may send input and output to account history when a user is signed in; review the privacy policy before using history-enabled tools.",
+          "Copy generated CSS, HTML, or metadata into a test page or project and inspect it in the intended browser. Check responsive behavior, content security, accessibility, and the project's own conventions before shipping a snippet.",
         ],
       },
     ],
@@ -153,9 +136,8 @@ export const blogPosts: BlogPost[] = [
     title: "What Is Base64 Encoding? A Comprehensive Developer Guide",
     description:
       "Learn what Base64 encoding is, how it works, when to use it, and how to handle UTF-8 and invalid input correctly in real web development workflows.",
-    targetKeyword: "what is base64 encoding with examples",
     publishedAt: "2026-04-25",
-    readingMinutes: 8,
+    updatedAt: "2026-10-26",
     intro: [
       "Base64 encoding is a ubiquitous tool in a developer's arsenal, yet its internal mechanics and appropriate use cases are often misunderstood. It is not encryption, nor is it a method for data compression; rather, it is a way to represent binary data in a text-safe format.",
       "If you work with APIs, email headers, Data URIs, or debugging transport-layer payloads, Base64 turns up constantly. Use our Base64 Converter to test examples in the browser, learn how Base64 encoding works in practice, and try the Image to Base64 tool when you need a quick asset-embedding workflow.",
@@ -164,7 +146,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "The Mechanics of Base64: How Binary Becomes Text",
         paragraphs: [
-          "Base64 works by taking groups of three 8-bit bytes (24 bits total) and splitting them into four 6-bit chunks. Each 6-bit chunk is then mapped to one of 64 characters in the Base64 alphabet. If the input data isn't a multiple of three bytes, padding characters (`=`) are added to the end.",
+          "Base64 works by taking groups of three 8-bit bytes (24 bits total) and splitting them into four 6-bit chunks. Each 6-bit chunk maps to one of 64 characters. If the input length is not a multiple of three bytes, padding may be added at the end. See [RFC 4648](https://www.rfc-editor.org/rfc/rfc4648.html) for the Base64 specification.",
           "Because 4 characters are used to represent 3 bytes of data, Base64 encoding increases the data size by approximately 33%. This overhead is the trade-off for ensuring that binary data can pass through text-based systems like SMTP, HTML forms, and HTTP headers without corruption.",
         ],
       },
@@ -193,5 +175,18 @@ export const blogPosts: BlogPost[] = [
     relatedTools: ["base64-converter", "image-to-base64", "jwt-decoder"],
   },
 ];
+
+export const legacyBlogSlugs: Record<string, string> = {
+  "top-10-developer-tools-2026": "five-developer-tool-workflows",
+  "best-free-online-tools-for-developers": "evaluate-online-developer-tools",
+};
+
+export function getEstimatedReadingMinutes(post: BlogPost): number {
+  const words = [post.title, post.description, ...post.intro, ...post.sections.flatMap((section) => [
+    section.heading,
+    ...section.paragraphs,
+  ])].join(" ").match(/\S+/g)?.length ?? 0;
+  return Math.max(1, Math.ceil(words / 200));
+}
 
 export const blogPostsBySlug = Object.fromEntries(blogPosts.map((post) => [post.slug, post]));

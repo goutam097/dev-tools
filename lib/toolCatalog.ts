@@ -55,7 +55,7 @@ export const toolCatalog: ToolCatalogItem[] = [
       "json parser and validator",
       "json code formatter",
     ],
-    updatedAt: "2026-04-25",
+    updatedAt: "2026-10-26",
 
     content: `
 JSON Formatter helps developers format and validate JSON data quickly. 
@@ -425,7 +425,7 @@ Results include ISO 8601 format and both timestamp units.
       "remove duplicate csv rows",
       "csv whitespace cleaner",
     ],
-    updatedAt: "2026-10-13",
+    updatedAt: "2026-10-26",
     content:
       "Clean pasted or uploaded CSV data locally, preview the results, and download the cleaned file.",
     faqs: [
@@ -451,7 +451,7 @@ Results include ISO 8601 format and both timestamp units.
       "cron schedule generator",
       "cron expression parser",
     ],
-    updatedAt: "2026-10-13",
+    updatedAt: "2026-10-26",
     content:
       "Compose and validate standard five-field cron expressions with human-readable explanations.",
     faqs: [
@@ -477,7 +477,7 @@ Results include ISO 8601 format and both timestamp units.
       "generate schema from json",
       "json validation playground",
     ],
-    updatedAt: "2026-10-13",
+    updatedAt: "2026-10-26",
     content:
       "Infer a starting schema from JSON or validate an instance against an editable JSON Schema in your browser.",
     faqs: [
@@ -502,7 +502,7 @@ Results include ISO 8601 format and both timestamp units.
       "grid layout generator",
       "css grid preview",
     ],
-    updatedAt: "2026-10-13",
+    updatedAt: "2026-10-26",
     content:
       "Adjust grid dimensions, spacing, alignment, and preview labels to generate a live CSS Grid example.",
     faqs: [
@@ -532,7 +532,7 @@ Results include ISO 8601 format and both timestamp units.
       "twitter card generator",
       "meta tags for SEO",
     ],
-    updatedAt: "2026-10-13",
+    updatedAt: "2026-10-26",
     content:
       "Generate search and social metadata from editable page details, preview how they may appear, and download the HTML.",
     faqs: [
@@ -567,7 +567,7 @@ Results include ISO 8601 format and both timestamp units.
       "generate qr codes from csv",
       "batch qr code png",
     ],
-    updatedAt: "2026-10-14",
+    updatedAt: "2026-10-26",
     content:
       "Create a separate, customizable QR code for each line or CSV row, then download PNG files individually or as a ZIP.",
     faqs: [

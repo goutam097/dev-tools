@@ -48,6 +48,9 @@ function explainField(value: string, label: string): string {
 
 export function describeCron(fields: string[]): string {
   const [minute, hour, day, month, weekday] = fields;
+  if (day !== "*" && weekday !== "*") {
+    return `The expression sets minute ${minute}, hour ${hour}, day of month ${day}, month ${month}, and weekday ${weekday}. Schedulers differ in how they combine day-of-month and weekday restrictions; confirm the target scheduler's rule.`;
+  }
   if (day === "*" && month === "*" && weekday === "*") {
     if (minute === "*" && hour === "*") return "Runs every minute.";
     if (hour === "*" && minute.startsWith("*/")) return `Runs ${explainField(minute, "minute")}.`;

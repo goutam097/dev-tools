@@ -1,216 +1,82 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/lib/site";
+import SidebarScaffold from "@/components/SidebarScaffold";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "Privacy Policy for DevTools Hub and WebCodeveloper.",
-  alternates: { canonical: `${SITE_URL}/privacy-policy` },
-};
+export const metadata = createPageMetadata(
+  "Privacy Policy",
+  "How DevTools Hub handles account details, tool history, contact inquiries, analytics, cookies, and advertising.",
+  "/privacy-policy",
+);
 
 export default function PrivacyPolicyPage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-linear-to-r from-blue-700 via-indigo-700 to-purple-700 text-white">
-        <div className="max-w-6xl mx-auto px-6 py-20 text-center">
-          <span className="inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-sm font-medium">
-            Legal Information
-          </span>
-          <h1 className="mt-6 text-4xl md:text-6xl font-bold">
-            Privacy Policy
-          </h1>
-          <p className="mt-6 text-lg text-blue-100 max-w-3xl mx-auto">
-            Your privacy is important to us. Learn how WebCodeDeveloper
-            collects, uses, and protects your information.
+    <SidebarScaffold title="Privacy Policy">
+      <main className="mx-auto min-h-screen max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
+        <header className="rounded-4xl border border-(--border) bg-white p-8 shadow-sm sm:p-10">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Reviewed 2026-10-26</p>
+          <h1 className="mt-3 font-serif text-3xl italic text-(--ink) sm:text-4xl">Privacy Policy</h1>
+          <p className="mt-4 text-sm leading-7 text-(--muted)">
+            This summary describes data handling visible in the DevTools Hub application. Google, EmailJS, the database host, and other services may have additional practices not controlled by this website. Contact WebCodeveloper if you have a privacy question or request.
           </p>
-          <p className="mt-4 text-sm text-blue-200">
-            This policy should be reviewed whenever data practices change.
-          </p>
-        </div>
-      </section>
-      {/* Home Redirect */}
-      <section className="py-8 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <Link href="/" className="inline-flex items-center px-6 py-3 bg-white hover:bg-slate-200 text-slate-900 rounded-lg font-semibold transition border border-slate-200">
-            ← Back to Home
-          </Link>
-        </div>
-      </section>
-      {/* Privacy Policy Content */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white rounded-3xl shadow-lg p-8 md:p-12">
-            {/* Introduction */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">
-                Introduction
-              </h2>
-              <p className="text-lg leading-relaxed">
-                WebCodeDeveloper (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) respects your privacy and is committed
-                to protecting your personal information. This Privacy
-                Policy explains how we collect, use, and safeguard
-                information when you visit our website, DevTools Hub.
-              </p>
-              <p className="mt-4 text-lg leading-relaxed">
-                Our tools are designed with a **privacy-first approach**. Most interactive utilities on this site—including the JSON Formatter, JWT Decoder, and Base64 Converter—process data entirely within your browser (client-side). We do not transmit your input data to our servers.
-              </p>
-            </div>
-            {/* Information We Collect */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                Information We Collect
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50">
-                  <span className="text-2xl">👤</span>
-                  <span className="font-medium">Name</span>
-                </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50">
-                  <span className="text-2xl">📧</span>
-                  <span className="font-medium">Email Address</span>
-                </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50">
-                  <span className="text-2xl">📱</span>
-                  <span className="font-medium">Phone Number</span>
-                </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50">
-                  <span className="text-2xl">📝</span>
-                  <span className="font-medium">
-                    Contact Form Information
-                  </span>
-                </div>
-              </div>
-            </div>
-            {/* How We Use Information */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                How We Use Information
-              </h2>
-              <div className="space-y-4">
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-                    ✓
-                  </div>
-                  <p>To respond to inquiries and customer requests.</p>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-                    ✓
-                  </div>
-                  <p>To provide requested services and support.</p>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-                    ✓
-                  </div>
-                  <p>
-                    To improve website performance and user experience.
-                  </p>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-                    ✓
-                  </div>
-                  <p>
-                    To communicate important updates and information.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* Cookies */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                Cookies
-              </h2>
-              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-                <p className="leading-relaxed">
-                  🍪 Our website may use cookies and analytics tools
-                  to improve functionality, enhance user experience,
-                  and better understand visitor behavior. Google Analytics
-                  and Google AdSense may collect usage data in accordance
-                  with their own privacy policies.
-                </p>
-              </div>
-            </div>
-            {/* Third Party Services */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                Third-Party Services
-              </h2>
-              <div className="bg-slate-50 rounded-2xl p-6">
-                <p className="leading-relaxed mb-4">
-                  We may use third-party services such as:
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <span className="text-green-600">✓</span>
-                    Google Analytics
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="text-green-600">✓</span>
-                    Google AdSense
-                  </li>
-                </ul>
-                <p className="mt-4 text-slate-600">
-                  These services may collect information according
-                  to their own privacy policies.
-                </p>
-              </div>
-            </div>
-            {/* Data Protection */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                Data Protection
-              </h2>
-              <div className="bg-green-50 border border-green-200 rounded-2xl p-6">
-                <p className="leading-relaxed">
-                  🔒 We implement reasonable security measures to
-                  protect user information from unauthorized access,
-                  disclosure, alteration, or destruction.
-                </p>
-              </div>
-            </div>
-            {/* Contact */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                Contact Us
-              </h2>
-              <p className="leading-relaxed">
-                If you have any questions regarding this Privacy Policy,
-                please contact us through our Contact page.
-              </p>
-            </div>
-            {/* Agreement */}
-            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-              <h3 className="font-bold text-xl text-slate-900 mb-3">
-                Acceptance of This Policy
-              </h3>
-              <p>
-                By using this website, you agree to this Privacy Policy
-                and the collection and use of information in accordance
-                with the terms outlined above.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* CTA Section */}
-      <section className="bg-slate-900 text-white py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Questions About Your Privacy?
-          </h2>
-          <p className="text-slate-300 text-lg mb-8">
-            We&apos;re committed to transparency and protecting your personal
-            information. Feel free to contact us anytime.
-          </p>
-          <a href="/contact" className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold transition">
-            Contact Us
-          </a>
-        </div>
-      </section>
-    </div>
+        </header>
 
+        <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Tool inputs and account history</h2>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            Most tool calculations run in your browser. This does not mean all information always stays on your device: JSON Formatter, JWT Decoder, Base64 Converter, Image to Base64, Gradient Generator, Markdown Preview, and UUID Generator can send a history entry to this site when you are signed in. History entries can contain tool input and output; image history records the file name and a generated-output note rather than the image itself.
+          </p>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            History is stored in the site database and the application returns up to the 50 most recent entries for an account. The application does not define a public retention period or automatic expiry for these records. Do not submit passwords, private keys, authentication secrets, or sensitive production data. Email{" "}
+            <a className="underline underline-offset-4" href="mailto:webcodeveloper731@gmail.com">webcodeveloper731@gmail.com</a>{" "}
+            to ask about an account or history deletion.
+          </p>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Accounts and session cookies</h2>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            If you create an account, the application stores a username, a password hash, and an account creation timestamp in its database. It uses an HTTP-only session cookie named <code>devtools_session</code>; the configured session lifetime is 24 hours. The registration form does not ask for an email address.
+          </p>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Contact inquiries</h2>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            The optional contact form submits your name, email address, optional phone number, selected service, subject, message, and submission time through EmailJS when the service is configured. EmailJS and the configured email provider may process that information to deliver the inquiry. You can instead email{" "}
+            <a className="underline underline-offset-4" href="mailto:webcodeveloper731@gmail.com">webcodeveloper731@gmail.com</a>.
+          </p>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            The site code does not specify how long the recipient or email provider retains inquiries. Do not include sensitive credentials in a message.
+          </p>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Analytics and location signals</h2>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            The site loads Google Analytics and records page views and tool-use events. It also reads browser language and time zone and requests country, region, and city values from hosting request headers; configured analytics services may receive those values. Microsoft Clarity can also load when its project identifier is configured. These third parties process data under their own terms and privacy notices.
+          </p>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Advertising, cookies, and third parties</h2>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            The application loads Google AdSense. Google and its partners may use cookies or similar technologies to deliver, measure, and personalize advertising, subject to your settings, location, and applicable Google policies. This codebase does not implement a consent-management interface; the publisher should confirm the appropriate consent configuration for the regions served.
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-(--muted)">
+            <li><a className="underline underline-offset-4" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></li>
+            <li><a className="underline underline-offset-4" href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">EmailJS Privacy Policy</a></li>
+            <li><a className="underline underline-offset-4" href="https://clarity.microsoft.com/terms" target="_blank" rel="noopener noreferrer">Microsoft Clarity terms</a> (if Clarity is configured)</li>
+          </ul>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-(--border) bg-(--surface) p-6">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Questions and requests</h2>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            For privacy questions or requests about account data, contact the publisher at{" "}
+            <a className="underline underline-offset-4" href="mailto:webcodeveloper731@gmail.com">webcodeveloper731@gmail.com</a>. You can also review the <Link href="/terms-and-conditions" className="underline underline-offset-4">Terms and Conditions</Link>.
+          </p>
+        </section>
+      </main>
+    </SidebarScaffold>
   );
 }

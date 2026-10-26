@@ -1,168 +1,47 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/lib/site";
+import SidebarScaffold from "@/components/SidebarScaffold";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About DevTools Hub | Publisher Information",
-  description: "Learn about DevTools Hub, its publisher WebCodeveloper, editorial standards, and the privacy-first developer tools and tutorials we publish.",
-  alternates: { canonical: `${SITE_URL}/about` },
-};
+export const metadata = createPageMetadata(
+  "About",
+  "Learn what DevTools Hub publishes, how its browser-based tools work, and how to contact WebCodeveloper.",
+  "/about",
+);
 
 export default function AboutPage() {
   return (
-    <div>
-      <section className="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700 text-white">
-        <div className="max-w-7xl mx-auto px-6 py-20 text-center">
-          <span className="inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-sm font-medium">
-            Welcome to WebCoDeveloper
-          </span>
-          <h1 className="mt-6 text-4xl md:text-6xl font-bold">
-            About WebCoDeveloper
-          </h1>
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-blue-100">
-            Building modern, scalable, and high-performance digital solutions
-            that help businesses grow online.
+    <SidebarScaffold title="About DevTools Hub">
+      <main className="mx-auto min-h-screen max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
+        <header className="rounded-4xl border border-(--border) bg-white p-8 shadow-sm sm:p-10">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Publisher information</p>
+          <h1 className="mt-3 font-serif text-3xl italic text-(--ink) sm:text-4xl">About DevTools Hub</h1>
+          <p className="mt-4 text-sm leading-7 text-(--muted)">
+            DevTools Hub is a collection of browser-based utilities and technical guides for common development tasks. The site is published by WebCodeveloper. It does not identify an individual editor or claim professional credentials.
           </p>
-        </div>
-      </section>
-      {/* Home Redirect */}
-      <section className="py-8 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <Link href="/" className="inline-flex items-center px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg font-semibold transition">
-            ← Back to Home
-          </Link>
-        </div>
-      </section>
-      {/* About Section */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-6">
-                Our Mission: Privacy-First Utility
-              </h2>
-              <p className="text-lg leading-relaxed mb-5">
-                DevTools Hub was born out of a simple frustration: many online developer tools either upload sensitive data to their servers or are buried under layers of intrusive advertising and sign-up gates.
-              </p>
-              <p className="text-lg leading-relaxed mb-5">
-                The transformations run in your browser. Some tools also save submitted inputs and outputs to account history when a user is signed in. Avoid entering secrets or production credentials, and see our privacy policy for details.
-              </p>
-              <p className="text-lg leading-relaxed">
-                Published by <span className="font-semibold text-blue-600">WebCodeveloper</span>, we combine high-performance engineering with practical educational guides to help modern developers ship faster and with more confidence.
-              </p>
-            </div>
-            <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">
-                Technical Standards
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                    🔒
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Client-Side Privacy</h4>
-                    <p className="text-slate-600">
-                      Tool calculations run in the browser; signed-in history may send values to the site.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                    ⚡
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Zero-Friction Access</h4>
-                    <p className="text-slate-600">
-                      No accounts, no paywalls, no waiting. Instant utility.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                    📖
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Practical Education</h4>
-                    <p className="text-slate-600">
-                      Guides grounded in real-world engineering workflows.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                    🛠️
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Active Curation</h4>
-                    <p className="text-slate-600">
-                      Tool and article pages include contact links for suggested corrections.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 md:p-10">
-            <h2 className="text-3xl font-bold text-slate-900">Publisher Information and Standards</h2>
-            <p className="mt-4 text-lg leading-relaxed text-slate-700">
-              DevTools Hub is published by WebCodeveloper as a practical resource for developers who need fast, browser-based tools and clear educational guidance.
-            </p>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              <div className="rounded-2xl bg-white p-5 shadow-sm">
-                <h3 className="font-semibold text-slate-900">What we publish</h3>
-                <p className="mt-2 text-sm leading-7 text-slate-600">
-                  We publish free developer tools, tutorials, and reference content that help people solve everyday technical tasks with useful examples and clear explanations.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-white p-5 shadow-sm">
-                <h3 className="font-semibold text-slate-900">Editorial and ad transparency</h3>
-                <p className="mt-2 text-sm leading-7 text-slate-600">
-                  We may display Google AdSense advertising to support free access to our site. Ads do not influence the accuracy of our tool output or the factual quality of our educational content.
-                </p>
-                <div className="mt-4 flex flex-wrap gap-3">
-                  <Link href="/author" className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700">Author profile</Link>
-                  <Link href="/editorial-policy" className="rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700">Editorial policy</Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-slate-900 mb-6">
-            Our Commitment to Quality
-          </h2>
-          <p className="text-lg leading-relaxed text-slate-600">
-            At DevTools Hub, we focus on delivering reliable, secure,
-            and performance-driven utilities tailored to the unique 
-            requirements of modern software engineering. Our goal is to 
-            create a trusted digital experience that helps developers grow, 
-            solve problems efficiently, and achieve long-term success.
-          </p>
-        </div>
-      </section>
-      {/* Contact CTA */}
-      <section className="bg-slate-900 text-white py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Need a Specific Tool?
-          </h2>
-          <p className="text-slate-300 text-lg mb-8">
-            We are constantly expanding our toolkit. If you have a suggestion 
-            for a new utility or a content correction, we&apos;d love to hear from you.
-          </p>
-          <a href="/contact" className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold transition">
-            Contact the Team
-          </a>
-        </div>
-      </section>
-    </div>
+        </header>
 
+        <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">What the site provides</h2>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            The tools cover data formatting and validation, encoding, frontend snippets, and small workflow tasks. The guides explain selected formats and workflows with examples. Tool pages describe their controls and limitations; outputs should be checked before use in production systems.
+          </p>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            Many transformations run in your browser. A subset of tools can send input or output to account history when you are signed in. Do not enter passwords, private keys, or sensitive production data. See the <Link href="/privacy-policy" className="underline underline-offset-4">Privacy Policy</Link> for the data practices visible in this site.
+          </p>
+        </section>
+
+        <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <h2 className="font-serif text-2xl italic text-(--ink)">Corrections and contact</h2>
+          <p className="mt-3 text-sm leading-7 text-(--muted)">
+            If you find a broken tool, unclear instruction, or factual error, send the page URL and a description of the issue to{" "}
+            <a className="underline underline-offset-4" href="mailto:webcodeveloper731@gmail.com">webcodeveloper731@gmail.com</a>.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/editorial-policy" className="rounded-lg border border-(--border) px-3 py-2 text-sm text-(--ink)">Editorial policy</Link>
+            <Link href="/contact" className="rounded-lg bg-(--ink) px-3 py-2 text-sm text-(--bg)">Contact</Link>
+          </div>
+        </section>
+      </main>
+    </SidebarScaffold>
   );
 }

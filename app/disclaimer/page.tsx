@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Disclaimer",
-  description: "Disclaimer for DevTools Hub content, tools, and external links.",
-  alternates: { canonical: `${SITE_URL}/disclaimer` },
-};
+export const metadata = createPageMetadata(
+  "Disclaimer",
+  "Limitations of DevTools Hub tools, examples, generated output, and external links.",
+  "/disclaimer",
+);
 
 export default function DisclaimerPage() {
   return (

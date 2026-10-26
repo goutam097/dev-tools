@@ -87,22 +87,31 @@ export default function JsonSchemaPlayground() {
     }
   };
 
+  const reset = () => {
+    setData("");
+    setSchemaText("");
+    setIssues([]);
+    setMessage("");
+    setCopied(false);
+  };
+
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap gap-3">
         <button type="button" onClick={generateSchema} className="tool-btn-primary">Generate schema from JSON</button>
         <button type="button" onClick={validate} className="tool-btn-secondary">Validate JSON</button>
         <button type="button" onClick={() => { setData(sampleData); setSchemaText(sampleSchema); setIssues([]); setMessage("Sample data and schema loaded."); }} className="tool-btn-secondary">Load sample</button>
+        <button type="button" onClick={reset} className="tool-btn-secondary">Reset</button>
       </div>
       <div className="grid gap-5 xl:grid-cols-2">
         <section className="space-y-3 rounded-3xl border border-(--border) bg-white p-4 shadow-sm sm:p-6">
-          <div className="flex items-center justify-between"><label htmlFor="schema-data" className="tool-label">JSON data</label><button type="button" onClick={() => setData("")} className="text-xs text-(--muted) underline">Clear</button></div>
-          <textarea id="schema-data" value={data} onChange={(event) => setData(event.target.value)} placeholder='{"name":"Ada","active":true}' className="tool-textarea min-h-72 resize-y" spellCheck={false} />
+          <div className="flex items-center justify-between"><label htmlFor="schema-data" className="tool-label">JSON data</label><button type="button" onClick={() => { setData(""); setIssues([]); setMessage(""); }} className="text-xs text-(--muted) underline">Clear</button></div>
+          <textarea id="schema-data" value={data} onChange={(event) => { setData(event.target.value); setIssues([]); setMessage(""); }} placeholder='{"name":"Ada","active":true}' className="tool-textarea min-h-72 resize-y" spellCheck={false} />
           <p className="text-xs text-(--muted)">Paste the JSON instance to turn into a schema or validate against one.</p>
         </section>
         <section className="space-y-3 rounded-3xl border border-(--border) bg-white p-4 shadow-sm sm:p-6">
           <div className="flex items-center justify-between"><label htmlFor="schema-editor" className="tool-label">JSON Schema</label><button type="button" onClick={() => void copySchema()} disabled={!schemaText} className="tool-copy-btn disabled:opacity-40">{copied ? "Copied" : "Copy schema"}</button></div>
-          <textarea id="schema-editor" value={schemaText} onChange={(event) => setSchemaText(event.target.value)} placeholder={'{\n  "type": "object",\n  "properties": {}\n}'} className="tool-textarea min-h-72 resize-y" spellCheck={false} />
+          <textarea id="schema-editor" value={schemaText} onChange={(event) => { setSchemaText(event.target.value); setIssues([]); setMessage(""); }} placeholder={'{\n  "type": "object",\n  "properties": {}\n}'} className="tool-textarea min-h-72 resize-y" spellCheck={false} />
           <p className="text-xs text-(--muted)">Edit the schema directly. Common type, object, array, enum, composition, format, and size/value constraints are supported.</p>
         </section>
       </div>

@@ -5,6 +5,16 @@ import Image from "next/image";
 import { buildMetaTags, type MetaTagValues } from "@/lib/metaTagGenerator";
 
 const robotOptions = ["index", "follow", "noindex", "nofollow", "noarchive", "nosnippet"];
+const sampleValues: MetaTagValues = {
+  title: "Developer Release Notes",
+  description: "Review recent changes, fixes, and compatibility notes.",
+  keywords: "release notes, software updates",
+  author: "Example Publisher",
+  canonicalUrl: "https://example.com/releases",
+  robots: ["index", "follow"],
+  imageUrl: "https://example.com/release-card.jpg",
+  twitterCard: "summary_large_image",
+};
 
 export default function MetaTagGenerator() {
   const [values, setValues] = useState<MetaTagValues>({
@@ -52,6 +62,21 @@ export default function MetaTagGenerator() {
     }
   };
 
+  const reset = () => {
+    setValues({
+      title: "",
+      description: "",
+      keywords: "",
+      author: "",
+      canonicalUrl: "",
+      robots: ["index", "follow"],
+      imageUrl: "",
+      twitterCard: "summary_large_image",
+    });
+    setCopied(false);
+    setMessage("");
+  };
+
   const downloadHtml = () => {
     const documentHtml = `<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  ${output.split("\n").join("\n  ")}\n</head>\n<body>\n</body>\n</html>\n`;
     const url = URL.createObjectURL(new Blob([documentHtml], { type: "text/html;charset=utf-8" }));
@@ -66,11 +91,17 @@ export default function MetaTagGenerator() {
   return (
     <div className="grid gap-6 xl:grid-cols-[1fr_0.95fr]">
       <section className="space-y-5 rounded-3xl border border-(--border) bg-white p-5 shadow-sm sm:p-7">
-        <p className="tool-label">Page metadata</p>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="tool-label">Page metadata</p>
+          <div className="flex gap-2">
+            <button type="button" onClick={() => { setValues(sampleValues); setMessage("Example metadata loaded."); }} className="rounded-lg border border-(--border) px-3 py-2 text-xs text-(--muted) hover:bg-(--surface)">Load example</button>
+            <button type="button" onClick={reset} className="rounded-lg border border-(--border) px-3 py-2 text-xs text-(--muted) hover:bg-(--surface)">Reset</button>
+          </div>
+        </div>
         <label className="block space-y-2"><span className="tool-label">Page title</span><input value={values.title} maxLength={70} onChange={(event) => update("title", event.target.value)} placeholder="A clear, descriptive page title" className="w-full rounded-xl border border-(--border) px-3 py-2 text-sm" /><span className="text-xs text-(--muted)">{values.title.length}/70 characters</span></label>
         <label className="block space-y-2"><span className="tool-label">Description</span><textarea value={values.description} maxLength={320} onChange={(event) => update("description", event.target.value)} placeholder="Summarize the page for search and social previews" rows={3} className="w-full resize-y rounded-xl border border-(--border) px-3 py-2 text-sm" /><span className="text-xs text-(--muted)">{values.description.length}/320 characters</span></label>
         <div className="grid gap-4 sm:grid-cols-2">
-          <label className="space-y-2"><span className="tool-label">Keywords</span><input value={values.keywords} onChange={(event) => update("keywords", event.target.value)} placeholder="web, developer, tools" className="w-full rounded-xl border border-(--border) px-3 py-2 text-sm" /></label>
+          <label className="space-y-2"><span className="tool-label">Optional legacy keywords</span><input value={values.keywords} onChange={(event) => update("keywords", event.target.value)} placeholder="release notes, software updates" className="w-full rounded-xl border border-(--border) px-3 py-2 text-sm" /><span className="text-xs text-(--muted)">Google Search ignores the keywords meta tag.</span></label>
           <label className="space-y-2"><span className="tool-label">Author</span><input value={values.author} onChange={(event) => update("author", event.target.value)} placeholder="Author name" className="w-full rounded-xl border border-(--border) px-3 py-2 text-sm" /></label>
         </div>
         <label className="block space-y-2"><span className="tool-label">Canonical URL</span><input type="url" value={values.canonicalUrl} onChange={(event) => update("canonicalUrl", event.target.value)} placeholder="https://example.com/page" aria-invalid={Boolean(canonicalError)} className="w-full rounded-xl border border-(--border) px-3 py-2 text-sm aria-[invalid=true]:border-red-400" />{canonicalError && <span role="alert" className="text-xs text-red-700">{canonicalError}</span>}</label>

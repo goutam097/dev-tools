@@ -17,7 +17,7 @@ export default function AnalyticsTracker() {
   const searchParams = useSearchParams();
   const lastTrackedPathRef = useRef<string | null>(null);
   const hasTrackedLocationRef = useRef(false);
-  const { gaMeasurementId, clarityProjectId } = getAnalyticsConfig();
+  const { clarityProjectId } = getAnalyticsConfig();
 
   useEffect(() => {
     const query = searchParams.toString();
@@ -73,21 +73,6 @@ export default function AnalyticsTracker() {
 
   return (
     <>
-      {gaMeasurementId ? (
-        <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} strategy="afterInteractive" />
-          <Script id="ga-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
-              gtag('js', new Date());
-              gtag('config', '${gaMeasurementId}', { send_page_view: false });
-            `}
-          </Script>
-        </>
-      ) : null}
-
       {clarityProjectId ? (
         <Script id="clarity-init" strategy="afterInteractive">
           {`

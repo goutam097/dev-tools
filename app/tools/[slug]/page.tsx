@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Base64Converter from "@/components/Base64Converter";
 import GradientGenerator from "@/components/GradientGenerator";
 import ImageBase64Converter from "@/components/ImageBase64Converter";
@@ -20,7 +22,7 @@ import CssGridGenerator from "@/components/CssGridGenerator";
 import MetaTagGenerator from "@/components/MetaTagGenerator";
 import BulkQrCodeGenerator from "@/components/BulkQrCodeGenerator";
 import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
-import { buildToolKeywords, toolSeoContentBySlug } from "@/lib/toolSeoContent";
+import { toolSeoContentBySlug } from "@/lib/toolSeoContent";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
 
@@ -93,14 +95,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadataBase: new URL(SITE_URL),
     title,
     description: seoContent.metaDescription,
-    keywords: buildToolKeywords(tool, seoContent.primaryKeyword),
     alternates: {
       canonical,
     },
     openGraph: {
       title,
       description: seoContent.metaDescription,
-      type: "article",
+      type: "website",
       url: canonical,
       siteName: SITE_NAME,
       images: [
@@ -217,12 +218,6 @@ export default async function ToolPage({ params }: Props) {
           >
             Technical Guides
           </Link>
-          <Link
-            href="/"
-            className="rounded-lg bg-(--ink) px-3 py-2 font-mono text-xs uppercase tracking-widest text-(--bg)"
-          >
-            Open app shell
-          </Link>
         </div>
       </header>
 
@@ -232,13 +227,13 @@ export default async function ToolPage({ params }: Props) {
 
       <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         {seoContent.intro.map((paragraph) => (
-          <p key={paragraph} className="mb-4 text-sm leading-7 text-(--muted) last:mb-0">
-            {paragraph}
-          </p>
+          <div key={paragraph} className="mb-4 text-sm leading-7 text-(--muted) last:mb-0 [&_a]:text-(--ink) [&_a]:underline [&_a]:underline-offset-4 [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1 [&_code]:font-mono [&_p]:mb-4 [&_p:last-child]:mb-0">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{paragraph}</ReactMarkdown>
+          </div>
         ))}
       </section>
 
-      <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+      <section id="how-to-use" className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         <h2 className="font-serif text-2xl italic text-(--ink)">How to Use This Tool</h2>
         <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-7 text-(--muted)">
           {seoContent.howToSteps.map((step) => (
@@ -251,9 +246,9 @@ export default async function ToolPage({ params }: Props) {
         <section key={section.heading} className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
           <h2 className="font-serif text-2xl italic text-(--ink)">{section.heading}</h2>
           {section.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-3 text-sm leading-7 text-(--muted)">
-              {paragraph}
-            </p>
+            <div key={paragraph} className="mt-3 text-sm leading-7 text-(--muted) [&_a]:text-(--ink) [&_a]:underline [&_a]:underline-offset-4 [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1 [&_code]:font-mono [&_p]:mb-4 [&_p:last-child]:mb-0">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{paragraph}</ReactMarkdown>
+            </div>
           ))}
         </section>
       ))}

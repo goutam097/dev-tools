@@ -3,19 +3,18 @@ import Link from "next/link";
 import { blogPosts } from "@/lib/blogPosts";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
-import AdSenseSlot from "@/components/AdSenseSlot";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Developer Guides | DevTools Hub",
+  title: "Developer Guides",
   description:
     "Read practical guides about JSON formatting, Base64 encoding, and common developer workflows.",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Developer Guides | DevTools Hub",
+    title: "Developer Guides",
     description:
       "Explanations and examples for common developer tools and workflows.",
     url: `${SITE_URL}/blog`,
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Developer Guides | DevTools Hub",
+    title: "Developer Guides",
     description: "Guides about developer tools and practical workflows.",
     images: [DEFAULT_OG_IMAGE],
   },
@@ -51,8 +50,6 @@ export default function BlogIndexPage() {
       <p className="mt-3 max-w-3xl text-sm text-(--muted)">
         Practical explanations and examples for common developer tasks, with links to tools where they help you try a workflow.
       </p>
-
-      <AdSenseSlot slot="1111111111" />
 
       <section className="mt-8 grid gap-4 md:mt-10">
         {blogPosts.map((post) => (

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { blogPosts, blogPostsBySlug } from "@/lib/blogPosts";
+import { notFound, permanentRedirect } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { blogPosts, blogPostsBySlug, getEstimatedReadingMinutes, legacyBlogSlugs } from "@/lib/blogPosts";
 import { toolCatalogBySlug } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
@@ -19,6 +21,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (legacyBlogSlugs[slug]) {
+    return {};
+  }
   const post = blogPostsBySlug[slug];
 
   if (!post) {
@@ -31,7 +36,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     metadataBase: new URL(SITE_URL),
     title: post.title,
     description: post.description,
-    keywords: [post.targetKeyword, "developer tools online free", "technical seo for developers"],
     alternates: {
       canonical,
     },
@@ -65,6 +69,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
+  const replacementSlug = legacyBlogSlugs[slug];
+  if (replacementSlug) {
+    permanentRedirect(`/blog/${replacementSlug}`);
+  }
   const post = blogPostsBySlug[slug];
 
   if (!post) {
@@ -89,7 +97,7 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.title,
     description: post.description,
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
     author: {
       "@type": "Organization",
       name: "WebCodeveloper",
@@ -114,7 +122,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <header>
         <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">
-          Published {post.publishedAt} | {post.readingMinutes} min read
+          Published {post.publishedAt}{post.updatedAt ? ` · Updated ${post.updatedAt}` : ""} | About {getEstimatedReadingMinutes(post)} min read
         </p>
         <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-4xl">{post.title}</h1>
         <p className="mt-3 text-sm text-(--muted)">{post.description}</p>
@@ -122,9 +130,9 @@ export default async function BlogPostPage({ params }: Props) {
 
       <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         {post.intro.map((paragraph) => (
-          <p key={paragraph} className="mb-4 text-sm leading-7 text-(--muted) last:mb-0">
-            {paragraph}
-          </p>
+          <div key={paragraph} className="text-sm leading-7 text-(--muted) [&_a]:text-(--ink) [&_a]:underline [&_a]:underline-offset-4 [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1 [&_code]:font-mono [&_p]:mb-4 [&_p:last-child]:mb-0">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{paragraph}</ReactMarkdown>
+          </div>
         ))}
       </section>
 
@@ -132,9 +140,9 @@ export default async function BlogPostPage({ params }: Props) {
         <section key={section.heading} className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
           <h2 className="font-serif text-2xl italic text-(--ink)">{section.heading}</h2>
           {section.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-3 text-sm leading-7 text-(--muted)">
-              {paragraph}
-            </p>
+            <div key={paragraph} className="mt-3 text-sm leading-7 text-(--muted) [&_a]:text-(--ink) [&_a]:underline [&_a]:underline-offset-4 [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1 [&_code]:font-mono [&_p]:mb-4 [&_p:last-child]:mb-0">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{paragraph}</ReactMarkdown>
+            </div>
           ))}
         </section>
       ))}
@@ -146,7 +154,7 @@ export default async function BlogPostPage({ params }: Props) {
       <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         <h2 className="font-serif text-2xl italic text-(--ink)">Continue Exploring</h2>
         <p className="mt-3 text-sm text-(--muted)">
-          These internal links help readers move between related tutorials, tools, and learning paths without losing context.
+          Continue with another guide or open a related tool.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link href="/blog" className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)">

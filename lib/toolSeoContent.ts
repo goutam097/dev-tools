@@ -1,5 +1,3 @@
-import type { ToolCatalogItem } from "@/lib/toolCatalog";
-
 export type ToolFaqItem = {
   question: string;
   answer: string;
@@ -24,9 +22,9 @@ export type ToolSeoContent = {
 export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
   "json-formatter": {
     primaryKeyword: "json formatter online free",
-    metaTitle: "JSON Formatter Online Free - Validate, Beautify & Minify JSON",
+    metaTitle: "JSON Formatter - Validate, Format and Minify JSON",
     metaDescription:
-      "Use our JSON formatter online free to beautify, validate, and minify JSON instantly in your browser. Fast, private, and built for developers.",
+      "Validate JSON syntax, format readable output, or minify data in your browser. Signed-in history may store submitted input and output.",
     intro: [
       "Paste a JSON string to check its syntax, format it with indentation, or minify it. Parsing happens in your browser. If signed in, submitted input and output are also saved to account history.",
       "When JSON is hard to read, bugs become hard to spot. The formatter makes nested objects readable, highlights parsing errors, and gives you copy-ready output for code reviews, Postman collections, frontend fixtures, and backend logging workflows.",
@@ -49,14 +47,14 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
         heading: "Valid vs Invalid JSON: Common Syntax Pitfalls",
         paragraphs: [
           "JSON has strict syntax rules defined by RFC 8259. The most common errors that cause parsing failures include trailing commas after the last element in an object or array, using single quotes instead of double quotes for keys and string values, and unescaped control characters within strings.",
-          "Our formatter highlights these syntax errors in real-time. For example, while JavaScript objects allow trailing commas, JSON does not. Identifying these small discrepancies early saves significant time when configuring server-side environments, webhook templates, or CI/CD pipeline definitions.",
+          "Select Format or Minify to parse the input and report syntax errors. For example, while JavaScript objects allow trailing commas, JSON does not. A formatter checks syntax; it does not validate an API contract or JSON Schema.",
         ],
       },
       {
         heading: "JSON.parse() and JSON.stringify() in JavaScript",
         paragraphs: [
           "In the JavaScript ecosystem, JSON handling is built into the global JSON object. Use `JSON.parse(text)` to convert a string into a JavaScript object, and `JSON.stringify(object, null, 2)` to convert an object back into a formatted, readable string with a 2-space indentation.",
-          "When performance is a priority—such as in production API responses—minification is preferred. Minified JSON removes all unnecessary whitespace, significantly reducing the payload size (often by 10-20%) and decreasing network latency for end-users on slower connections.",
+          "Minification removes formatting whitespace from the JSON representation. It does not change the data values, guarantee faster requests, or replace HTTP compression; measure payload and transport behavior in your application.",
         ],
       },
     ],
@@ -680,14 +678,33 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
   "csv-data-cleaner": {
     primaryKeyword: "csv cleaner online",
     metaTitle: "CSV Data Cleaner Online - Clean and Download CSV Files",
-    metaDescription: "Clean CSV data locally in your browser by removing blank rows and duplicates, trimming whitespace, and filling missing values.",
+    metaDescription: "Clean a CSV in your browser by removing blank rows and duplicate records, trimming cells, replacing empty values, and exporting selected columns.",
     intro: [
       "Paste CSV content or choose a local CSV file to remove empty rows and duplicate records, trim surrounding whitespace, and fill blank cells.",
       "Cleaning is performed locally in your browser. Preview the cleaned rows and download a fresh CSV when the result looks right.",
     ],
-    howToSteps: ["Paste CSV data or select a CSV file.", "Choose whether the first row contains column headers and set a missing-value replacement.", "Select Clean CSV to inspect the cleaned preview and change counts.", "Download the result as a CSV file."],
-    sections: [{ heading: "CSV cleanup in your browser", paragraphs: ["Quoted fields, including commas, quote escapes, and line breaks, are preserved during parsing. Empty rows and repeated data records are removed after whitespace is trimmed.", "The preview shows up to 100 rows for quick review. The download always contains the complete cleaned dataset."] }],
-    faqs: [{ question: "Is my CSV uploaded?", answer: "No. The selected file is read and processed in your browser." }],
+    howToSteps: ["Paste CSV data or select a local .csv file up to 5 MiB.", "Choose whether the first row contains headers and set an optional replacement for empty cells.", "Select Clean CSV, then choose which columns to keep in the preview and export.", "Review the change counts and download the result. The preview shows at most 100 rows."],
+    sections: [
+      {
+        heading: "Example and supported CSV input",
+        paragraphs: [
+          "Input with headers: `name,email\\nAda, ada@example.com\\nAda,ada@example.com\\nGrace,`. After trimming and duplicate removal, the preview contains Ada once and Grace once; an optional replacement value fills Grace's empty email. The two Ada rows count as duplicates after trimming.",
+          "Fields may use double quotes for commas, line breaks, or escaped quotes (`\"\"`). Unclosed quotes, quotes inside unquoted fields, and characters after a closing quote return an error. Uneven row lengths are padded with empty cells. See [RFC 4180](https://www.rfc-editor.org/rfc/rfc4180.html) for common CSV conventions.",
+        ],
+      },
+      {
+        heading: "Cleaning rules and export limits",
+        paragraphs: [
+          "A row is considered empty only when every trimmed cell is blank. Duplicate detection compares the complete cleaned row, not one chosen key. Select columns after cleaning; deselected columns are omitted from both the table preview and download.",
+          "The file is read locally in browser memory. Uploads are limited to 5 MiB, and only the first 100 cleaned rows are rendered for preview; the CSV download includes all cleaned rows. Do not open untrusted CSV files in spreadsheet software without considering formula-cell risks.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Is my CSV uploaded?", answer: "No. The file is read and processed in your browser; the cleaner does not send its contents to the site API." },
+      { question: "Can I keep only selected columns?", answer: "Yes. After cleaning, use the column checkboxes. The preview and downloaded CSV both use the selected columns." },
+      { question: "How are duplicates identified?", answer: "Rows are trimmed first, then compared across all columns. Matching full rows are reduced to the first occurrence." },
+    ],
     relatedSlugs: ["json-formatter", "json-schema-playground"],
   },
   "cron-expression-builder": {
@@ -696,8 +713,19 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     metaDescription: "Build standard five-field cron schedules with field validation, presets, and plain-language explanations.",
     intro: ["Set minute, hour, day of month, month, and weekday fields to compose a standard five-field cron expression.", "Use common presets as a starting point. Each field accepts values, comma-separated lists, ranges, and positive step values."],
     howToSteps: ["Choose a preset or edit the five cron fields.", "Review field errors and adjust invalid values.", "Read the human-friendly description and copy the expression."],
-    sections: [{ heading: "Cron field order", paragraphs: ["Standard cron syntax uses minute, hour, day of month, month, and day of week, in that order. This tool checks field ranges but does not assume every scheduler uses identical runtime semantics.", "Day-of-week accepts both 0 and 7 as Sunday, though individual schedulers may vary."] }],
-    faqs: [{ question: "Which cron syntax is supported?", answer: "The generator produces the standard five-field format and supports numeric lists, ranges, and step expressions." }],
+    sections: [
+      {
+        heading: "Syntax, example, and validation",
+        paragraphs: [
+          "The five fields are minute (0–59), hour (0–23), day of month (1–31), month (1–12), and day of week (0–7). Each accepts `*`, a number, a comma-separated list, a range, or a positive step such as `*/15` or `1-5/2`. For example, `0 9 * * 1-5` means minute 0 at hour 9 on weekdays in schedulers using this five-field convention.",
+          "The builder checks field syntax and bounds; it does not calculate upcoming run times, include seconds, or support names such as `MON`/`JAN`, `@daily` aliases, or scheduler-specific extensions. When both day-of-month and weekday are restricted, schedulers may combine them differently. Confirm the result with the scheduler that will execute it. See the [crontab format reference](https://man7.org/linux/man-pages/man5/crontab.5.html).",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Why does a valid expression still behave differently on my server?", answer: "Schedulers differ in timezone defaults, day-of-month and weekday combination rules, and supported extensions. This page validates five-field syntax, not the runtime behavior of a specific scheduler." },
+      { question: "Does the builder support seconds or month names?", answer: "No. It accepts five numeric fields, comma lists, ranges, wildcards, and positive steps; it does not accept a seconds field or named months/weekdays." },
+    ],
     relatedSlugs: ["timestamp-converter", "json-formatter"],
   },
   "json-schema-playground": {
@@ -706,8 +734,20 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     metaDescription: "Generate an editable JSON Schema from a sample and validate JSON instances with clear field-level errors.",
     intro: ["Generate a useful starting JSON Schema from an example value, then edit the schema and validate a JSON instance against it.", "Inference marks observed object keys as required. Validation runs locally and reports paths and constraint failures."],
     howToSteps: ["Paste a JSON instance and select Generate schema from JSON.", "Edit the generated schema or enter your own JSON Schema.", "Choose Validate JSON to see errors or a successful validation result.", "Copy the schema for use in your project."],
-    sections: [{ heading: "Schema inference and validation", paragraphs: ["The generator infers JSON types, nested object properties, array item shapes, and required keys from the provided sample. The result is an editable starting point rather than a complete description of every possible value.", "The local validator supports common types, required properties, nested properties, arrays, enum, const, and basic string, numeric, and array size limits."] }],
-    faqs: [{ question: "Does this implement every JSON Schema keyword?", answer: "It supports common validation keywords, but not the entire JSON Schema specification. Check support notes in the playground before relying on less common features." }],
+    sections: [
+      {
+        heading: "Example, inference, and validator scope",
+        paragraphs: [
+          "For input `{\"name\":\"Ada\",\"active\":true}`, schema generation produces an object schema with string `name`, boolean `active`, and both observed keys marked required. Inference describes only the sample; add optional fields, constraints, and additional valid cases that your application actually accepts.",
+          "The local validator handles types, required/properties, additionalProperties, items, enum, const, anyOf/oneOf/allOf/not, common string and numeric limits, array/object sizes, uniqueItems, and simple date-time/date/email/URI formats. It rejects several known unsupported keywords, including `$ref`, `if`/`then`/`else`, `patternProperties`, and `multipleOf`, rather than silently claiming those constraints passed. Unknown/custom formats are not validated. See the [JSON Schema 2020-12 validation vocabulary](https://json-schema.org/draft/2020-12/json-schema-validation).",
+          "The JSON instance and schema must each parse as JSON. The schema root must be an object, `type` must use a JSON type name, and a regular-expression `pattern` must be valid. Validation paths such as `$.profile.city` identify the failing property. This implementation is a practical subset, not a complete standards-compliant validator.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Does this implement every JSON Schema keyword?", answer: "No. It supports a documented subset and reports several unsupported keywords such as $ref and if/then/else. Use a full JSON Schema implementation for schemas that depend on other keywords or external references." },
+      { question: "Does schema generation infer optional fields?", answer: "No. Properties present in the sample are marked required. Edit the generated schema if a property is optional or if the sample does not cover every valid shape." },
+    ],
     relatedSlugs: ["json-formatter", "json-to-typescript"],
   },
   "css-grid-generator": {
@@ -716,18 +756,38 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     metaDescription: "Create a CSS Grid layout by adjusting rows, columns, gaps, alignment, and editable preview items.",
     intro: ["Adjust grid dimensions, spacing, and item alignment to see a CSS Grid preview update instantly.", "Edit preview labels and copy the generated CSS declaration block into your stylesheet."],
     howToSteps: ["Set the number of columns and rows.", "Adjust gaps and horizontal or vertical item alignment.", "Change the preview item count and labels.", "Copy the generated CSS."],
-    sections: [{ heading: "Previewing grid layouts", paragraphs: ["The preview uses the same grid-template and gap values as the generated CSS. Items flow onto implicit rows if you display more items than explicitly configured rows.", "The output contains a reusable .grid-container rule with CSS Grid properties and pixel-based gaps."] }],
-    faqs: [{ question: "Can grid items be customized?", answer: "Yes. Change the preview item count and edit each item label; the visual preview updates immediately." }],
+    sections: [
+      {
+        heading: "Example and generated CSS",
+        paragraphs: [
+          "With three columns, two rows, and 12-pixel row and column gaps, the output includes `.grid-container { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }` plus row, gap, and alignment declarations. The visible preview uses the same values; items beyond the configured row count flow into implicit rows.",
+          "Columns and rows are limited to 1–12, gaps to 0–64 px, and the preview to 1–12 items. The generator does not create responsive breakpoints, item placement rules, or project-specific container styles. Copy the CSS and adapt it to your layout. See [MDN's CSS Grid guide](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout).",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Does the CSS include responsive breakpoints?", answer: "No. It creates a fixed column/row template and spacing rules. Add media queries or container queries for your target design." },
+      { question: "Why do extra items appear on another row?", answer: "The preview grid automatically creates implicit rows when the item count exceeds the configured explicit rows." },
+    ],
     relatedSlugs: ["gradient-marker", "html-formatter"],
   },
   "meta-tag-generator": {
     primaryKeyword: "meta tag generator",
     metaTitle: "Meta Tag Generator - Create HTML, Open Graph and Twitter Tags",
     metaDescription: "Generate HTML metadata, Open Graph tags, and Twitter Cards with a live search and social-sharing preview.",
-    intro: ["Enter page details to create title, description, author, keywords, canonical, robots, Open Graph, and Twitter Card tags.", "Review the search-result and social preview, then copy the tag snippet or download a sample HTML document."],
+    intro: ["Enter page details to create title, description, optional legacy keywords, author, canonical, robots, Open Graph, and Twitter Card tags.", "Review the illustrative search and social previews, then copy the tag snippet or download a sample HTML document. The tool does not publish tags to your site."],
     howToSteps: ["Enter page title and description.", "Add optional keywords, author, canonical URL, image URL, and robots directives.", "Select a Twitter Card style and review both previews.", "Copy the generated HTML or download it as a file."],
-    sections: [{ heading: "Search and social metadata", paragraphs: ["Open Graph properties and Twitter Card metadata help services construct link previews. A canonical URL identifies the preferred URL for a page, while robots directives communicate indexing preferences.", "The preview is illustrative only; search engines and social services decide how and when to render metadata. Generated tags must be added to your own page to take effect."] }],
-    faqs: [{ question: "Will generated metadata be published automatically?", answer: "No. The tool creates a downloadable or copyable snippet; you must add it to your website's document head." }],
+    sections: [{
+      heading: "Example, validation, and limitations",
+      paragraphs: [
+        "For a page titled `Release notes`, a description, and canonical URL `https://example.com/releases`, the generator emits a `<title>`, description meta tag, canonical link, robots directives, Open Graph properties, and Twitter Card tags. An optional social image must be an absolute HTTP or HTTPS URL.",
+        "The previews are examples, not predictions of exact search or social rendering. Google may generate snippets from page content and does not use the meta-keywords tag for ranking; write a useful page-specific description instead. Search engines may choose a different canonical or robots interpretation. Read [Google's snippet documentation](https://developers.google.com/search/docs/appearance/snippet#meta-descriptions). The output must be added to the real document head; generating or downloading it does not change a site.",
+      ],
+    }],
+    faqs: [
+      { question: "Does Google use the keywords meta tag?", answer: "Google Search does not use the keywords meta tag. The field is optional legacy output for other systems; it is not a substitute for useful page content or a clear description." },
+      { question: "Will generated metadata be published automatically?", answer: "No. The tool creates a copyable snippet and a downloadable sample document. You must add the tags to your site's document head." },
+    ],
     relatedSlugs: ["html-formatter", "json-formatter"],
   },
   "bulk-qr-code-generator": {
@@ -746,22 +806,18 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     ],
     sections: [
       {
-        heading: "Bulk QR code generation in your browser",
+        heading: "Batch format, limits, and scanning checks",
         paragraphs: [
-          "The generator creates a separate PNG for each non-empty entry and skips blank lines or rows. A batch is capped at 100 entries to keep the workload manageable in a browser.",
-          "The CSV importer reads only the first column so other columns can hold labels or notes. TXT files and pasted text use one entry per line.",
+          "The generator creates one PNG per non-empty line or first-column CSV value. A CSV may optionally skip its first row; uploaded CSV/TXT files are limited to 1 MiB and each batch to 100 entries. Individual PNG downloads and the ZIP archive contain the generated images.",
+          "QR codes are static and encode exactly the supplied text; the tool does not check whether a URL is safe, confirm that a code scans on a physical device, or track visits. Keep strong foreground/background contrast and test downloaded output with a scanner before distribution.",
         ],
       },
     ],
     faqs: [
-      { question: "Are my entries uploaded to a server?", answer: "No. Files are read locally, QR codes are generated in your browser, and no entries are sent to an external API." },
+      { question: "Are my entries uploaded to a server?", answer: "No. Files are read locally, QR codes are generated in your browser, and entries are not sent to the site API or a QR service." },
       { question: "How many entries can I generate at once?", answer: "The tool supports up to 100 non-empty entries per batch. Split larger lists into multiple batches." },
       { question: "How are CSV files read?", answer: "Each CSV row uses its first column. You can choose whether to skip the first row as a header." },
     ],
     relatedSlugs: ["url-encoder-decoder", "meta-tag-generator"],
   },
 };
-
-export function buildToolKeywords(tool: ToolCatalogItem, primaryKeyword: string): string[] {
-  return Array.from(new Set([primaryKeyword, ...tool.keywords, "developer tools online free"]));
-}
