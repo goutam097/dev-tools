@@ -8,16 +8,23 @@ import { saveHistory } from "@/lib/clientHistory";
 export default function JSONFormatter() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<unknown>(null);
+  const [hasOutput, setHasOutput] = useState(false);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
 
   const formatJson = async () => {
     try {
-      if (!input.trim()) return;
+      if (!input.trim()) {
+        setOutput(null);
+        setHasOutput(false);
+        setError("Enter JSON to format.");
+        return;
+      }
 
       const parsed = JSON.parse(input);
 
-      setOutput(parsed); // store object directly
+      setOutput(parsed);
+      setHasOutput(true);
       setError("");
 
       await saveHistory(
@@ -28,16 +35,23 @@ export default function JSONFormatter() {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Invalid JSON");
       setOutput(null);
+      setHasOutput(false);
     }
   };
 
   const minifyJson = async () => {
     try {
-      if (!input.trim()) return;
+      if (!input.trim()) {
+        setOutput(null);
+        setHasOutput(false);
+        setError("Enter JSON to minify.");
+        return;
+      }
 
       const parsed = JSON.parse(input);
 
       setOutput(parsed);
+      setHasOutput(true);
       setError("");
 
       await saveHistory(
@@ -48,18 +62,26 @@ export default function JSONFormatter() {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Invalid JSON");
       setOutput(null);
+      setHasOutput(false);
     }
   };
 
   const copyOutput = async () => {
-    if (!output) return;
-
-    await navigator.clipboard.writeText(
-      JSON.stringify(output, null, 2)
-    );
-
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    if (!hasOutput) return;
+    try {
+      const formatted = JSON.stringify(output, null, 2);
+      if (formatted === undefined) {
+        setError("The JSON value could not be serialized.");
+        return;
+      }
+      await navigator.clipboard.writeText(formatted);
+      setCopied(true);
+      setError("");
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      setCopied(false);
+      setError("Clipboard access was blocked. Select and copy the output manually.");
+    }
   };
 
   return (
@@ -67,10 +89,16 @@ export default function JSONFormatter() {
       {/* INPUT */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <label className="tool-label">Input</label>
+          <label htmlFor="json-formatter-input" className="tool-label">Input</label>
           <button
             type="button"
-            onClick={() => setInput("")}
+            aria-label="Clear JSON input and output"
+            onClick={() => {
+              setInput("");
+              setOutput(null);
+              setHasOutput(false);
+              setError("");
+            }}
             className="rounded p-2 text-red-500 hover:bg-red-100"
           >
             <Trash2 size={16} />
@@ -78,6 +106,7 @@ export default function JSONFormatter() {
         </div>
 
         <textarea
+          id="json-formatter-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder='{"hello":"world"}'
@@ -107,12 +136,12 @@ export default function JSONFormatter() {
       {/* OUTPUT */}
       <section className="space-y-4">
   <div className="flex items-center justify-between">
-    <label className="tool-label">Output</label>
+    <p className="tool-label">Output</p>
 
     <button
       type="button"
       onClick={() => void copyOutput()}
-      disabled={!output}
+      disabled={!hasOutput}
       className="flex items-center gap-2 rounded-md bg-gray-800 px-3 py-1.5 text-sm text-white hover:bg-gray-700 disabled:opacity-40"
     >
       {copied ? <Check size={14} /> : <Copy size={14} />}
@@ -122,8 +151,8 @@ export default function JSONFormatter() {
 
   <div className="h-[420px] overflow-auto rounded-xl border bg-[#0f172a] p-4 font-mono text-sm shadow-inner">
     {error ? (
-      <span className="text-red-400">{error}</span>
-    ) : output ? (
+      <span role="alert" className="text-red-400">{error}</span>
+    ) : hasOutput ? (
       <JsonViewer data={output} />
     ) : (
       <span className="text-gray-500">Output appears here</span>

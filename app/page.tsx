@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
-import { blogPosts } from "@/lib/blogPosts";
+import { blogPosts, getEstimatedReadingMinutes } from "@/lib/blogPosts";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
@@ -20,14 +20,14 @@ const featuredLearningPaths = [
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Online Developer Tools and Practical Guides | DevTools Hub",
+  title: "Developer Tools and Practical Guides",
   description:
     "Use practical browser-based tools to format JSON, decode JWTs, convert Base64, test regular expressions, and work with common developer formats.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Online Developer Tools and Practical Guides | DevTools Hub",
+    title: "Developer Tools and Practical Guides",
     description:
       "Format JSON, decode JWTs, convert Base64, test regular expressions, and read practical guides for developer workflows.",
     url: SITE_URL,
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Developer Tools and Practical Guides | DevTools Hub",
+    title: "Developer Tools and Practical Guides",
     description: "Use practical tools for common developer tasks and browse concise technical guides.",
     images: [DEFAULT_OG_IMAGE],
   },
@@ -61,11 +61,11 @@ const heroHighlights = [
   },
   {
     title: "No Account Required",
-    description: "Launch any utility instantly without signing up or waiting for heavy modules to load.",
+    description: "Basic tool use is available without signing up. Optional saved history requires an account.",
   },
   {
-    title: "Built for Speed",
-    description: "Optimized for low latency and fast interaction, even on mobile and slow connections.",
+    title: "Guidance with Each Tool",
+    description: "Tool pages include usage steps, examples, supported options, and limitations.",
   },
 ];
 
@@ -77,7 +77,7 @@ export default function HomePage() {
         <section className="rounded-4xl border border-(--border) bg-white/80 p-6 shadow-sm sm:p-10">
           <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Practical Developer Resource</p>
           <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-5xl lg:text-6xl">
-            Streamline your workflow with private, browser-native tools.
+            Practical tools for everyday developer workflows.
           </h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-(--muted) sm:text-lg">
             DevTools Hub provides browser-based utilities and technical guides for common development tasks. Tool inputs are processed in your browser; when signed in, tools that support history can also send input and output to your account history.
@@ -164,7 +164,7 @@ export default function HomePage() {
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {blogPosts.slice(0, 4).map((post) => (
               <article key={post.slug} className="group rounded-3xl border border-(--border) bg-white p-6 transition hover:shadow-md">
-                <p className="font-mono text-[10px] text-(--muted)">{post.publishedAt} • {post.readingMinutes} min read</p>
+                <p className="font-mono text-[10px] text-(--muted)">{post.updatedAt ? `Updated ${post.updatedAt}` : `Published ${post.publishedAt}`} • About {getEstimatedReadingMinutes(post)} min read</p>
                 <h3 className="mt-2 font-serif text-xl italic text-(--ink) group-hover:underline">{post.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-(--muted)">{post.description}</p>
                 <Link href={`/blog/${post.slug}`} className="mt-4 inline-flex rounded-lg bg-(--ink) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--bg)">

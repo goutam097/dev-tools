@@ -30,6 +30,11 @@ export default function CronExpressionBuilder() {
   const expression = fields.join(" ");
 
   const setField = (index: number, value: string) => setFields((current) => current.map((field, fieldIndex) => fieldIndex === index ? value : field));
+  const reset = () => {
+    setFields(["*/5", "*", "*", "*", "*"]);
+    setCopied(false);
+    setCopyMessage("");
+  };
   const copyExpression = async () => {
     try {
       await navigator.clipboard.writeText(expression);
@@ -47,7 +52,10 @@ export default function CronExpressionBuilder() {
       <section className="space-y-5 rounded-3xl border border-(--border) bg-white p-5 shadow-sm sm:p-7">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div><p className="tool-label">Configure schedule</p><p className="mt-1 text-sm text-(--muted)">Use a number, list (1,3), range (1-5), or step (*/10).</p></div>
-          <label className="min-w-48 space-y-1"><span className="tool-label">Common presets</span><select value="" onChange={(event) => { const preset = presetOptions[Number(event.target.value)]; if (preset) setFields([...preset.fields]); }} className="w-full rounded-lg border border-(--border) bg-white px-3 py-2 text-sm"><option value="">Select a schedule…</option>{presetOptions.map((preset, index) => <option key={preset.label} value={index}>{preset.label}</option>)}</select></label>
+          <div className="flex flex-wrap items-end gap-3">
+            <label className="min-w-48 space-y-1"><span className="tool-label">Common presets</span><select value="" onChange={(event) => { const preset = presetOptions[Number(event.target.value)]; if (preset) setFields([...preset.fields]); }} className="w-full rounded-lg border border-(--border) bg-white px-3 py-2 text-sm"><option value="">Select a schedule…</option>{presetOptions.map((preset, index) => <option key={preset.label} value={index}>{preset.label}</option>)}</select></label>
+            <button type="button" onClick={reset} className="rounded-lg border border-(--border) px-3 py-2 text-xs text-(--muted) hover:bg-(--surface)">Reset</button>
+          </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {fieldConfig.map(({ key, label, placeholder }, index) => (

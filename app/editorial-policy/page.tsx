@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
 
-export const metadata: Metadata = {
-  title: "Editorial Policy | DevTools Hub",
-  description: "Learn how DevTools Hub creates useful, accurate, and practical developer content with clear editorial standards.",
-  alternates: { canonical: `${SITE_URL}/editorial-policy` },
-};
+export const metadata = createPageMetadata(
+  "Editorial Policy",
+  "Read the editorial aims and correction process for DevTools Hub technical guides and tools.",
+  "/editorial-policy",
+);
 
 export default function EditorialPolicyPage() {
   return (
@@ -16,7 +15,7 @@ export default function EditorialPolicyPage() {
         <section className="rounded-4xl border border-(--border) bg-white p-8 shadow-sm sm:p-10">
           <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Editorial standards for trustworthy developer guidance</h1>
           <p className="mt-4 text-sm leading-7 text-(--muted)">
-            DevTools Hub publishes practical content for developers who need fast answers, reliable examples, and a clear explanation of how tools fit real workflows.
+            DevTools Hub publishes developer utilities and selected technical guides. The publisher is WebCodeveloper; no individual author credentials are claimed on this site.
           </p>
         </section>
 
@@ -25,9 +24,9 @@ export default function EditorialPolicyPage() {
             <h2 className="font-serif text-2xl italic text-(--ink)">What we prioritize</h2>
             <ul className="mt-4 space-y-3 text-sm leading-7 text-(--muted)">
               <li>• Accuracy, clarity, and practical usefulness.</li>
-              <li>• Examples that reflect real engineering work.</li>
-              <li>• Helpful structure with concise explanations and actionable steps.</li>
-              <li>• Transparent disclosure of monetization and affiliate relationships.</li>
+              <li>• Clear descriptions of tool behavior, input rules, and limitations.</li>
+              <li>• Practical steps and examples that readers can check themselves.</li>
+              <li>• Disclosure that the site may display Google AdSense advertising.</li>
             </ul>
           </article>
 
@@ -45,7 +44,7 @@ export default function EditorialPolicyPage() {
         <section className="mt-8 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
           <h2 className="font-serif text-2xl italic text-(--ink)">Review process</h2>
           <p className="mt-3 text-sm leading-7 text-(--muted)">
-            Articles are shaped around search intent, practical value, and the needs of real developers. We update content when technology changes, workflows evolve, or new examples become relevant.
+            We aim to explain the subject directly and correct issues when they are identified. This policy describes editorial goals; it does not imply that every article has been independently reviewed by a named subject-matter expert.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link href="/content-update-policy" className="rounded-lg border border-(--border) px-3 py-2 text-sm text-(--ink)">Content update policy</Link>

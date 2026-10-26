@@ -1,14 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
 
-export const metadata: Metadata = {
-  title: "About the Author | DevTools Hub",
-  description:
-    "Publisher information and a way to send questions or corrections about DevTools Hub content.",
-  alternates: { canonical: `${SITE_URL}/author` },
-};
+export const metadata = createPageMetadata(
+  "Publisher and Authors",
+  "Publisher information and a way to send questions or corrections about DevTools Hub content.",
+  "/author",
+);
 
 export default function AuthorPage() {
   return (

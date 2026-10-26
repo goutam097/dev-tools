@@ -235,11 +235,7 @@ export default function ToolLayout({ activeTool, onToolSelect, children }: ToolL
               <Menu size={16} />
             </button>
             <h1 className="font-serif text-xl italic md:text-2xl">{currentTool}</h1>
-            <span className="hidden font-mono text-xs uppercase tracking-widest text-[var(--muted)] sm:inline">v2 secure</span>
           </div>
-          <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-center font-mono text-[10px] uppercase tracking-widest text-emerald-700">
-            system online
-          </span>
         </header>
 
         <div className="mx-auto max-w-6xl p-4 sm:p-6 md:p-8">{children}</div>

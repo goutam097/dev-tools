@@ -33,14 +33,49 @@ export function isJsonSchema(value: unknown): value is JsonSchema {
 
 export function validateSchemaDefinition(value: unknown): string[] {
   const errors: string[] = [];
+  const unsupportedKeywords = [
+    "$ref",
+    "$dynamicRef",
+    "$recursiveRef",
+    "dependentRequired",
+    "dependentSchemas",
+    "dependencies",
+    "if",
+    "then",
+    "else",
+    "multipleOf",
+    "patternProperties",
+    "prefixItems",
+    "contains",
+    "minContains",
+    "maxContains",
+    "propertyNames",
+    "unevaluatedItems",
+    "unevaluatedProperties",
+    "additionalItems",
+    "contentEncoding",
+    "contentMediaType",
+    "contentSchema",
+  ];
   const visit = (current: unknown, path: string) => {
     if (!isJsonSchema(current)) {
       errors.push(`${path} must be a schema object.`);
       return;
     }
+    for (const keyword of unsupportedKeywords) {
+      if (Object.hasOwn(current, keyword)) {
+        errors.push(`${path}.${keyword} is not supported by this playground.`);
+      }
+    }
     if (current.type !== undefined &&
       !(typeof current.type === "string" || (Array.isArray(current.type) && current.type.every((type) => typeof type === "string")))) {
       errors.push(`${path}.type must be a string or an array of strings.`);
+    }
+    const types = typeof current.type === "string"
+      ? [current.type]
+      : Array.isArray(current.type) ? current.type : [];
+    if (types.some((type) => !["null", "boolean", "object", "array", "number", "integer", "string"].includes(type))) {
+      errors.push(`${path}.type contains an unsupported JSON Schema type.`);
     }
     if (current.required !== undefined &&
       (!Array.isArray(current.required) || current.required.some((key) => typeof key !== "string"))) {
@@ -214,8 +249,14 @@ export function validateJsonSchema(value: unknown, schema: JsonSchema): SchemaVa
 }
 
 function matchesFormat(value: string, format: string): boolean {
-  if (format === "date-time") return !Number.isNaN(Date.parse(value)) && /T/.test(value);
-  if (format === "date") return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(`${value}T00:00:00Z`));
+  if (format === "date-time") {
+    return /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(value) &&
+      isValidDate(value.slice(0, 10)) &&
+      !Number.isNaN(Date.parse(value));
+  }
+  if (format === "date") {
+    return isValidDate(value);
+  }
   if (format === "email") return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   if (format === "uri" || format === "url") {
     try {
@@ -225,4 +266,10 @@ function matchesFormat(value: string, format: string): boolean {
     }
   }
   return true;
+}
+
+function isValidDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
 }

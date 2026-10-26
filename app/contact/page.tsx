@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/site";
 import ContactForm from "./contact-form";
 
-export const metadata: Metadata = {
-  title: "Contact DevTools Hub | Support",
-  description: "Reach WebCodeveloper for support, bug reports, partnership questions, or general inquiries about DevTools Hub.",
-  alternates: { canonical: `${SITE_URL}/contact` },
-};
+export const metadata = createPageMetadata(
+  "Contact",
+  "Reach WebCodeveloper by email or contact form for corrections and questions about DevTools Hub.",
+  "/contact",
+);
 
 export default function ContactPage() {
   return (
@@ -70,10 +69,10 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-slate-900">
-                        Response Time
+                        Contact options
                       </h3>
                       <p className="text-slate-600">
-                        We aim to respond to support and partnership messages within a few business days.
+                        The contact form requires the email service to be configured. If it is unavailable, send your inquiry directly by email.
                       </p>
                     </div>
                   </div>
@@ -87,12 +86,12 @@ export default function ContactPage() {
                       </h3>
                       <p className="text-slate-600">
                         <a
-                          href="https://www.webcodedeveloper.co.in"
+                          href="https://www.webcodeveloper.co.in"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="hover:text-blue-600 hover:underline"
                         >
-                          www.webcodedeveloper.co.in
+                          www.webcodeveloper.co.in
                         </a>
                       </p>
                     </div>
@@ -125,14 +124,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-8">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p>
-            © 2026 WebCodeDeveloper. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
 
   );

@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL } from "@/lib/site";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Terms and Conditions",
-  description: "Terms and Conditions for using DevTools Hub.",
-  alternates: { canonical: `${SITE_URL}/terms-and-conditions` },
-};
+export const metadata = createPageMetadata(
+  "Terms and Conditions",
+  "Terms for using DevTools Hub tools, guides, accounts, and linked third-party services.",
+  "/terms-and-conditions",
+);
 
 export default function TermsPage() {
   return (

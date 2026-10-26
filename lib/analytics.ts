@@ -16,7 +16,9 @@ declare global {
   }
 }
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+const configuredGaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+const GA_MEASUREMENT_ID =
+  configuredGaId && !/^G-X+$/i.test(configuredGaId) ? configuredGaId : "G-RCX9GNY5X";
 const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID?.trim();
 
 function isClient() {

@@ -6,9 +6,9 @@ import Script from "next/script";
 import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_BRAND, SITE_NAME, SITE_URL } from "@/lib/site";
+import { getAnalyticsConfig } from "@/lib/analytics";
 
-const searchActionUrl = `${SITE_URL}/tools?q={search_term_string}`;
-
+const { gaMeasurementId } = getAnalyticsConfig();
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -16,7 +16,7 @@ const structuredData = [
     name: SITE_NAME,
     url: SITE_URL,
     description:
-      "Browser-first developer tools for formatting JSON, decoding JWTs, testing regex, generating UUIDs, previewing Markdown, creating gradients, and converting images to Base64.",
+      "Browser-based utilities for formatting and validating developer data, encoding text, generating frontend snippets, and common engineering workflows.",
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,
@@ -29,7 +29,6 @@ const structuredData = [
     name: SITE_BRAND,
     url: SITE_URL,
     logo: DEFAULT_OG_IMAGE,
-    sameAs: [SITE_URL],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "support",
@@ -47,34 +46,15 @@ export const metadata: Metadata = {
     template: "%s | DevTools Hub",
   },
   description:
-    "Free browser-native developer tools for JSON formatting, JWT decoding, Base64 conversion, regex testing, UUID generation, gradient creation, Markdown preview, and image-to-Base64 conversion.",
-  keywords: [
-    "developer tools",
-    "json formatter",
-    "jwt decoder",
-    "base64 converter",
-    "regex tester",
-    "uuid generator",
-    "markdown preview",
-    "image to base64",
-    "json formatter online free",
-    "base64 encoder online",
-    "regex tester javascript tool",
-    "uuid generator online",
-    "markdown preview online",
-    "css gradient generator online",
-    "image to base64 converter online",
-    "html formatter online free",
-    "developer tools online free",
-  ],
+    "Free browser-based tools for data cleanup and validation, scheduling, QR codes, frontend layouts, page metadata, and common developer workflows.",
   authors: [{ name: SITE_BRAND, url: SITE_URL }],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "DevTools Hub - Free Online Developer Tools & Tutorials",
+    title: "DevTools Hub - Developer Tools and Practical Guides",
     description:
-      "A complete toolkit for developers: JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
+      "Use practical tools for data cleanup, validation, schedules, QR codes, frontend layouts, and common developer workflows.",
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
@@ -89,9 +69,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevTools Hub - Free Online Developer Tools & Tutorials",
-    description:
-      "Use JSON Formatter, JWT Decoder, Base64 Converter, Regex Tester, UUID Generator, Markdown Preview, Gradient Marker, and Image to Base64.",
+    title: "DevTools Hub - Developer Tools and Practical Guides",
+    description: "Use practical tools for common developer tasks and browse concise technical guides.",
     images: [DEFAULT_OG_IMAGE],
   },
   icons: {
@@ -140,7 +119,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="antialiased">
         {/* Google Analytics */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-RCXG9GNY5X"
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -148,7 +127,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             window.dataLayer = window.dataLayer || [];
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-RCXG9GNY5X');
+            gtag('config', '${gaMeasurementId}', { send_page_view: false });
           `}
         </Script>
         <script

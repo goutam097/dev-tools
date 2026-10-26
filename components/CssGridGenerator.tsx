@@ -37,6 +37,18 @@ export default function CssGridGenerator() {
         break;
     }
   };
+  const reset = () => {
+    setColumns(3);
+    setRows(2);
+    setColumnGap(12);
+    setRowGap(12);
+    setJustifyItems("stretch");
+    setAlignItems("stretch");
+    setItemCount(6);
+    setItemLabels(["One", "Two", "Three", "Four", "Five", "Six"]);
+    setCopied(false);
+    setCopyMessage("");
+  };
   const copyCss = async () => {
     try {
       await navigator.clipboard.writeText(css);
@@ -52,7 +64,10 @@ export default function CssGridGenerator() {
   return (
     <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
       <section className="space-y-6 rounded-3xl border border-(--border) bg-white p-5 shadow-sm sm:p-7">
-        <p className="tool-label">Grid settings</p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="tool-label">Grid settings</p>
+          <button type="button" onClick={reset} className="rounded-lg border border-(--border) px-3 py-2 text-xs text-(--muted) hover:bg-(--surface)">Reset</button>
+        </div>
         <div className="grid grid-cols-2 gap-4">
           {[
             { label: "Columns", value: columns, update: setColumns, max: 12 },

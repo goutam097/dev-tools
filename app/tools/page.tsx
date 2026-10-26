@@ -3,27 +3,18 @@ import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
-import AdSenseSlot from "@/components/AdSenseSlot";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Developer Tools Directory | DevTools Hub",
+  title: "Developer Tools Directory",
   description:
-    "Explore all free online developer tools by category: JSON formatter, JWT decoder, Base64 encoder, regex tester, UUID generator, HTML formatter, and more.",
-  keywords: [
-    "developer tools directory",
-    "developer tools online free",
-    "json formatter online free",
-    "base64 encoder online",
-    "regex tester javascript tool",
-    "html formatter online free",
-  ],
+    "Browse browser-based developer tools for data validation, conversion, frontend layouts, and everyday engineering workflows.",
   alternates: {
     canonical: "/tools",
   },
   openGraph: {
-    title: "Developer Tools Directory | DevTools Hub",
+    title: "Developer Tools Directory",
     description:
       "Browse every DevTools Hub utility with direct links, use cases, and quick access for day-to-day engineering tasks.",
     url: `${SITE_URL}/tools`,
@@ -40,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Developer Tools Directory | DevTools Hub",
+    title: "Developer Tools Directory",
     description: "Browse all browser-based developer tools in one indexable hub.",
     images: [DEFAULT_OG_IMAGE],
   },
@@ -62,6 +53,29 @@ const faqItems = [
   {
     q: "Which tools are best for API debugging?",
     a: "Start with JSON Formatter, JWT Decoder, Base64 Converter, and Regex Tester for common API and payload workflows.",
+  },
+];
+
+const toolCategories = [
+  {
+    title: "Data and validation",
+    description: "Inspect, format, validate, or transform structured developer data.",
+    slugs: ["json-formatter", "json-to-typescript", "json-schema-playground", "jwt-decoder", "regex-tester", "csv-data-cleaner"],
+  },
+  {
+    title: "Text and encoding",
+    description: "Convert text, URLs, timestamps, markup, and image data.",
+    slugs: ["base64-converter", "url-encoder-decoder", "timestamp-converter", "markdown-preview", "html-formatter", "image-to-base64"],
+  },
+  {
+    title: "Frontend and visual tools",
+    description: "Create and preview layouts, colors, and page metadata.",
+    slugs: ["gradient-marker", "css-grid-generator", "meta-tag-generator"],
+  },
+  {
+    title: "Workflow utilities",
+    description: "Generate identifiers, schedules, and QR codes for common tasks.",
+    slugs: ["uuid-generator", "cron-expression-builder", "bulk-qr-code-generator"],
   },
 ];
 
@@ -87,34 +101,40 @@ export default function ToolsIndexPage() {
 
       <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Developer Tools Directory</h1>
       <p className="mt-3 max-w-3xl text-sm leading-7 text-(--muted)">
-        Access a curated suite of free, browser-native developer utilities designed for speed and privacy. 
-        Whether you are validating API payloads, decoding authentication tokens, or optimizing frontend assets, 
-        our directory provides instant access to the tools you need for efficient engineering workflows.
+        Choose a tool by the task you need to complete. Each page explains its controls, input rules, and known limitations. Basic use does not require an account; tools that support saved history send entries to the account history service only when you are signed in.
       </p>
 
-      <AdSenseSlot slot="2222222222" />
-
-      <section className="mt-8 grid grid-cols-1 gap-4 md:mt-10 md:grid-cols-2 lg:grid-cols-3">
-        {toolCatalog.map((tool) => (
-          <article key={tool.slug} className="flex flex-col justify-between rounded-3xl border border-(--border) bg-white p-6 shadow-sm transition hover:shadow-md">
-            <div>
-              <h2 className="font-serif text-2xl italic text-(--ink)">{tool.title}</h2>
-              <p className="mt-2 text-sm leading-6 text-(--muted)">{tool.description}</p>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              <Link
-                href={`/tools/${tool.slug}`}
-                className="inline-flex rounded-xl bg-(--ink) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--bg)"
-              >
-                Open tool
-              </Link>
-              <Link href={`/tools/${tool.slug}#how-to-use`} className="inline-flex rounded-xl border border-(--border) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--ink)">
-                Learn more
-              </Link>
-            </div>
-          </article>
-        ))}
-      </section>
+      {toolCategories.map((category) => (
+        <section key={category.title} className="mt-8 md:mt-10" aria-labelledby={`category-${category.title.toLowerCase().replace(/\s+/g, "-")}`}>
+          <div className="mb-4">
+            <h2 id={`category-${category.title.toLowerCase().replace(/\s+/g, "-")}`} className="font-serif text-2xl italic text-(--ink)">{category.title}</h2>
+            <p className="mt-1 text-sm text-(--muted)">{category.description}</p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {toolCatalog
+              .filter((tool) => category.slugs.includes(tool.slug))
+              .map((tool) => (
+                <article key={tool.slug} className="flex flex-col justify-between rounded-3xl border border-(--border) bg-white p-6 shadow-sm transition hover:shadow-md">
+                  <div>
+                    <h3 className="font-serif text-2xl italic text-(--ink)">{tool.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-(--muted)">{tool.description}</p>
+                  </div>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    <Link
+                      href={`/tools/${tool.slug}`}
+                      className="inline-flex rounded-xl bg-(--ink) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--bg)"
+                    >
+                      Open tool
+                    </Link>
+                    <Link href={`/tools/${tool.slug}#how-to-use`} className="inline-flex rounded-xl border border-(--border) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--ink)">
+                      Instructions
+                    </Link>
+                  </div>
+                </article>
+              ))}
+          </div>
+        </section>
+      ))}
 
       <section className="mt-10 rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
         <h2 className="font-serif text-2xl italic text-(--ink)">How to Choose the Right Tool Quickly</h2>
