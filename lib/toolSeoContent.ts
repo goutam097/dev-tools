@@ -79,18 +79,18 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
   },
   "base64-converter": {
     primaryKeyword: "base64 encoder online",
-    metaTitle: "Base64 Encode & Decode Online – Free Text to Base64 Converter",
+    metaTitle: "Base64 Encoder & Decoder Online – Convert Text",
     metaDescription:
-      "Encode text to Base64 or decode Base64 strings online. Supports UTF-8, clear validation, and browser-based developer workflows with examples and related tools.",
+      "Encode UTF-8 text to Base64 or decode a Base64 string back to text. Switch modes, review validation errors, and compare the result in your browser.",
     intro: [
-      "Use this Base64 converter to encode text to Base64 or decode Base64 back to readable text. Base64 is a text-safe way to represent binary data; it is not encryption and it does not protect sensitive information.",
-      "This tool is built for real-world developer work: UTF-8 text, malformed input checks, and quick comparisons with the Base64 guide and the Image to Base64 tool when you need to embed assets or learn the encoding pattern.",
+      "Use the mode toggle to encode UTF-8 text as Base64 or decode Base64 text back to UTF-8. For example, encoding `Hello` produces `SGVsbG8=`. Base64 is an encoding, not encryption, and does not protect secrets.",
+      "The conversion runs in your browser. If you are signed in, a successful conversion may also save its input and output to your account history. Do not enter credentials or other sensitive values. For image files, use the separate Image to Base64 converter.",
     ],
     howToSteps: [
-      "Paste plain text or a Base64 string into the input box.",
-      "Choose the correct mode or let the tool detect the input format automatically.",
-      "Review the output and copy it for headers, Data URIs, API payloads, and debugging workflows.",
-      "Use the Base64 guide for examples or the Image to Base64 tool for asset-embedding workflows.",
+      "Choose Encode or Decode with the mode toggle.",
+      "Enter UTF-8 text to encode, or a Base64 string to decode.",
+      "Select the conversion button and review the result or any validation error.",
+      "Copy the result from the output area. For image files, open the Image to Base64 converter.",
     ],
     sections: [
       {
@@ -111,7 +111,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
         heading: "UTF-8, Validation, and Safe Input Handling",
         paragraphs: [
           "A common problem in real-world Base64 tools is that browser-only `btoa()` and `atob()` methods are not UTF-8 safe for general text. Emojis, accented characters, and other multibyte characters need proper UTF-8 conversion before encoding and after decoding.",
-          "Production-safe tools should also reject malformed Base64 input instead of silently producing broken output. That is why the converter validates the input format and explains when the text is empty or invalid before returning a result.",
+          "This converter encodes UTF-8 text and validates Base64 syntax and decoded UTF-8. It accepts whitespace and URL-safe `-` and `_` characters during decoding. It does not encode files; use the image converter for supported image inputs.",
         ],
       },
     ],
@@ -131,43 +131,40 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
         answer: "Yes. URL-safe Base64 replaces '+' with '-' and '/' with '_' to avoid conflict with URL reserved characters.",
       },
     ],
-    relatedSlugs: ["image-to-base64", "base64-converter", "jwt-decoder"],
+    relatedSlugs: ["image-to-base64", "jwt-decoder"],
   },
   "regex-tester": {
     primaryKeyword: "regex tester javascript tool",
-    metaTitle: "Regex Tester & Debugger - Live JavaScript Pattern Matching",
+    metaTitle: "JavaScript Regex Tester – Test Patterns and Matches",
     metaDescription:
-      "Test and debug JavaScript regular expressions in real-time. Inspect matches, groups, and flags with our private, browser-based regex tester.",
+      "Test JavaScript regular expressions against sample text. Choose regex flags, see the match count, and highlight matched text as you edit.",
     intro: [
-      "Regular expressions (regex) are powerful but notoriously difficult to get right on the first try. This regex tester JavaScript tool provides an interactive environment to build, test, and refine your patterns against real sample text before you commit them to your codebase.",
-      "By providing instant feedback on matches and captured groups, this tool helps you avoid common pitfalls like 'catastrophic backtracking' or accidental greediness that can lead to performance issues or security vulnerabilities in production.",
+      "Enter a JavaScript regular-expression pattern and sample text to see the number of matches and highlight the matching text. For example, use `[A-Z]+` with the `g` flag to find uppercase runs.",
+      "The tester uses the browser's JavaScript regular-expression engine. It displays whole matches, not separate capture-group values, and a successful sample does not prove a pattern is correct for every input.",
     ],
     howToSteps: [
-      "Enter the text you want to test against in the 'Test String' area.",
-      "Type your regular expression pattern (e.g., ^[a-z0-9_-]{3,16}$).",
-      "Toggle flags like 'Global' (g), 'Case Insensitive' (i), or 'Multiline' (m).",
-      "Review highlighted matches and capture group details instantly.",
+      "Enter a pattern without slash delimiters in the Regular Expression field.",
+      "Enter the flags in the adjacent field, such as `g` for all matches or `gi` for case-insensitive matches.",
+      "Type or paste sample text in Test Text.",
+      "Review the match count, highlighted text, or the JavaScript error shown for an invalid pattern or flag.",
     ],
     sections: [
       {
-        heading: "The Power of Regular Expressions in Web Dev",
+        heading: "Try a Pattern Against Example Text",
         paragraphs: [
-          "In web development, regex is indispensable for tasks like form validation (verifying email formats or password strength), URL routing (extracting parameters from a path), and string manipulation (cleaning user input or parsing complex logs).",
-          "For example, a common regex for a simple email validation might look like `/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/`. Testing this against multiple valid and invalid email addresses in a live environment is the best way to ensure your validation logic is robust.",
+          "To find digit runs, enter `\\d+`, use the `g` flag, and test `Order 12, item 305`. To check an entire lowercase slug, try `^[a-z0-9-]+$` with the `i` flag removed if uppercase letters should fail. Include both expected matches and non-matches in your test text.",
         ],
       },
       {
-        heading: "Greedy vs Lazy Quantifiers",
+        heading: "Flags and Capture Groups",
         paragraphs: [
-          "By default, quantifiers like `*` and `+` are 'greedy', meaning they match as much text as possible. This can lead to unexpected results, such as matching from the first quote to the *last* quote in a string containing multiple quoted sections.",
-          "Adding a `?` after a quantifier (e.g., `*?` or `+?`) makes it 'lazy', matching the smallest amount of text necessary. Using a regex debugger allows you to visualize these differences and choose the correct behavior for your specific use case.",
+          "The flags field accepts JavaScript regular-expression flags, including `g` (global), `i` (case-insensitive), and `m` (multiline). The tester enumerates all matches, adding `g` internally when it is omitted. Parentheses still define capture groups in a pattern, but this interface highlights full matches and does not list group values separately.",
         ],
       },
       {
-        heading: "Performance and Security (ReDoS)",
+        heading: "Check Edge Cases",
         paragraphs: [
-          "Poorly written regular expressions can lead to Regular Expression Denial of Service (ReDoS) attacks. This happens when a pattern takes an exponential amount of time to process certain 'evil' strings. Patterns with nested quantifiers (like `(a+)+$`) are particularly susceptible.",
-          "When building complex patterns, always test them against long strings and edge cases. If a match takes too long, it's a sign that your regex needs to be optimized for better performance and security.",
+          "Test empty values, line breaks, punctuation, and strings that almost match. Avoid testing untrusted or extremely long text with complex patterns: regular-expression evaluation runs in the browser's main thread and can make the page unresponsive.",
         ],
       },
     ],
@@ -180,7 +177,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
       {
         question: "How do I use capture groups?",
         answer:
-          "Wrap part of your pattern in parentheses `()` to create a capture group. The tester will show you the content matched by each group individually.",
+          "Wrap part of your pattern in parentheses `()` to define a capture group. This tester highlights the full match and does not display individual capture-group values.",
       },
       {
         question: "What does the 'm' (multiline) flag do?",
@@ -194,16 +191,16 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     primaryKeyword: "jwt decoder online",
     metaTitle: "JWT Decoder Online - Inspect Header, Payload & Claims",
     metaDescription:
-      "Decode JSON Web Tokens (JWT) instantly. View header data, payload claims, and expiration dates. Browser-side decoding; signed-in use may save the token to account history. Decoding does not verify signatures.",
+      "Decode a JWT's Base64URL header and payload in your browser. Signature verification is not performed; signed-in use may save tokens to account history.",
     intro: [
       "JSON Web Tokens (JWT) are a standard for securely transmitting information between parties as a JSON object. Use this utility to inspect decoded claims while debugging. It does not authenticate users or verify token signatures.",
       "The tool decodes the Base64Url-encoded header and payload. Decoding does not verify the signature, issuer, audience, or expiry and must not be treated as authentication. When signed in, submitted tokens and decoded output are sent to account history. Avoid production credentials.",
     ],
     howToSteps: [
       "Paste your encoded JWT into the input field.",
-      "The tool automatically splits the token into Header, Payload, and Signature.",
-      "Inspect the decoded JSON in the respective sections below.",
-      "Check the 'exp' (expiration) claim to verify token validity.",
+      "Select Decode to inspect the decoded Header and Payload JSON.",
+      "Read claims such as `exp` as data only; the tool does not check whether they are valid.",
+      "Never paste a production token. When signed in, successful decoding may save the token and decoded output to account history.",
     ],
     sections: [
       {
@@ -248,18 +245,18 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
   },
   "uuid-generator": {
     primaryKeyword: "uuid generator online",
-    metaTitle: "UUID Generator Online - Generate UUID v4 Instantly",
+    metaTitle: "UUID v4 Generator Online – Generate up to 50 IDs",
     metaDescription:
-      "Generate UUID v4 values with this free UUID generator online tool. Create secure unique IDs for databases, APIs, and distributed systems.",
+      "Generate 1–50 UUID v4 values with the browser's crypto.randomUUID() API, then copy individual IDs for development and test data.",
     intro: [
-      "This UUID generator online tool helps you create unique identifiers in one click for database records, API resources, and distributed workflows. UUID v4 values are ideal when you need globally unique IDs without central coordination.",
-      "Use generated UUIDs for testing, seeding, temporary identifiers, or production-ready ID placeholders while building features across frontend and backend systems.",
+      "Generate between 1 and 50 UUID v4 values at a time with the browser's `crypto.randomUUID()` API. The page shows each value with a copy button.",
+      "UUIDs are useful as identifiers in development and test data, but they are not authentication tokens or a substitute for application security controls. If signed in, the generated values may be saved to account history.",
     ],
     howToSteps: [
-      "Choose how many UUIDs you want to generate.",
-      "Generate UUID v4 values instantly.",
-      "Copy one or many IDs for your project.",
-      "Use the UUIDs in database records, APIs, or test fixtures.",
+      "Enter a quantity from 1 to 50.",
+      "Select Generate to create UUID v4 values.",
+      "Use the copy button beside an ID to copy that value.",
+      "Use generated values as development or test identifiers where appropriate.",
     ],
     sections: [
       {
@@ -287,12 +284,12 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     faqs: [
       {
         question: "What UUID version does this tool generate?",
-        answer: "The tool is intended for UUID v4 generation using random values.",
+        answer: "It generates UUID v4 values using the browser's crypto.randomUUID() API.",
       },
       {
         question: "Can I generate multiple UUIDs at once?",
         answer:
-          "Yes. You can generate a list of UUIDs quickly for fixtures, seeds, and bulk workflows.",
+          "Yes. Choose a quantity from 1 through 50, then generate the list. Each value has its own copy button.",
       },
       {
         question: "Is this UUID generator free?",
@@ -303,18 +300,18 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
   },
   "markdown-preview": {
     primaryKeyword: "markdown preview online",
-    metaTitle: "Markdown Preview Online - Live Markdown Editor & Viewer",
+    metaTitle: "Markdown Previewer Online – Live Editor and HTML Copy",
     metaDescription:
-      "Use Markdown preview online with live rendering. Write Markdown and instantly view formatted output for docs, READMEs, and technical content.",
+      "Write Markdown and see a live preview with GitHub Flavored Markdown support. Copy the rendered HTML when you are ready to use it.",
     intro: [
-      "This Markdown preview online tool lets you write and render Markdown side by side so documentation workflows stay fast and predictable. It is useful for README authoring, technical notes, and content drafted for docs portals.",
-      "Live preview reduces formatting guesswork and helps teams produce cleaner documentation with fewer iteration cycles during review.",
+      "Type or paste Markdown in the editor to see its rendered preview update immediately. The renderer supports GitHub Flavored Markdown via remark-gfm, and the Copy HTML button copies the preview's rendered HTML.",
+      "Draft text is rendered in the browser. When you use Copy HTML while signed in, the page may send the Markdown source to your account history. Avoid entering sensitive content.",
     ],
     howToSteps: [
       "Type or paste Markdown content in the editor pane.",
       "Review live rendered output instantly.",
-      "Adjust headings, lists, and code blocks for readability.",
-      "Copy polished Markdown into docs, wikis, or repositories.",
+      "Use headings, lists, links, tables, and fenced code blocks to check common Markdown formatting.",
+      "Select Copy HTML to copy the rendered preview as HTML.",
     ],
     sections: [
       {
@@ -347,12 +344,12 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
       {
         question: "Does this support common Markdown syntax?",
         answer:
-          "Yes. It supports standard headings, lists, links, code blocks, and other typical Markdown structures.",
+          "Yes. The renderer supports common Markdown and GitHub Flavored Markdown features provided by remark-gfm, including tables and task lists.",
       },
       {
         question: "Is the markdown content stored online?",
         answer:
-          "No. Draft content is processed in your browser for fast local preview.",
+          "Preview rendering happens in your browser. If you are signed in, using Copy HTML may save the Markdown source to your account history.",
       },
     ],
     relatedSlugs: ["html-formatter", "json-formatter", "regex-tester"],
@@ -415,18 +412,18 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
   },
   "image-to-base64": {
     primaryKeyword: "image to base64 converter online",
-    metaTitle: "Image to Base64 Converter Online - Encode Images Quickly",
+    metaTitle: "Image to Base64 Converter – Create a Data URI",
     metaDescription:
-      "Convert images to Base64 strings with this free online tool. Great for data URIs, testing, and embedding assets in HTML, CSS, and JSON payloads.",
+      "Convert an image up to 5 MiB into a Base64 data URI in your browser. Preview the result, or paste image data to preview and download it.",
     intro: [
-      "This image to Base64 converter online utility helps you encode image files into text strings for embedding and transfer. It is useful for quick prototyping, transport-safe payloads, and debugging asset handling workflows.",
-      "The image is read in your browser and is not uploaded by this converter. Use only files you are comfortable processing in your browser environment.",
+      "Choose or drop one image up to 5 MiB to create a data URI and preview. The image file is read in your browser and is not uploaded by the converter. If you are signed in, the page may save the file name and a conversion status to your account history; it does not send the image bytes there.",
+      "You can also paste a Base64 string or image data URI to preview and download the decoded image. The page does not provide a button to copy the generated string, so select and copy it from the text field if needed.",
     ],
     howToSteps: [
-      "Upload or drop an image file into the converter.",
-      "Generate a Base64 string instantly.",
-      "Copy the output as plain Base64 or data URI format.",
-      "Use it in CSS, HTML, JSON payloads, or test fixtures.",
+      "Select or drop an image file up to 5 MiB, or paste an existing Base64 string or image data URI.",
+      "Review the data URI in the Base64 String field and the image preview.",
+      "Select text in the field if you need to copy it; the output includes the data URI format.",
+      "Use Download to save a preview generated from pasted image data.",
     ],
     sections: [
       {
@@ -460,7 +457,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
       {
         question: "Can I use the output as a data URI?",
         answer:
-          "Yes. You can use the generated Base64 string directly in data URI-based HTML and CSS contexts.",
+          "Yes. File conversion produces a data URI that can be used in HTML or CSS contexts. The Base64 String field displays the complete data URI.",
       },
       {
         question: "Should I use Base64 for large images?",
@@ -627,7 +624,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
   },
   "timestamp-converter": {
     primaryKeyword: "unix timestamp converter",
-    metaTitle: "Unix Timestamp Converter - Convert Epoch Time to Date",
+    metaTitle: "Unix Timestamp Converter – Seconds, Milliseconds & UTC",
     metaDescription:
       "Convert Unix timestamps to local time, UTC, and ISO 8601, or convert a date and time to Unix seconds and milliseconds.",
     intro: [
@@ -645,7 +642,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
         heading: "Unix Timestamp Seconds and Milliseconds",
         paragraphs: [
           "A Unix timestamp is the number of elapsed seconds from January 1, 1970 at 00:00:00 UTC. Many programming APIs use milliseconds instead, so select the unit to avoid interpreting the date at the wrong scale.",
-          "This converter displays both seconds and milliseconds for each date. Negative timestamps represent dates before the Unix epoch, and sub-millisecond precision is discarded.",
+          "For example, `1700000000` seconds is `2023-11-14T22:13:20.000Z`; the same instant in milliseconds is `1700000000000`. This converter displays both units for each date. Negative timestamps represent dates before the Unix epoch, and sub-millisecond precision is discarded.",
         ],
       },
       {
@@ -677,7 +674,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
   },
   "csv-data-cleaner": {
     primaryKeyword: "csv cleaner online",
-    metaTitle: "CSV Data Cleaner Online - Clean and Download CSV Files",
+    metaTitle: "CSV Data Cleaner – Remove Duplicates and Download",
     metaDescription: "Clean a CSV in your browser by removing blank rows and duplicate records, trimming cells, replacing empty values, and exporting selected columns.",
     intro: [
       "Paste CSV content or choose a local CSV file to remove empty rows and duplicate records, trim surrounding whitespace, and fill blank cells.",

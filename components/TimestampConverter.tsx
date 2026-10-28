@@ -55,9 +55,13 @@ export default function TimestampConverter() {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
 
   useEffect(() => {
-    const now = new Date();
-    setCurrentTime(now);
-    setDateTimeInput(formatLocalDateTimeInput(now));
+    const timerId = window.setTimeout(() => {
+      const now = new Date();
+      setCurrentTime(now);
+      setDateTimeInput(formatLocalDateTimeInput(now));
+    }, 0);
+
+    return () => window.clearTimeout(timerId);
   }, []);
 
   const convert = () => {
