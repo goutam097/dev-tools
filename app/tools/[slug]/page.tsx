@@ -203,7 +203,7 @@ export default async function ToolPage({ params }: Props) {
 
       <header className="mb-8">
         <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Developer Utility</p>
-        <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-4xl">{seoContent.metaTitle}</h1>
+        <h1 className="mt-2 font-serif text-3xl italic text-(--ink) sm:text-4xl">{tool.title}</h1>
         <p className="mt-3 max-w-3xl text-sm text-(--muted)">{seoContent.metaDescription}</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link

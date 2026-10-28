@@ -133,52 +133,118 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "what-is-base64-encoding-with-examples",
-    title: "What Is Base64 Encoding? A Comprehensive Developer Guide",
+    title: "What Is Base64 Encoding? Examples, Uses, and JavaScript",
     description:
-      "Learn what Base64 encoding is, how it works, when to use it, and how to handle UTF-8 and invalid input correctly in real web development workflows.",
+      "Learn how Base64 represents bytes as text, see working JavaScript and Node.js encode/decode examples, and understand UTF-8, Data URIs, and its limits.",
     publishedAt: "2026-04-25",
-    updatedAt: "2026-10-26",
+    updatedAt: "2026-10-27",
     intro: [
-      "Base64 encoding is a ubiquitous tool in a developer's arsenal, yet its internal mechanics and appropriate use cases are often misunderstood. It is not encryption, nor is it a method for data compression; rather, it is a way to represent binary data in a text-safe format.",
-      "If you work with APIs, email headers, Data URIs, or debugging transport-layer payloads, Base64 turns up constantly. Use our Base64 Converter to test examples in the browser, learn how Base64 encoding works in practice, and try the Image to Base64 tool when you need a quick asset-embedding workflow.",
+      "Base64 represents bytes as printable text. It is neither encryption nor compression: anyone with the encoded value can decode it, and the encoded data is typically about one-third larger.",
+      "For example, the UTF-8 bytes for `Hello` encode to `SGVsbG8=` and decode back to `Hello`. Try the [Base64 Converter](/tools/base64-converter) for text, or the [Image to Base64 Converter](/tools/image-to-base64) for a small image data URI.",
     ],
     sections: [
       {
-        heading: "The Mechanics of Base64: How Binary Becomes Text",
+        heading: "How Base64 encoding works",
         paragraphs: [
-          "Base64 works by taking groups of three 8-bit bytes (24 bits total) and splitting them into four 6-bit chunks. Each 6-bit chunk maps to one of 64 characters. If the input length is not a multiple of three bytes, padding may be added at the end. See [RFC 4648](https://www.rfc-editor.org/rfc/rfc4648.html) for the Base64 specification.",
-          "Because 4 characters are used to represent 3 bytes of data, Base64 encoding increases the data size by approximately 33%. This overhead is the trade-off for ensuring that binary data can pass through text-based systems like SMTP, HTML forms, and HTTP headers without corruption.",
+          "Base64 groups input into sets of three bytes (24 bits), then represents each group as four 6-bit values from a 64-character alphabet. If the final group has fewer than three bytes, `=` padding may be used. The encoding is specified in [RFC 4648](https://www.rfc-editor.org/rfc/rfc4648.html).",
+          "Four output characters represent three input bytes, so the encoded representation is approximately 33% larger before accounting for padding and surrounding format. Base64 can carry bytes through text-only interfaces, but it is not compression and does not make data private.",
         ],
       },
       {
-        heading: "Base64 in the Browser: btoa() and atob()",
+        heading: "Simple browser example for ASCII text",
         paragraphs: [
-          "Modern browsers provide two built-in functions for Base64: `btoa()` (binary to ASCII) for encoding and `atob()` (ASCII to binary) for decoding. These are incredibly useful for quick transformations in the frontend.",
-          "However, `btoa()` and `atob()` only support 'Latin1' characters. If you need to encode UTF-8 strings containing emojis or non-English characters, you must first convert the string to a Uint8Array. A production-safe implementation, like the one used in our Base64 Converter, handles these edge cases automatically and rejects malformed input cleanly.",
+          "For ASCII-only input, the browser's built-in `btoa()` and `atob()` methods provide a short example: `btoa(\"Hello\")` returns `SGVsbG8=`, and `atob(\"SGVsbG8=\")` returns `Hello`. These functions operate on byte-like strings; they do not directly encode arbitrary Unicode text as UTF-8.",
+          "For UTF-8 text, convert to bytes before Base64 encoding and decode the bytes with `TextDecoder`. This browser example handles general Unicode strings:",
+          "```js\nfunction encodeBase64Utf8(text) {\n  const bytes = new TextEncoder().encode(text);\n  let binary = \"\";\n  for (const byte of bytes) binary += String.fromCharCode(byte);\n  return btoa(binary);\n}\n\nfunction decodeBase64Utf8(base64) {\n  const binary = atob(base64);\n  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));\n  return new TextDecoder(\"utf-8\", { fatal: true }).decode(bytes);\n}\n\nencodeBase64Utf8(\"Hello 👋\");\n```",
         ],
       },
       {
-        heading: "Server-Side Base64 with Node.js Buffers",
+        heading: "Node.js encode and decode example",
         paragraphs: [
-          "In Node.js, Base64 operations are handled via the `Buffer` class. To encode a string, you can use `Buffer.from('text').toString('base64')`. To decode, use `Buffer.from(encodedString, 'base64').toString('utf-8')`.",
-          "This is a common pattern when handling API credentials for Basic Auth or when processing file uploads in a backend service. Understanding these native methods allows you to build robust data pipelines without relying on external dependencies.",
+          "Node.js `Buffer` can encode and decode UTF-8 text directly: `Buffer.from(\"Hello 👋\", \"utf8\").toString(\"base64\")` produces a Base64 string, and `Buffer.from(encoded, \"base64\").toString(\"utf8\")` decodes it. Validate data according to the protocol using it; a decoder accepting a string does not guarantee that the input was valid canonical Base64.",
         ],
       },
       {
-        heading: "Practical Use Case: Data URIs and Inline Assets",
+        heading: "Data URIs and practical uses",
         paragraphs: [
-          "One of the most visible uses of Base64 is the Data URI scheme. By encoding an image as a Base64 string, you can embed it directly into your HTML (`<img src='data:image/png;base64,...'>`) or CSS. This is excellent for small icons or low-resolution placeholders because it eliminates the need for an additional HTTP request.",
-          "Check out our Image to Base64 tool to quickly generate these URIs for your projects. Just remember to use them sparingly, as large Base64 strings can increase the size of your CSS and HTML files and slow initial page loads if overused.",
+          "A Data URI includes a media type and data, for example `data:text/plain;base64,SGVsbG8=`. Image data URIs can place small image bytes directly into HTML or CSS. The [Image to Base64 tool](/tools/image-to-base64) creates a data URI from an image file.",
+          "Other uses include representing binary data in JSON fields or text-based transport formats that explicitly expect Base64. Use the encoding required by the receiving protocol; standard Base64 and URL-safe Base64 use different characters.",
+        ],
+      },
+      {
+        heading: "Limitations and safe handling",
+        paragraphs: [
+          "Base64 is reversible and should not be used to hide passwords, API keys, personal data, or other secrets. Use encryption and access controls when confidentiality is required. Encoding also adds size, so for large images or files, normal binary delivery with appropriate caching is usually more efficient.",
+          "When decoding, handle invalid characters and invalid UTF-8 according to the application needs. Never assume that successful Base64 decoding proves a payload is trustworthy or authentic.",
         ],
       },
     ],
-    relatedTools: ["base64-converter", "image-to-base64", "jwt-decoder"],
+    relatedTools: ["base64-converter", "image-to-base64"],
+  },
+  {
+    slug: "best-free-online-tools-for-developers",
+    title: "Best Free Online Developer Tools for Everyday Coding",
+    description:
+      "Choose practical browser-based tools for timestamps, CSV cleanup, regular expressions, Markdown, Base64, JWT inspection, and UUID generation.",
+    publishedAt: "2026-04-25",
+    updatedAt: "2026-10-27",
+    intro: [
+      "The best online developer tool depends on the job: a timestamp converter should make seconds, milliseconds, and timezones clear; a CSV cleaner should explain exactly what it changes; and a JWT decoder must not imply that decoding verifies a signature. This task-based guide matches common coding jobs to the tools available here.",
+      "These utilities are intended for quick development and test workflows, not for processing secrets. Some tools can save submitted values or generated results to account history when you are signed in; check the individual tool's data-handling note before use.",
+    ],
+    sections: [
+      {
+        heading: "Convert Unix timestamps and dates",
+        paragraphs: [
+          "Use the [Unix Timestamp Converter](/tools/timestamp-converter) to convert seconds or milliseconds to local time, UTC, and ISO 8601, or convert a selected date and time back to both timestamp units. The example `1700000000` seconds represents `2023-11-14T22:13:20.000Z`; choose local time or UTC when entering a date.",
+        ],
+      },
+      {
+        heading: "Clean a CSV before using it",
+        paragraphs: [
+          "The [CSV Data Cleaner](/tools/csv-data-cleaner) removes fully blank rows and duplicate full rows, trims surrounding whitespace, optionally fills blank values, and lets you choose columns for the downloaded CSV. It handles local files up to 5 MiB and previews up to 100 rows; review its cleaning rules before relying on the output.",
+        ],
+      },
+      {
+        heading: "Test a JavaScript regular expression",
+        paragraphs: [
+          "Try a pattern in the [JavaScript Regex Tester](/tools/regex-tester) against representative sample text. It shows a match count and highlights full matches; it does not display individual capture-group values. Include non-matching and edge-case samples because a few successful examples do not prove a pattern is correct for every input.",
+        ],
+      },
+      {
+        heading: "Preview Markdown and convert text",
+        paragraphs: [
+          "The [Markdown Previewer](/tools/markdown-preview) renders Markdown as you type and can copy the rendered HTML. Use the [Base64 Converter](/tools/base64-converter) to encode UTF-8 text or decode Base64 text; Base64 is not encryption. For a small image data URI, the [Image to Base64 Converter](/tools/image-to-base64) reads an image up to 5 MiB in the browser.",
+        ],
+      },
+      {
+        heading: "Inspect tokens or generate test identifiers",
+        paragraphs: [
+          "Use the [JWT Decoder](/tools/jwt-decoder) to view a token's decoded header and payload. Decoding does not verify its signature or claims, so never trust the output as authentication and do not paste production tokens. The [UUID v4 Generator](/tools/uuid-generator) creates up to 50 identifiers per batch for development and test data; UUIDs are not authentication tokens.",
+        ],
+      },
+      {
+        heading: "Choose tools with clear limits",
+        paragraphs: [
+          "Before reusing output, check input limits, supported formats, and what the page sends to account history. Tool calculations may run locally in your browser while separate history or analytics requests still occur. Use synthetic or redacted examples for sensitive work, and validate important output in the application that will consume it.",
+        ],
+      },
+    ],
+    relatedTools: [
+      "timestamp-converter",
+      "csv-data-cleaner",
+      "regex-tester",
+      "markdown-preview",
+      "base64-converter",
+      "image-to-base64",
+      "jwt-decoder",
+      "uuid-generator",
+    ],
   },
 ];
 
 export const legacyBlogSlugs: Record<string, string> = {
   "top-10-developer-tools-2026": "five-developer-tool-workflows",
-  "best-free-online-tools-for-developers": "evaluate-online-developer-tools",
 };
 
 export function getEstimatedReadingMinutes(post: BlogPost): number {

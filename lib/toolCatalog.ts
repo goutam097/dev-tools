@@ -87,7 +87,7 @@ This tool is useful when working with APIs, debugging responses, and improving r
     metaDescription:
       "Decode JWT tokens and view payload, header, and claims instantly.",
     keywords: ["jwt decoder", "decode jwt", "jwt viewer"],
-    updatedAt: "2026-04-25",
+    updatedAt: "2026-10-27",
 
     content: `
 JWT Decoder allows developers to inspect JSON Web Tokens.
@@ -127,7 +127,7 @@ It helps you understand token structure, debug authentication, and verify payloa
       "base64 examples",
       "learn base64 encoding",
     ],
-    updatedAt: "2026-04-25",
+    updatedAt: "2026-10-27",
 
     content: `
 Base64 Converter helps encode text to Base64 and decode Base64 strings accurately in the browser.
@@ -158,7 +158,7 @@ It is useful for data URIs, API payloads, email-safe transport, and debugging bi
     metaDescription:
       "Upload images and convert them into Base64 strings instantly.",
     keywords: ["image to base64", "convert image base64"],
-    updatedAt: "2026-04-25",
+    updatedAt: "2026-10-27",
 
     content: `
 Convert images into Base64 format for embedding in HTML, CSS, or APIs.
@@ -185,7 +185,7 @@ This is useful for reducing HTTP requests and embedding assets directly.
     metaDescription:
       "Test and debug regex patterns with instant matching results.",
     keywords: ["regex tester", "regex tool", "regular expression tester"],
-    updatedAt: "2026-04-25",
+    updatedAt: "2026-10-27",
 
     content: `
 Regex Tester helps developers test regular expressions with live feedback.
@@ -212,7 +212,7 @@ It is useful for validation, parsing text, and debugging patterns.
     metaDescription:
       "Generate secure UUIDs instantly for use in applications and APIs.",
     keywords: ["uuid generator", "uuid v4", "generate uuid"],
-    updatedAt: "2026-04-25",
+    updatedAt: "2026-10-27",
 
     content: `
 UUID Generator helps create unique identifiers for systems and APIs.
@@ -238,7 +238,7 @@ Useful for databases, distributed systems, and tracking IDs.
     metaTitle: "Markdown Preview Online – Live Markdown Editor",
     metaDescription: "Write Markdown and preview rendered output instantly.",
     keywords: ["markdown preview", "markdown editor"],
-    updatedAt: "2026-04-25",
+    updatedAt: "2026-10-27",
 
     content: `
 Markdown Preview allows you to write Markdown and see live output.
@@ -378,7 +378,7 @@ Choose component mode to encode reserved characters, or full URL mode to preserv
   },
   {
     slug: "timestamp-converter",
-    title: "Timestamp Converter",
+    title: "Unix Timestamp Converter",
     shortTitle: "Timestamp Converter",
     description:
       "Convert Unix timestamps and dates with local, UTC, and ISO 8601 output.",
@@ -393,7 +393,7 @@ Choose component mode to encode reserved characters, or full URL mode to preserv
       "unix time milliseconds",
       "timestamp converter online",
     ],
-    updatedAt: "2026-10-12",
+    updatedAt: "2026-10-27",
     content: `
 Convert Unix timestamps in seconds or milliseconds to readable local and UTC dates, or convert a selected date and time into Unix timestamps.
 Results include ISO 8601 format and both timestamp units.
@@ -425,7 +425,7 @@ Results include ISO 8601 format and both timestamp units.
       "remove duplicate csv rows",
       "csv whitespace cleaner",
     ],
-    updatedAt: "2026-10-26",
+    updatedAt: "2026-10-27",
     content:
       "Clean pasted or uploaded CSV data locally, preview the results, and download the cleaned file.",
     faqs: [
