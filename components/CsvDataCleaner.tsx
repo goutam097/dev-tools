@@ -35,6 +35,9 @@ export default function CsvDataCleaner() {
 
   const loadFile = async (file?: File) => {
     if (!file) return;
+    setResult(null);
+    setSelectedColumns([]);
+    setError("");
     if (file.size > MAX_CSV_FILE_SIZE_BYTES) {
       setError("Choose a CSV file no larger than 5 MiB so it can be processed in your browser.");
       if (fileInputRef.current) fileInputRef.current.value = "";
@@ -47,9 +50,6 @@ export default function CsvDataCleaner() {
     }
     try {
       setInput(await file.text());
-      setResult(null);
-      setSelectedColumns([]);
-      setError("");
     } catch {
       setError("The selected file could not be read. Try another CSV file.");
     } finally {
