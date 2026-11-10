@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/invoice-generator/</loc></url>
+  <url><loc>https://example.com/invoice-generator/gst-invoice-generator-india.html</loc></url>
+  <url><loc>https://example.com/invoice-generator/vat-invoice-generator-uk.html</loc></url>
+  <url><loc>https://example.com/invoice-generator/vat-invoice-generator-eu.html</loc></url>
+  <url><loc>https://example.com/invoice-generator/vat-invoice-generator-uae.html</loc></url>
+  <url><loc>https://example.com/invoice-generator/gst-invoice-generator-australia.html</loc></url>
+  <url><loc>https://example.com/invoice-generator/gst-invoice-generator-canada.html</loc></url>
+  <url><loc>https://example.com/invoice-generator/gst-invoice-generator-singapore.html</loc></url>
+  <url><loc>https://example.com/invoice-generator/sales-tax-invoice-generator-us.html</loc></url>
+  <url><loc>https://example.com/invoice-generator/invoice-generator-custom-tax.html</loc></url>
+</urlset>
