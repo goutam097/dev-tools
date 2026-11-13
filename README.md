@@ -30,7 +30,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Set these environment variables to enable analytics:
 
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` for Google Analytics 4
+- `NEXT_PUBLIC_GA_ID` for Google Analytics 4 (legacy alias: `NEXT_PUBLIC_GA_MEASUREMENT_ID`)
 - `NEXT_PUBLIC_CLARITY_PROJECT_ID` for Microsoft Clarity
 
 Tracked signals:
