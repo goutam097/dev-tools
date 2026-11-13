@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Base64Converter from "@/components/Base64Converter";
@@ -21,6 +21,9 @@ import JsonSchemaPlayground from "@/components/JsonSchemaPlayground";
 import CssGridGenerator from "@/components/CssGridGenerator";
 import MetaTagGenerator from "@/components/MetaTagGenerator";
 import BulkQrCodeGenerator from "@/components/BulkQrCodeGenerator";
+import CgpaToPercentageConverter from "@/components/CgpaToPercentageConverter";
+import SalaryCalculator from "@/components/SalaryCalculator";
+import IndianFontConverter from "@/components/IndianFontConverter";
 import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
 import { toolSeoContentBySlug } from "@/lib/toolSeoContent";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -28,6 +31,10 @@ import SidebarScaffold from "@/components/SidebarScaffold";
 
 type Props = {
   params: Promise<{ slug: string }>;
+};
+
+const legacyToolAliases: Record<string, string> = {
+  "kruti-dev-to-unicode": "indian-font-converter",
 };
 
 export const revalidate = 86400;
@@ -70,19 +77,29 @@ function ToolRenderer({ slug }: { slug: string }) {
       return <MetaTagGenerator />;
     case "bulk-qr-code-generator":
       return <BulkQrCodeGenerator />;
+    case "cgpa-to-percentage":
+      return <CgpaToPercentageConverter />;
+    case "salary-calculator":
+      return <SalaryCalculator />;
+    case "indian-font-converter":
+      return <IndianFontConverter />;
     default:
       return null;
   }
 }
 
 export function generateStaticParams() {
-  return toolCatalog.map((tool) => ({ slug: tool.slug }));
+  return [
+    ...toolCatalog.map((tool) => ({ slug: tool.slug })),
+    { slug: "kruti-dev-to-unicode" },
+  ];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const tool = toolCatalogBySlug[slug];
-  const seoContent = toolSeoContentBySlug[slug];
+  const canonicalSlug = legacyToolAliases[slug] ?? slug;
+  const tool = toolCatalogBySlug[canonicalSlug];
+  const seoContent = toolSeoContentBySlug[canonicalSlug];
 
   if (!tool || !seoContent) {
     return {};
@@ -128,8 +145,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ToolPage({ params }: Props) {
   const { slug } = await params;
-  const tool = toolCatalogBySlug[slug];
-  const seoContent = toolSeoContentBySlug[slug];
+  const canonicalSlug = legacyToolAliases[slug] ?? slug;
+
+  if (slug !== canonicalSlug) {
+    redirect(`/tools/${canonicalSlug}`);
+  }
+
+  const tool = toolCatalogBySlug[canonicalSlug];
+  const seoContent = toolSeoContentBySlug[canonicalSlug];
 
   if (!tool || !seoContent) {
     notFound();

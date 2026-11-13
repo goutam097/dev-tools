@@ -817,4 +817,114 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     ],
     relatedSlugs: ["url-encoder-decoder", "meta-tag-generator"],
   },
+  "indian-font-converter": {
+    primaryKeyword: "indian font converter",
+    metaTitle: "Indian Font Converter - Kruti Dev, Bijoy, Preeti and Devlys",
+    metaDescription: "Convert legacy Hindi, Bengali, and Nepali fonts to Unicode and back in the browser with local processing and download support.",
+    intro: [
+      "This converter handles the common legacy typing layouts used in Indian languages: Kruti Dev, Devlys, Bijoy, and Preeti. It helps convert traditional text into Unicode and also reverse the process for legacy documents.",
+      "Using a browser-based conversion engine keeps your text local. The tool can also process DOCX and TXT files without uploading them to a remote service.",
+    ],
+    howToSteps: [
+      "Choose a language and conversion direction from the selector.",
+      "Paste text or upload a DOCX/TXT file.",
+      "Review the live conversion result and copy or download the output.",
+      "Use the swap button to reverse the conversion direction when needed.",
+    ],
+    sections: [
+      {
+        heading: "Why Indian language conversions need careful mapping",
+        paragraphs: [
+          "Legacy fonts often use custom keyboard mappings, reordering rules, and conjunct forms that do not match standard Unicode text layouts. A converter must handle matras, combined letters, and special marks accurately to avoid broken words or garbled output.",
+          "This tool uses browser-side mapping dictionaries so the conversion is transparent, fast, and stays on device.",
+        ],
+      },
+      {
+        heading: "Worked example",
+        paragraphs: [
+          "A Kruti Dev sequence can be converted into standard Hindi Unicode characters and then copied into documents or web pages. Likewise, a Bengali Bijoy layout or Nepali Preeti layout can be reversed into Unicode for broader compatibility and search indexing.",
+          "The conversion interface is designed for quick and repeated use, with an option to download the result as a text or DOCX file.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Does conversion happen locally?", answer: "Yes. All text and document processing is performed in the browser on the local machine." },
+      { question: "What file types are supported for document conversion?", answer: "TXT and DOCX inputs are supported; output can be downloaded as TXT or DOCX and processed locally." },
+    ],
+    relatedSlugs: ["json-formatter"],
+  },
+  "cgpa-to-percentage": {
+    primaryKeyword: "cgpa to percentage",
+    metaTitle: "CGPA to Percentage Converter - University-Wise Calculator",
+    metaDescription:
+      "Convert CGPA to percentage using common university formulas or a generic estimate, with validation notices when the official circular is still pending.",
+    intro: [
+      "A CGPA to percentage converter helps students convert academic grades into a percentage estimate for applications, admissions, and internal forms.",
+      "This tool includes university-aware formulas and a visible verification notice when a formula has not yet been checked against the official circular.",
+    ],
+    howToSteps: [
+      "Choose the target university or the generic formula.",
+      "Enter the CGPA value to convert.",
+      "Review the percentage result and the formula shown on the page.",
+      "Use the result for a rough estimate and confirm with your university if the formula is marked as unverified.",
+    ],
+    sections: [
+      {
+        heading: "Worked Example",
+        paragraphs: [
+          "If a university uses the rule `Percentage = (CGPA - 0.75) × 10`, a CGPA of 8.5 produces approximately 77.5%. The exact conversion depends on the institution and the official academic policy in force for that year.",
+          "Because grading systems vary across universities, it is important to use the formula of the institution you are applying to, rather than a generic equation that may not match its policy.",
+        ],
+      },
+      {
+        heading: "Verification Rule",
+        paragraphs: [
+          "This tool exposes a visible validation notice for formulas that are not confirmed from the official university circular. This helps avoid false confidence when the conversion rule has not been independently verified.",
+          "If a formula is marked unverified, treat the result as a planning estimate and check the official academic rules before using it in a formal application or record.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Which formula is used for CBSE?", answer: "The tool includes the common CBSE estimate of CGPA × 9.5 for quick conversion." },
+      { question: "Why is some university data marked as unverified?", answer: "Because the official conversion policy for that institution was not yet confirmed at the time of building the tool, so the page presents the formula as an estimate only." },
+    ],
+    relatedSlugs: ["salary-calculator", "timestamp-converter"],
+  },
+  "salary-calculator": {
+    primaryKeyword: "salary calculator",
+    metaTitle: "Salary Calculator - Estimate In-Hand Pay After Deductions",
+    metaDescription:
+      "Estimate monthly and annual in-hand salary by subtracting taxes, provident fund, professional tax, and other deductions from gross pay.",
+    intro: [
+      "A salary calculator helps you estimate your take-home pay before committing to a budget or job offer. It balances salary, tax rate, retirement deductions, and other recurring withholdings.",
+      "This is a planning tool, not a legal payroll engine, so it is best used for rough calculations and comparison checks.",
+    ],
+    howToSteps: [
+      "Enter the gross monthly salary.",
+      "Set the income tax rate, provident fund percentage, and any other deductions.",
+      "Review the in-hand monthly and annual salary values in the result panel.",
+      "Update the values whenever the salary or deduction assumptions change.",
+    ],
+    sections: [
+      {
+        heading: "Common Components in a Salary Estimate",
+        paragraphs: [
+          "Gross salary is the starting paycheck before deductions. Tax rate, provident fund, professional tax, and other deductions reduce that amount to the monthly take-home pay that is actually available for spending or saving.",
+          "The estimate is useful for comparing job offers, budgeting, and validating whether a proposed salary matches your expected monthly cash flow.",
+        ],
+      },
+      {
+        heading: "Worked Example",
+        paragraphs: [
+          "If a person earns 75,000 per month and has a 5% tax rate, a 12% provident fund contribution, and a 200 professional tax, the calculator subtracts all withholdings from gross salary and shows the resulting in-hand amount.",
+          "Because real payroll systems depend on local rules, allowances, and declarations, the result should be treated as a planning estimate rather than an official payslip calculation.",
+        ],
+      },
+    ],
+    faqs: [
+      { question: "Is this the same as a payslip calculation?", answer: "No. It is a quick estimate for understanding take-home pay, but it will not capture every local allowance, tax slab, or company policy detail." },
+      { question: "What should I do if my tax rules differ?", answer: "Adjust the tax and deduction inputs to match your local rules or company policy; the calculator updates instantly." },
+    ],
+    relatedSlugs: ["cgpa-to-percentage", "json-formatter"],
+  },
 };
