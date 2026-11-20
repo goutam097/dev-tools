@@ -21,6 +21,9 @@ const toolComponents = {
   "css-grid-generator": lazy(() => import("./CssGridGenerator")),
   "meta-tag-generator": lazy(() => import("./MetaTagGenerator")),
   "bulk-qr-code-generator": lazy(() => import("./BulkQrCodeGenerator")),
+  "cgpa-to-percentage": lazy(() => import("./CgpaToPercentageConverter")),
+  "salary-calculator": lazy(() => import("./SalaryCalculator")),
+  "indian-font-converter": lazy(() => import("./IndianFontConverter")),
 };
 
 export default function ToolRenderer({ slug }: { slug: string }) {

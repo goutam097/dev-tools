@@ -54,6 +54,16 @@ export const toolCatalog: ToolCatalogItem[] = [
       "validate json schema",
       "json parser and validator",
       "json code formatter",
+      "json beautifier",
+      "json pretty print",
+      "format json online",
+      "json lint",
+      "minify json",
+      "fix invalid json",
+      "json error line number",
+      "format large json file",
+      "json formatter no upload",
+      "json tree viewer",
     ],
     updatedAt: "2026-10-26",
 
@@ -86,7 +96,16 @@ This tool is useful when working with APIs, debugging responses, and improving r
     metaTitle: "JWT Decoder Online – Decode JWT Tokens Instantly",
     metaDescription:
       "Decode JWT tokens and view payload, header, and claims instantly.",
-    keywords: ["jwt decoder", "decode jwt", "jwt viewer"],
+    keywords: [ "jwt decoder",
+      "decode jwt online",
+      "jwt viewer",
+      "jwt parser",
+      "jwt debugger",
+      "jwt.io alternative",
+      "decode jwt without uploading",
+      "jwt expiry checker",
+      "jwt payload decoder",
+      "inspect json web token",],
     updatedAt: "2026-10-27",
 
     content: `
@@ -126,6 +145,10 @@ It helps you understand token structure, debug authentication, and verify payloa
       "base64 utility",
       "base64 examples",
       "learn base64 encoding",
+      "base64 encode online",
+      "base64 decode online",
+      "text to base64",
+      "base64 to text",
     ],
     updatedAt: "2026-10-27",
 
@@ -157,7 +180,14 @@ It is useful for data URIs, API payloads, email-safe transport, and debugging bi
     metaTitle: "Convert Image to Base64 Online",
     metaDescription:
       "Upload images and convert them into Base64 strings instantly.",
-    keywords: ["image to base64", "convert image base64"],
+    keywords: ["image to base64",
+      "convert image to base64",
+      "png to base64",
+      "jpg to base64",
+      "image to data uri",
+      "base64 image encoder",
+      "svg to base64",
+      "image to base64 online",],
     updatedAt: "2026-10-27",
 
     content: `
@@ -184,7 +214,15 @@ This is useful for reducing HTTP requests and embedding assets directly.
     metaTitle: "Regex Tester Online – Test Regular Expressions",
     metaDescription:
       "Test and debug regex patterns with instant matching results.",
-    keywords: ["regex tester", "regex tool", "regular expression tester"],
+    keywords: ["regex tester",
+      "regex tester online",
+      "regular expression tester",
+      "regex tool",
+      "test regex online",
+      "javascript regex tester",
+      "regex match highlighter",
+      "regex capture groups tester",
+      "regex101 alternative",],
     updatedAt: "2026-10-27",
 
     content: `
@@ -211,7 +249,16 @@ It is useful for validation, parsing text, and debugging patterns.
     metaTitle: "UUID Generator Online – Generate UUID v4",
     metaDescription:
       "Generate secure UUIDs instantly for use in applications and APIs.",
-    keywords: ["uuid generator", "uuid v4", "generate uuid"],
+    keywords: [
+      "uuid generator",
+      "uuid v4 generator",
+      "generate uuid online",
+      "guid generator",
+      "random uuid generator",
+      "bulk uuid generator",
+      "uuid v7 generator",
+      "generate multiple uuids",
+    ],
     updatedAt: "2026-10-27",
 
     content: `
@@ -237,7 +284,14 @@ Useful for databases, distributed systems, and tracking IDs.
     description: "Write and preview Markdown in real time.",
     metaTitle: "Markdown Preview Online – Live Markdown Editor",
     metaDescription: "Write Markdown and preview rendered output instantly.",
-    keywords: ["markdown preview", "markdown editor"],
+    keywords: ["markdown preview",
+      "markdown editor",
+      "markdown editor online",
+      "live markdown preview",
+      "markdown viewer",
+      "github markdown preview",
+      "readme preview",
+      "markdown to html preview",],
     updatedAt: "2026-10-27",
 
     content: `
@@ -264,7 +318,16 @@ Useful for documentation, blogs, and README files.
     metaTitle: "CSS Gradient Generator Online",
     metaDescription:
       "Generate beautiful CSS gradients and copy ready-to-use code.",
-    keywords: ["css gradient", "gradient generator"],
+    keywords: [
+      "css gradient generator",
+      "gradient generator",
+      "css gradient",
+      "linear gradient generator",
+      "radial gradient css",
+      "conic gradient generator",
+      "gradient background generator",
+      "css gradient maker",
+    ],
     updatedAt: "2026-04-25",
 
     content: `
@@ -291,7 +354,15 @@ Perfect for UI designers and frontend developers.
     metaTitle: "HTML Formatter Online – Beautify HTML Code",
     metaDescription:
       "Format and clean HTML code with proper indentation instantly.",
-    keywords: ["html formatter", "html beautifier"],
+    keywords: [
+      "html formatter",
+      "html beautifier",
+      "format html online",
+      "html beautify online",
+      "html prettifier",
+      "html code formatter",
+      "indent html online",
+    ],
     updatedAt: "2026-04-25",
 
     content: `
@@ -324,6 +395,12 @@ Useful for debugging and improving code quality.
       "json type generator",
       "typescript interface generator",
       "json schema to typescript",
+      "json to ts",
+      "convert json to typescript online",
+      "json to typescript type",
+      "generate typescript types from json",
+      "api response to typescript",
+      "quicktype alternative",
     ],
     updatedAt: "2026-10-11",
     content: `
@@ -358,6 +435,7 @@ The converter infers nested structures, array element types, nullable values, an
       "percent encoding",
       "encodeURIComponent online",
       "decodeURIComponent online",
+      "urlencode online",
     ],
     updatedAt: "2026-10-11",
     content: `
@@ -392,6 +470,10 @@ Choose component mode to encode reserved characters, or full URL mode to preserv
       "date to unix timestamp",
       "unix time milliseconds",
       "timestamp converter online",
+      "epoch time converter",
+      "current unix timestamp",
+      "epoch to human readable date",
+      "epoch to IST",
     ],
     updatedAt: "2026-10-27",
     content: `
@@ -424,6 +506,12 @@ Results include ISO 8601 format and both timestamp units.
       "clean csv online",
       "remove duplicate csv rows",
       "csv whitespace cleaner",
+      "remove duplicate rows csv",
+      "csv remove duplicates online",
+      "trim whitespace csv",
+      "remove empty rows csv",
+      "csv data cleaning tool",
+      "clean csv file free",
     ],
     updatedAt: "2026-10-27",
     content:
@@ -447,9 +535,14 @@ Results include ISO 8601 format and both timestamp units.
       "Configure cron minute, hour, day, month, and weekday fields and see a plain-language schedule explanation.",
     keywords: [
       "cron expression builder",
+      "cron expression generator",
       "cron generator",
+      "crontab generator",
       "cron schedule generator",
       "cron expression parser",
+      "cron job generator",
+      "crontab guru alternative",
+      "cron to human readable",
     ],
     updatedAt: "2026-10-26",
     content:
@@ -476,6 +569,11 @@ Results include ISO 8601 format and both timestamp units.
       "json schema validator",
       "generate schema from json",
       "json validation playground",
+      "json to json schema",
+      "json schema playground",
+      "validate json against schema",
+      "json schema online",
+      "json schema draft 7 validator",
     ],
     updatedAt: "2026-10-26",
     content:
@@ -501,6 +599,8 @@ Results include ISO 8601 format and both timestamp units.
       "css grid builder",
       "grid layout generator",
       "css grid preview",
+      "css grid template columns generator",
+      "css grid playground",
     ],
     updatedAt: "2026-10-26",
     content:
@@ -531,6 +631,9 @@ Results include ISO 8601 format and both timestamp units.
       "open graph tag generator",
       "twitter card generator",
       "meta tags for SEO",
+      "og tags generator",
+      "html meta tags generator",
+      "social media meta tags",
     ],
     updatedAt: "2026-10-26",
     content:
@@ -555,17 +658,24 @@ Results include ISO 8601 format and both timestamp units.
     keywords: [
       "bulk qr code generator",
       "bulk qr code generator free",
-      "bulk qr code generator 128",
       "bulk qr code generator from excel",
       "free bulk qr code generator",
       "bulk qr code generator with text",
       "bulk qr code generator excel",
       "bulk qr code generator download",
       "online bulk qr code generator",
-      "bulk qr code generator mobile",
       "qr code generator",
       "generate qr codes from csv",
       "batch qr code png",
+      "csv to qr code",
+      "excel to qr code generator",
+      "generate qr codes from csv",
+      "batch qr code generator",
+      "bulk qr code generator zip download",
+      "bulk qr code generator no signup",
+      "bulk qr code generator png",
+      "mass qr code generator",
+      "qr code generator from list",
     ],
     updatedAt: "2026-10-26",
     content:
@@ -581,6 +691,85 @@ Results include ISO 8601 format and both timestamp units.
       },
     ],
     relatedTools: ["meta-tag-generator", "url-encoder-decoder"],
+  },
+  {
+    slug: "cgpa-to-percentage",
+    title: "CGPA to Percentage Converter",
+    shortTitle: "CGPA Converter",
+    description:
+      "Convert CGPA values to percentage using university-specific formulas.",
+    metaTitle: "CGPA to Percentage Converter - University Wise Calculator",
+    metaDescription:
+      "Convert CGPA to percentage with common university formulas and review formula validity notices before relying on the result.",
+    keywords: [
+      "cgpa to percentage",
+      "university cgpa calculator",
+      "gpa to percent converter",
+      "convert cgpa to percentage",
+    ],
+    updatedAt: "2026-11-10",
+    content:
+      "Choose a university formula and convert CGPA values to percentage instantly.",
+    faqs: [
+      {
+        q: "Are the formulas always verified?",
+        a: "No. Some formulas are included as working estimates and show a validation notice when official confirmation is still pending.",
+      },
+    ],
+    relatedTools: ["salary-calculator", "timestamp-converter"],
+  },
+  {
+    slug: "salary-calculator",
+    title: "Salary Calculator",
+    shortTitle: "Salary Calculator",
+    description:
+      "Estimate monthly and annual in-hand salary after deductions and taxes.",
+    metaTitle: "Salary Calculator - Estimate In-Hand Pay After Deductions",
+    metaDescription:
+      "Estimate in-hand salary after income tax, provident fund, professional tax, and other deductions with an instant calculation.",
+    keywords: [
+      "salary calculator",
+      "in hand salary calculator",
+      "monthly salary estimator",
+      "income tax calculator",
+    ],
+    updatedAt: "2026-11-10",
+    content:
+      "Evaluate gross salary, tax percentage, fund deductions, and other withholdings to estimate take-home pay.",
+    faqs: [
+      {
+        q: "Is this a legal tax estimate?",
+        a: "No. It is a quick estimate for planning and should be cross-checked against local tax and payroll rules.",
+      },
+    ],
+    relatedTools: ["cgpa-to-percentage", "json-formatter"],
+  },
+  {
+    slug: "indian-font-converter",
+    title: "Indian Font Converter",
+    shortTitle: "Indian Font Converter",
+    description:
+      "Convert Hindi, Bengali, and Nepali legacy fonts locally in the browser.",
+    metaTitle: "Indian Font Converter - Kruti Dev, Bijoy, Preeti and Devlys",
+    metaDescription:
+      "Convert Kruti Dev, Devlys, Bijoy, and Preeti text to Unicode and back without sending data to a server.",
+    keywords: [
+      "indian font converter",
+      "kruti dev to unicode",
+      "bijoy to unicode",
+      "preeti to unicode",
+      "devlys to unicode",
+    ],
+    updatedAt: "2026-11-10",
+    content:
+      "Convert Hindi, Bengali, and Nepali legacy fonts from traditional keyboard layouts to Unicode and back in one browser-based workflow.",
+    faqs: [
+      {
+        q: "Does it store my text anywhere?",
+        a: "No. Conversion and document processing happen locally in the browser, and the output is downloaded without uploading it to a server.",
+      },
+    ],
+    relatedTools: ["json-formatter"],
   },
 ];
 

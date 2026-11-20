@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import ToolRenderer from "@/components/ToolRenderer";
@@ -14,16 +14,24 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+const legacyToolAliases: Record<string, string> = {
+  "kruti-dev-to-unicode": "indian-font-converter",
+};
+
 export const revalidate = 86400;
 
 export function generateStaticParams() {
-  return toolCatalog.map((tool) => ({ slug: tool.slug }));
+  return [
+    ...toolCatalog.map((tool) => ({ slug: tool.slug })),
+    { slug: "kruti-dev-to-unicode" },
+  ];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const tool = toolCatalogBySlug[slug];
-  const seoContent = toolSeoContentBySlug[slug];
+  const canonicalSlug = legacyToolAliases[slug] ?? slug;
+  const tool = toolCatalogBySlug[canonicalSlug];
+  const seoContent = toolSeoContentBySlug[canonicalSlug];
 
   if (!tool || !seoContent) {
     return {};
@@ -69,8 +77,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ToolPage({ params }: Props) {
   const { slug } = await params;
-  const tool = toolCatalogBySlug[slug];
-  const seoContent = toolSeoContentBySlug[slug];
+  const canonicalSlug = legacyToolAliases[slug] ?? slug;
+
+  if (slug !== canonicalSlug) {
+    redirect(`/tools/${canonicalSlug}`);
+  }
+
+  const tool = toolCatalogBySlug[canonicalSlug];
+  const seoContent = toolSeoContentBySlug[canonicalSlug];
 
   if (!tool || !seoContent) {
     notFound();
