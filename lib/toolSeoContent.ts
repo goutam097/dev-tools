@@ -929,4 +929,3 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     relatedSlugs: ["cgpa-to-percentage", "json-formatter"],
   },
 };
-
