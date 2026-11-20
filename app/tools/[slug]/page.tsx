@@ -3,77 +3,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import Base64Converter from "@/components/Base64Converter";
-import GradientGenerator from "@/components/GradientGenerator";
-import ImageBase64Converter from "@/components/ImageBase64Converter";
-import JSONFormatter from "@/components/JSONFormatter";
-import JSONToTypeScriptConverter from "@/components/JSONToTypeScriptConverter";
-import JWTDecoder from "@/components/JWTDecoder";
-import MarkdownConverter from "@/components/MarkdownConverter";
-import RegexTester from "@/components/RegexTester";
-import UUIDGenerator from "@/components/UUIDGenerator";
-import HTMLFormatter from "@/components/HTMLFormatter";
-import UrlEncoderDecoder from "@/components/UrlEncoderDecoder";
-import TimestampConverter from "@/components/TimestampConverter";
-import CsvDataCleaner from "@/components/CsvDataCleaner";
-import CronExpressionBuilder from "@/components/CronExpressionBuilder";
-import JsonSchemaPlayground from "@/components/JsonSchemaPlayground";
-import CssGridGenerator from "@/components/CssGridGenerator";
-import MetaTagGenerator from "@/components/MetaTagGenerator";
-import BulkQrCodeGenerator from "@/components/BulkQrCodeGenerator";
+import ToolRenderer from "@/components/ToolRenderer";
 import { toolCatalog, toolCatalogBySlug } from "@/lib/toolCatalog";
 import { toolSeoContentBySlug } from "@/lib/toolSeoContent";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
+import TrackedRelatedToolLink from "@/components/TrackedRelatedToolLink";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export const revalidate = 86400;
-
-function ToolRenderer({ slug }: { slug: string }) {
-  switch (slug) {
-    case "json-formatter":
-      return <JSONFormatter />;
-    case "json-to-typescript":
-      return <JSONToTypeScriptConverter />;
-    case "url-encoder-decoder":
-      return <UrlEncoderDecoder />;
-    case "timestamp-converter":
-      return <TimestampConverter />;
-    case "jwt-decoder":
-      return <JWTDecoder />;
-    case "base64-converter":
-      return <Base64Converter />;
-    case "regex-tester":
-      return <RegexTester />;
-    case "uuid-generator":
-      return <UUIDGenerator />;
-    case "markdown-preview":
-      return <MarkdownConverter />;
-    case "gradient-marker":
-      return <GradientGenerator />;
-    case "image-to-base64":
-      return <ImageBase64Converter />;
-    case "html-formatter":
-      return <HTMLFormatter />;
-    case "csv-data-cleaner":
-      return <CsvDataCleaner />;
-    case "cron-expression-builder":
-      return <CronExpressionBuilder />;
-    case "json-schema-playground":
-      return <JsonSchemaPlayground />;
-    case "css-grid-generator":
-      return <CssGridGenerator />;
-    case "meta-tag-generator":
-      return <MetaTagGenerator />;
-    case "bulk-qr-code-generator":
-      return <BulkQrCodeGenerator />;
-    default:
-      return null;
-  }
-}
 
 export function generateStaticParams() {
   return toolCatalog.map((tool) => ({ slug: tool.slug }));
@@ -141,34 +82,6 @@ export default async function ToolPage({ params }: Props) {
     .filter(Boolean)
     .slice(0, 3);
 
-  const toolJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: tool.title,
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "Web",
-    description: seoContent.metaDescription,
-    url: canonicalUrl,
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-  };
-
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: seoContent.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -197,8 +110,6 @@ export default async function ToolPage({ params }: Props) {
   return (
     <SidebarScaffold title={tool.title}>
       <main className="mx-auto min-h-screen max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(toolJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <header className="mb-8">
@@ -273,13 +184,16 @@ export default async function ToolPage({ params }: Props) {
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             {relatedTools.map((relatedTool) => (
-              <Link
+              <TrackedRelatedToolLink
                 key={relatedTool.slug}
                 href={`/tools/${relatedTool.slug}`}
+                sourceId={tool.slug}
+                relatedToolId={relatedTool.slug}
+                source="tool-page"
                 className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)"
               >
                 {relatedTool.title}
-              </Link>
+              </TrackedRelatedToolLink>
             ))}
           </div>
         </section>

@@ -36,6 +36,9 @@ Set these environment variables to enable analytics:
 Tracked signals:
 
 - Page visits (`page_view`)
-- Tool usage (`tool_usage`) from app sidebar and `/tools/[slug]` pages
-- User location (country/region/city when available via edge headers, plus browser timezone/locale)
-- Popular tools (derived from `tool_usage` event counts by tool)
+- Tool interactions: `tool_open`, `tool_execute`, `tool_copy`, `tool_download`, and `tool_error`
+- Related-tool navigation (`related_tool_click`) from tool and guide pages
+
+Analytics events use tool identifiers and a page/source category only. Tool inputs, uploaded content, JWT values, query-string parameters, and location details are not sent to GA4. GA4 loads only when a valid measurement ID is configured.
+
+Run `npm run build` followed by `npm test` to check tool utility behavior and built-page SEO metadata, canonicals, sitemap coverage, and internal links.

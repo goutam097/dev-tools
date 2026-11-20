@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AlertCircle, Key } from "lucide-react";
 import { saveHistory } from "@/lib/clientHistory";
+import { trackToolEvent } from "@/lib/analytics";
 
 type DecodedToken = {
   header: Record<string, unknown>;
@@ -31,9 +32,11 @@ export default function JWTDecoder() {
 
       setDecoded({ header, payload });
       setError("");
+      trackToolEvent("tool_execute", "jwt-decoder", "seo-page");
       await saveHistory("jwt", token, JSON.stringify({ header, payload }, null, 2));
     } catch (err) {
       setDecoded(null);
+      trackToolEvent("tool_error", "jwt-decoder", "seo-page");
       setError(err instanceof Error ? err.message : "Failed to decode JWT");
     }
   };
@@ -41,9 +44,10 @@ export default function JWTDecoder() {
   return (
     <div className="space-y-8">
       <section className="space-y-3">
-        <label className="tool-label">Encoded Token</label>
+        <label htmlFor="jwt-token-input" className="tool-label">Encoded Token</label>
         <div className="space-y-3">
           <textarea
+            id="jwt-token-input"
             value={token}
             onChange={(e) => setToken(e.target.value)}
             className="tool-textarea h-52 md:h-36"
@@ -64,12 +68,12 @@ export default function JWTDecoder() {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <section className="space-y-3">
-          <label className="tool-label">Header</label>
-          <pre className="tool-output-pre min-h-[220px]">{decoded ? JSON.stringify(decoded.header, null, 2) : "{}"}</pre>
+          <p className="tool-label">Header</p>
+          <pre className="tool-output-pre min-h-[220px]" aria-label="Decoded JWT header">{decoded ? JSON.stringify(decoded.header, null, 2) : "{}"}</pre>
         </section>
         <section className="space-y-3">
-          <label className="tool-label">Payload</label>
-          <pre className="tool-output-pre min-h-[220px]">{decoded ? JSON.stringify(decoded.payload, null, 2) : "{}"}</pre>
+          <p className="tool-label">Payload</p>
+          <pre className="tool-output-pre min-h-[220px]" aria-label="Decoded JWT payload">{decoded ? JSON.stringify(decoded.payload, null, 2) : "{}"}</pre>
         </section>
       </div>
     </div>

@@ -30,7 +30,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { useAuthStore } from "@/lib/authStore";
 import { ToolId } from "@/lib/types";
-import { trackToolUsage } from "@/lib/analytics";
+import { trackToolEvent } from "@/lib/analytics";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -89,7 +89,8 @@ export default function ToolLayout({ activeTool, onToolSelect, children }: ToolL
       return;
     }
 
-    trackToolUsage(activeToolMeta.id, activeToolMeta.name, "app-shell");
+    const toolSlug = activeToolMeta.href?.split("/").pop() ?? activeToolMeta.id;
+    trackToolEvent("tool_open", toolSlug, "app-shell");
   }, [activeTool]);
 
   const logout = async () => {

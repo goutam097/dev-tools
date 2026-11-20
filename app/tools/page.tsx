@@ -80,24 +80,10 @@ const toolCategories = [
 ];
 
 export default function ToolsIndexPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
-    })),
-  };
-
   return (
     <SidebarScaffold title="Free Developer Tools">
       <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
       <Breadcrumbs items={[{ label: "Tools" }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <h1 className="font-serif text-3xl italic text-(--ink) sm:text-4xl">Developer Tools Directory</h1>
       <p className="mt-3 max-w-3xl text-sm leading-7 text-(--muted)">

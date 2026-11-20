@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, Check, Copy } from "lucide-react";
 import { saveHistory } from "@/lib/clientHistory";
+import { trackToolEvent } from "@/lib/analytics";
 
 function normalizeBase64Input(value: string) {
   const trimmed = value.trim().replace(/\s+/g, "");
@@ -43,6 +44,7 @@ export default function Base64Converter() {
   const [output, setOutput] = useState("");
   const [mode, setMode] = useState<"encode" | "decode">("encode");
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const convert = async () => {
     try {
@@ -55,10 +57,26 @@ export default function Base64Converter() {
       const result = mode === "encode" ? encodeUtf8(input) : decodeUtf8(input);
       setOutput(result);
       setError("");
+      trackToolEvent("tool_execute", "base64-converter", "seo-page");
       await saveHistory("base64", input, result);
     } catch (err) {
       setOutput("");
+      trackToolEvent("tool_error", "base64-converter", "seo-page");
       setError(err instanceof Error ? err.message : "Conversion failed");
+    }
+  };
+
+  const copyOutput = async () => {
+    if (!output) return;
+
+    try {
+      await navigator.clipboard.writeText(output);
+      trackToolEvent("tool_copy", "base64-converter", "seo-page");
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    } catch {
+      trackToolEvent("tool_error", "base64-converter", "seo-page");
+      setError("Clipboard access is unavailable. Select and copy the output manually.");
     }
   };
 
@@ -84,15 +102,22 @@ export default function Base64Converter() {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <section className="space-y-3">
-          <label className="tool-label">Input</label>
-          <textarea value={input} onChange={(e) => setInput(e.target.value)} className="tool-textarea h-64" />
+          <label htmlFor="base64-input" className="tool-label">Input</label>
+          <textarea id="base64-input" value={input} onChange={(e) => setInput(e.target.value)} className="tool-textarea h-64" />
         </section>
         <section className="space-y-3">
-          <label className="tool-label">Output</label>
-          <pre className="tool-output-pre h-64">{error ? <span className="text-red-600">{error}</span> : output || "Result appears here"}</pre>
+          <div className="flex items-center justify-between gap-3">
+            <p className="tool-label">Output</p>
+            <button type="button" onClick={() => void copyOutput()} disabled={!output} className="tool-copy-btn disabled:cursor-not-allowed disabled:opacity-40">
+              {copied ? <Check size={14} /> : <Copy size={14} />}
+              {copied ? "Copied" : "Copy"}
+            </button>
+          </div>
+          <pre className="tool-output-pre h-64" aria-label="Base64 conversion output">{output || "Result appears here"}</pre>
         </section>
       </div>
 
+      {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
       <button type="button" onClick={() => void convert()} className="tool-btn-primary w-full justify-center py-4">
         {mode === "encode" ? "Encode to Base64" : "Decode from Base64"}
       </button>

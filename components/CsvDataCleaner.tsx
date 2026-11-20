@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { cleanCsv, stringifyCsv, type CsvCleanResult } from "@/lib/csvCleaner";
+import { trackToolEvent } from "@/lib/analytics";
 
 const sampleCsv = `name,email,notes
 Ada Lovelace,ada@example.com,"first row, with comma"
@@ -26,9 +27,11 @@ export default function CsvDataCleaner() {
       setResult(cleaned);
       setSelectedColumns(cleaned.headers.map((_, index) => index));
       setError("");
+      trackToolEvent("tool_execute", "csv-data-cleaner", "seo-page");
     } catch (cleanError) {
       setResult(null);
       setSelectedColumns([]);
+      trackToolEvent("tool_error", "csv-data-cleaner", "seo-page");
       setError(cleanError instanceof Error ? cleanError.message : "Unable to clean this CSV.");
     }
   };
@@ -39,11 +42,13 @@ export default function CsvDataCleaner() {
     setSelectedColumns([]);
     setError("");
     if (file.size > MAX_CSV_FILE_SIZE_BYTES) {
+      trackToolEvent("tool_error", "csv-data-cleaner", "seo-page");
       setError("Choose a CSV file no larger than 5 MiB so it can be processed in your browser.");
       if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
     if (!file.name.toLowerCase().endsWith(".csv") && file.type !== "text/csv") {
+      trackToolEvent("tool_error", "csv-data-cleaner", "seo-page");
       setError("Choose a CSV file to continue.");
       if (fileInputRef.current) fileInputRef.current.value = "";
       return;
@@ -51,6 +56,7 @@ export default function CsvDataCleaner() {
     try {
       setInput(await file.text());
     } catch {
+      trackToolEvent("tool_error", "csv-data-cleaner", "seo-page");
       setError("The selected file could not be read. Try another CSV file.");
     } finally {
       if (fileInputRef.current) fileInputRef.current.value = "";
@@ -68,6 +74,7 @@ export default function CsvDataCleaner() {
     link.href = url;
     link.download = "cleaned-data.csv";
     link.click();
+    trackToolEvent("tool_download", "csv-data-cleaner", "seo-page");
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
