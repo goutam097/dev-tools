@@ -8,6 +8,9 @@
 		"start": "next start",
 		"lint": "eslint",
 		"typecheck": "tsc --noEmit",
+		"test:tools": "node --test tests/*.test.mjs",
+		"check:seo": "node scripts/check-seo.mjs",
+		"test": "npm run test:tools && npm run check:seo",
 		"test:krutidev": "node --experimental-strip-types scripts/krutidev-tests.mjs"
 	},
 	"dependencies": {

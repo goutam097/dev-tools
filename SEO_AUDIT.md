@@ -1,7 +1,8 @@
 # AdSense Low-Value Content Audit
 
-**Audit date:** 2026-10-26
-**Scope:** Source code, routes, content and metadata in this repository; local production build and route smoke checks after the changes below. The hosted deployment was not changed or rechecked after implementation.
+**Original audit date:** 2026-10-26
+**Follow-up audit date:** 2026-11-19
+**Scope:** Repository source, generated production output, and selected live public routes. No Search Console account access or field Core Web Vitals data was available.
 
 ## Findings and disposition
 
@@ -44,7 +45,7 @@ Reviewed Google's currently published [AdSense Program policies](https://support
 - Local production HTTP smoke check: homepage, `/tools`, the six requested tool pages, `/blog`, trust pages, policy pages, robots and sitemap returned 200; an unknown route returned 404.
 - Checked all 18 tool detail routes and 4 article routes: each had a title, description and canonical; no duplicate titles or incorrect tool/blog canonicals were found.
 - Sitemap contained 34 unique URLs. All 18 tool directory instruction links resolved to an existing `#how-to-use` target.
-- Full browser interaction tests could not run: Playwright reported that its configured Chromium executable was absent. No browser package or executable was installed.
+- At the original audit, browser interaction tests could not run because Chromium was unavailable. The 2026-11-19 follow-up used the integrated browser for priority-tool checks; see the follow-up validation below.
 
 ## Remaining publisher actions (prioritized)
 
@@ -55,3 +56,58 @@ Reviewed Google's currently published [AdSense Program policies](https://support
 5. **Functional/browser review:** In a supported browser, test CSV file upload/column selection/download; cron presets and invalid inputs; schema errors; CSS copy/reset; metadata URL validation/copy/download; and QR file upload, individual PNG and ZIP download. Check keyboard access and small-screen layouts.
 6. **Performance and accessibility:** Run Lighthouse/PageSpeed and field Core Web Vitals checks on the deployed site; inspect keyboard focus, screen-reader output, contrast, image loading, console errors and the effect of third-party scripts.
 7. **Content maintenance:** Verify dates against publication history; keep the stated update/review policies aligned with work actually performed; expand or consolidate articles only when there is distinct user value, not to meet a word count.
+
+## Follow-up technical SEO and analytics audit — 2026-11-19
+
+This follow-up records findings that were verified against the current checkout and public site. It does not replace publisher-side Search Console, GA4, consent, or field-performance validation.
+
+### Ranked findings
+
+| Severity / expected impact | Finding | Action and remaining risk |
+|---|---|---|
+| **High — URL preservation / indexing** | The public sitemap and live site contain `/tools/cgpa-to-percentage`, `/tools/salary-calculator`, and `/tools/indian-font-converter`; all three returned content, but none exists in this checkout's routes or catalog. A deploy from this checkout could remove these URLs and their sitemap entries. | No fake sitemap entries or redirects were added. Reconcile this branch with the production source for these three tools before deploying. |
+| **High — analytics quality / data minimization** | The previous tracker sent city, region, country, timezone and locale to GA4 and included query strings in page views. The live HTML also loads gtag with the placeholder measurement ID `G-XXXXXXXXXX`. | Removed location collection and query-string tracking. GA4 now loads only for a valid configured measurement ID; production still needs the actual ID configured and events verified in DebugView. |
+| **Medium — Core Web Vitals opportunity** | The production HTML referenced about 1.28 MiB of JavaScript assets on the timestamp route before per-tool splitting. This is a source-level payload opportunity, not a measured Core Web Vitals failure. | Moved the tool registry to `React.lazy`; the final build and automated check enforce an 800 KiB ceiling on referenced scripts for priority routes. Field CWV impact remains unmeasured. |
+| **Medium — structured-data eligibility** | Tool pages emitted `FAQPage` and `SoftwareApplication` data despite no eligibility evidence for FAQ rich results or application-specific rich-result requirements. Visible FAQs are valid content but are not a promise of search enhancements. | Removed those schemas; kept visible FAQs, `BreadcrumbList`, and the site-level `WebSite`/`Organization` data. Blog pages retain `Article` data based on visible article dates and publisher information. |
+| **Low — interaction observability** | Tool pages emitted generic `tool_usage` events rather than distinct actions, and related-tool navigation was not measured. | Added the requested event names with tool IDs/source only; no tool value, upload, JWT, query, or location is included in GA4 event parameters. |
+
+### File-by-file implementation plan and disposition
+
+| Files | Change |
+|---|---|
+| `lib/analytics.ts`, `components/AnalyticsTracker.tsx`, `components/ToolLayout.tsx`, `app/layout.tsx`, `.env.example`, `README.md` | Use valid configured GA4 IDs only; track known routes without query strings or location data; define privacy-safe event parameters and document the analytics contract. |
+| `components/ToolRenderer.tsx`, `app/tools/[slug]/page.tsx` | Lazy-load only the selected utility while retaining server-rendered descriptions, steps, examples, headings and FAQs. |
+| `components/TrackedRelatedToolLink.tsx`, `app/tools/[slug]/page.tsx`, `app/blog/[slug]/page.tsx` | Track related-tool link clicks in a client boundary without passing event handlers from Server Components. |
+| `components/TimestampConverter.tsx`, `components/CsvDataCleaner.tsx`, `components/Base64Converter.tsx`, `components/JWTDecoder.tsx`, `components/MarkdownConverter.tsx` | Instrument relevant execute/copy/download/error actions; improve input labeling and keyboard semantics; add the missing Base64 output-copy action. |
+| `lib/toolSeoContent.ts` | Add an accurate UTF-8 Base64 example and a practical Markdown preview workflow with contextual internal links. Existing timestamp/CSV examples and instructions were already task-focused, so they were preserved. |
+| `app/tools/page.tsx`, `app/tools/[slug]/page.tsx` | Remove FAQ and application schemas that were not justified for Google rich results; keep FAQ content visible and breadcrumb markup. |
+| `scripts/check-seo.mjs`, `tests/analytics.test.mjs`, `tests/tool-functionality.test.mjs`, `package.json` | Add build-output checks for unique metadata/canonicals, sitemap coverage, internal links, SSR content and JS budgets, plus focused GA4 privacy and CSV/timestamp behavior tests. |
+
+### Follow-up verification
+
+- Live `robots.txt` permits public crawling, disallows `/api/`, and references the public sitemap.
+- Live sitemap entries use the `www` host. HTTP and non-`www` requests resolved to `https://www.webcodeveloper.co.in/`; live timestamp HTML had a page-specific title, description, canonical and Open Graph URL.
+- `next.config.ts` contains no app-level redirects; the retired blog slug has an explicit `permanentRedirect` in the blog route. Host/HTTPS redirects are handled outside this repository.
+- Live sitemap/source mismatch for the three tools above is an unresolved deployment blocker.
+- `npm run build` passed after lazy loading; the generated app had 35 prerendered content routes and 35 sitemap URLs from this checkout.
+- `npm test` passed: GA4 privacy contract and query stripping, CSV BOM/CRLF/quoting/cleaning/export behavior, timestamp units/date conversion, and generated SEO checks for route metadata, canonicals, sitemap coverage, internal links and priority content.
+- Full `npm run lint` and `npm run typecheck` passed.
+- Integrated-browser checks passed for timestamp conversion, CSV sample cleaning, Base64 Unicode encoding, JWT decoding with a synthetic token, and Markdown live preview. Keyboard activation worked; no horizontal overflow was observed at a 480 CSS-pixel viewport. This is not a full screen-reader, device, or contrast audit.
+- JavaScript asset sizes were measured from local production output; this is not Lighthouse, PageSpeed, or field Core Web Vitals evidence.
+
+### Search Console and GA4 checklist
+
+1. Before deployment, reconcile the three production-only tool routes and preserve their existing canonicals and functionality.
+2. Configure the real `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the deployment environment; confirm the built HTML does not contain a placeholder or load analytics when unconfigured.
+3. Use GA4 DebugView/Realtime to verify `tool_open`, `tool_execute`, `tool_copy`, `tool_download`, `tool_error`, and `related_tool_click`; confirm only tool/source identifiers are present and that query strings, entered values, files, JWTs and location fields are absent.
+4. Submit the production sitemap in Search Console; inspect the canonical-selected URL and crawl status of the 25 indexed and 14 excluded URLs, especially the five priority pages and the three production-only tools.
+5. Compare Search Console clicks, impressions, CTR, query mix and average position over the same 28-day periods after deployment. Do not treat indexing or ranking changes as guaranteed outcomes.
+6. Run Rich Results Test/URL Inspection on representative tool and article pages; validate only supported `BreadcrumbList`/`Article` data and preserve the visible FAQ sections.
+7. Check mobile usability, Core Web Vitals and indexing after the production deployment; collect real-device/Lighthouse lab results and field data before claiming a CWV improvement.
+
+### Prioritized 30-day follow-up
+
+- **Days 1–3:** Reconcile the production-only tool routes; configure GA4; test the six events in DebugView; submit the sitemap and inspect canonical/indexing reports.
+- **Days 4–10:** Review indexed/excluded URLs and queries for the Timestamp Converter, CSV Cleaner, Base64 guide, Markdown Preview and JWT Decoder; correct specific coverage, canonical, snippet or internal-link issues only when confirmed.
+- **Days 11–20:** Collect mobile Lighthouse/PageSpeed results and field CWV data; inspect JavaScript/network traces, keyboard flow, screen-reader labels, and ad/analytics consent behavior on a real device.
+- **Days 21–30:** Compare same-length Search Console periods, review GA4 engagement and error rates by tool, fix the highest-impact verified issue, and plan content updates from query/user evidence rather than keyword expansion.

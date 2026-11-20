@@ -8,6 +8,7 @@ import { toolCatalogBySlug } from "@/lib/toolCatalog";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site";
 import SidebarScaffold from "@/components/SidebarScaffold";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import TrackedRelatedToolLink from "@/components/TrackedRelatedToolLink";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -87,9 +88,9 @@ export default async function BlogPostPage({ params }: Props) {
 
       const tool = toolCatalogBySlug[slugOrRoute];
       if (!tool) return null;
-      return { href: `/tools/${tool.slug}`, title: tool.title };
+      return { href: `/tools/${tool.slug}`, title: tool.title, toolId: tool.slug };
     })
-    .filter(Boolean) as { href: string; title: string }[];
+    .filter(Boolean) as { href: string; title: string; toolId?: string }[];
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -177,13 +178,26 @@ export default async function BlogPostPage({ params }: Props) {
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             {relatedToolLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)"
-              >
-                {item.title}
-              </Link>
+              item.toolId ? (
+                <TrackedRelatedToolLink
+                  key={item.href}
+                  href={item.href}
+                  sourceId={post.slug}
+                  relatedToolId={item.toolId}
+                  source="blog-page"
+                  className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)"
+                >
+                  {item.title}
+                </TrackedRelatedToolLink>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-lg border border-(--border) bg-white px-3 py-2 text-sm text-(--ink)"
+                >
+                  {item.title}
+                </Link>
+              )
             ))}
           </div>
         </section>

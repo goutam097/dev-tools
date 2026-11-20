@@ -1,75 +1,52 @@
 "use client";
 
 import Script from "next/script";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { getAnalyticsConfig, trackPageVisit, trackToolUsage, trackUserLocation } from "@/lib/analytics";
+import { getAnalyticsConfig, trackPageVisit, trackToolEvent } from "@/lib/analytics";
 import { toolCatalogBySlug } from "@/lib/toolCatalog";
+import { blogPostsBySlug } from "@/lib/blogPosts";
 
-type LocationApiResponse = {
-  country?: string | null;
-  region?: string | null;
-  city?: string | null;
-};
+const staticPagePaths = new Set([
+  "/",
+  "/tools",
+  "/blog",
+  "/about",
+  "/author",
+  "/contact",
+  "/privacy-policy",
+  "/terms-and-conditions",
+  "/disclaimer",
+  "/editorial-policy",
+  "/content-update-policy",
+  "/code-testing-policy",
+]);
 
 export default function AnalyticsTracker() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const lastTrackedPathRef = useRef<string | null>(null);
-  const hasTrackedLocationRef = useRef(false);
   const { clarityProjectId } = getAnalyticsConfig();
 
   useEffect(() => {
-    const query = searchParams.toString();
-    const fullPath = query ? `${pathname}?${query}` : pathname;
-
-    if (!fullPath || lastTrackedPathRef.current === fullPath) {
+    if (!pathname || lastTrackedPathRef.current === pathname) {
       return;
     }
 
-    trackPageVisit(fullPath, document.title);
-    lastTrackedPathRef.current = fullPath;
+    lastTrackedPathRef.current = pathname;
 
     const toolSlug = pathname.startsWith("/tools/") ? pathname.replace("/tools/", "") : "";
     const tool = toolCatalogBySlug[toolSlug];
+    const blogSlug = pathname.startsWith("/blog/") ? pathname.replace("/blog/", "") : "";
+    const isKnownBlogPost = Boolean(blogPostsBySlug[blogSlug]);
+
+    if (tool || isKnownBlogPost || staticPagePaths.has(pathname)) {
+      trackPageVisit(pathname, document.title);
+    }
+
     if (tool) {
-      trackToolUsage(tool.slug, tool.title, "seo-page");
+      trackToolEvent("tool_open", tool.slug, "seo-page");
     }
-  }, [pathname, searchParams]);
-
-  useEffect(() => {
-    if (hasTrackedLocationRef.current) {
-      return;
-    }
-
-    hasTrackedLocationRef.current = true;
-
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || null;
-    const locale = navigator.language || null;
-
-    const track = async () => {
-      try {
-        const response = await fetch("/api/analytics/location", { cache: "no-store" });
-        if (!response.ok) {
-          trackUserLocation({ timezone, locale });
-          return;
-        }
-
-        const data = (await response.json()) as LocationApiResponse;
-        trackUserLocation({
-          country: data.country,
-          region: data.region,
-          city: data.city,
-          timezone,
-          locale,
-        });
-      } catch {
-        trackUserLocation({ timezone, locale });
-      }
-    };
-
-    void track();
-  }, []);
+  }, [pathname]);
 
   return (
     <>

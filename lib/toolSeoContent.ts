@@ -97,6 +97,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
         heading: "Understanding the Base64 Alphabet",
         paragraphs: [
           "Base64 encoding uses a specific set of 64 characters: uppercase letters (A-Z), lowercase letters (a-z), numbers (0-9), and the '+' and '/' symbols. The '=' character is used for padding at the end of the string to ensure the total length is a multiple of 4 bytes.",
+          "For a quick round-trip, encode `Hello` to get `SGVsbG8=`. UTF-8 matters for non-ASCII text: `café` encodes as `Y2Fmw6k=` because `é` uses more than one byte. Decoding should reproduce the original text exactly.",
           "This limited character set makes Base64 ideal for environments like URL parameters, HTML form data, and email attachments (MIME), where special characters might otherwise be misinterpreted or stripped by intermediate systems.",
         ],
       },
@@ -325,7 +326,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
         heading: "Markdown Tips for Developer Teams",
         paragraphs: [
           "Use concise headings, task-focused sections, and short code snippets to keep documentation practical. Previewing as you write helps maintain visual rhythm and prevents oversized paragraphs that reduce comprehension.",
-          "Link related references directly inside docs so readers can navigate to API endpoints, schema notes, and tool pages without losing context. This improves discoverability and internal linking across documentation ecosystems.",
+          "For example, try a short release note with a heading, a bullet list, and a fenced `js` code block; the live preview lets you check the hierarchy and code formatting before copying HTML. Afterward, use the [HTML Formatter](/tools/html-formatter) to inspect the generated markup or the [JSON Formatter](/tools/json-formatter) to check a JSON example from the same documentation.",
         ],
       },
       {
@@ -352,7 +353,7 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
           "Preview rendering happens in your browser. If you are signed in, using Copy HTML may save the Markdown source to your account history.",
       },
     ],
-    relatedSlugs: ["html-formatter", "json-formatter", "regex-tester"],
+    relatedSlugs: ["html-formatter", "json-formatter", "base64-converter"],
   },
   "gradient-marker": {
     primaryKeyword: "css gradient generator online",
@@ -928,3 +929,4 @@ export const toolSeoContentBySlug: Record<string, ToolSeoContent> = {
     relatedSlugs: ["cgpa-to-percentage", "json-formatter"],
   },
 };
+

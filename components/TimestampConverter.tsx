@@ -10,6 +10,7 @@ import {
   type TimestampConversion,
   type TimestampUnit,
 } from "@/lib/timestampConverter";
+import { trackToolEvent } from "@/lib/analytics";
 
 type ConversionMode = "timestamp" | "date";
 
@@ -72,8 +73,10 @@ export default function TimestampConverter() {
       setResult(converted);
       setError("");
       setNotice("");
+      trackToolEvent("tool_execute", "timestamp-converter", "seo-page");
     } catch (conversionError) {
       setResult(null);
+      trackToolEvent("tool_error", "timestamp-converter", "seo-page");
       setError(
         conversionError instanceof Error
           ? conversionError.message
@@ -85,9 +88,11 @@ export default function TimestampConverter() {
   const copy = async (value: string) => {
     try {
       await navigator.clipboard.writeText(value);
+      trackToolEvent("tool_copy", "timestamp-converter", "seo-page");
       setNotice("Copied to clipboard.");
       setError("");
     } catch {
+      trackToolEvent("tool_error", "timestamp-converter", "seo-page");
       setNotice("");
       setError("Clipboard access is unavailable. Check your browser permissions.");
     }
@@ -136,11 +141,10 @@ export default function TimestampConverter() {
       </section>
 
       <section className="rounded-3xl border border-(--border) bg-white p-5 shadow-sm sm:p-6">
-        <div className="grid grid-cols-2 rounded-xl bg-(--surface) p-1" role="tablist" aria-label="Conversion direction">
+        <div className="grid grid-cols-2 rounded-xl bg-(--surface) p-1" role="group" aria-label="Conversion direction">
           <button
             type="button"
-            role="tab"
-            aria-selected={mode === "timestamp"}
+            aria-pressed={mode === "timestamp"}
             onClick={() => {
               setMode("timestamp");
               setResult(null);
@@ -152,8 +156,7 @@ export default function TimestampConverter() {
           </button>
           <button
             type="button"
-            role="tab"
-            aria-selected={mode === "date"}
+            aria-pressed={mode === "date"}
             onClick={() => {
               setMode("date");
               setResult(null);
