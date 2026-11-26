@@ -4,8 +4,10 @@ import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { getAnalyticsConfig, trackPageVisit, trackToolEvent } from "@/lib/analytics";
-import { toolCatalogBySlug } from "@/lib/toolCatalog";
-import { blogPostsBySlug } from "@/lib/blogPosts";
+
+type AnalyticsTrackerProps = {
+  trackedContentPaths: string[];
+};
 
 const staticPagePaths = new Set([
   "/",
@@ -22,7 +24,7 @@ const staticPagePaths = new Set([
   "/code-testing-policy",
 ]);
 
-export default function AnalyticsTracker() {
+export default function AnalyticsTracker({ trackedContentPaths }: AnalyticsTrackerProps) {
   const pathname = usePathname();
   const lastTrackedPathRef = useRef<string | null>(null);
   const { clarityProjectId } = getAnalyticsConfig();
@@ -34,19 +36,17 @@ export default function AnalyticsTracker() {
 
     lastTrackedPathRef.current = pathname;
 
-    const toolSlug = pathname.startsWith("/tools/") ? pathname.replace("/tools/", "") : "";
-    const tool = toolCatalogBySlug[toolSlug];
-    const blogSlug = pathname.startsWith("/blog/") ? pathname.replace("/blog/", "") : "";
-    const isKnownBlogPost = Boolean(blogPostsBySlug[blogSlug]);
+    const isKnownContentPage = trackedContentPaths.includes(pathname);
+    const isKnownToolPage = isKnownContentPage && pathname.startsWith("/tools/");
 
-    if (tool || isKnownBlogPost || staticPagePaths.has(pathname)) {
+    if (isKnownContentPage || staticPagePaths.has(pathname)) {
       trackPageVisit(pathname, document.title);
     }
 
-    if (tool) {
-      trackToolEvent("tool_open", tool.slug, "seo-page");
+    if (isKnownToolPage) {
+      trackToolEvent("tool_open", pathname.slice("/tools/".length), "seo-page");
     }
-  }, [pathname]);
+  }, [pathname, trackedContentPaths]);
 
   return (
     <>
