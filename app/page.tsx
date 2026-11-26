@@ -98,7 +98,7 @@ export default function HomePage() {
         <section aria-label="Why use DevTools Hub" className="mt-8 grid gap-4 md:grid-cols-3">
           {heroHighlights.map((item) => (
             <div key={item.title} className="rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
-              <h3 className="font-serif text-xl italic text-(--ink)">{item.title}</h3>
+              <h2 className="font-serif text-xl italic text-(--ink)">{item.title}</h2>
               <p className="mt-2 text-sm leading-6 text-(--muted)">{item.description}</p>
             </div>
           ))}

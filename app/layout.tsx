@@ -5,10 +5,15 @@ import { Suspense } from "react";
 import Script from "next/script";
 import Link from "next/link";
 import { toolCatalog } from "@/lib/toolCatalog";
+import { blogPosts } from "@/lib/blogPosts";
 import { DEFAULT_OG_IMAGE, SITE_BRAND, SITE_NAME, SITE_URL } from "@/lib/site";
 import { getAnalyticsConfig } from "@/lib/analytics";
 
 const { gaMeasurementId } = getAnalyticsConfig();
+const trackedContentPaths = [
+  ...toolCatalog.map((tool) => `/tools/${tool.slug}`),
+  ...blogPosts.map((post) => `/blog/${post.slug}`),
+];
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -108,15 +113,28 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <head>
         <meta name="google-adsense-account" content="ca-pub-4344677734190475" />
-        {/* Google AdSense */}
-        <Script
-          async
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4344677734190475"
-          crossOrigin="anonymous"
-        />
       </head>
       <body className="antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.addEventListener("DOMContentLoaded", function () {
+                var loadAdSense = function () {
+                  var script = document.createElement("script");
+                  script.async = true;
+                  script.crossOrigin = "anonymous";
+                  script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4344677734190475";
+                  document.head.appendChild(script);
+                };
+                if (typeof window.requestIdleCallback === "function") {
+                  window.requestIdleCallback(loadAdSense, { timeout: 2000 });
+                } else {
+                  window.setTimeout(loadAdSense, 0);
+                }
+              }, { once: true });
+            `,
+          }}
+        />
         {gaMeasurementId ? (
           <>
             <Script
@@ -139,7 +157,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{ __html: structuredDataJson }}
         />
         <Suspense fallback={null}>
-          <AnalyticsTracker />
+          <AnalyticsTracker trackedContentPaths={trackedContentPaths} />
         </Suspense>
         {children}
         <footer className="border-t border-(--border) bg-white/70">
