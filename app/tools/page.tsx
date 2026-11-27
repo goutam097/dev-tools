@@ -90,6 +90,17 @@ export default function ToolsIndexPage() {
         Choose a tool by the task you need to complete. Each page explains its controls, input rules, and known limitations. Basic use does not require an account; tools that support saved history send entries to the account history service only when you are signed in.
       </p>
 
+      <section className="mt-8">
+        <article className="rounded-3xl border border-(--border) bg-white p-6 shadow-sm">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-(--muted)">Specialized suite</p>
+          <h2 className="mt-2 font-serif text-3xl italic text-(--ink)">Image &amp; PDF Tools Suite</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-(--muted)">
+            Enter one focused toolbox for image resizing, compression, conversion, PDF merging, splitting, rotation, and image-to-PDF workflows.
+          </p>
+          <Link href="/image-pdf-tools" className="mt-5 inline-flex rounded-xl bg-(--ink) px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-(--bg)">Enter image &amp; PDF suite</Link>
+        </article>
+      </section>
+
       {toolCategories.map((category) => (
         <section key={category.title} className="mt-8 md:mt-10" aria-labelledby={`category-${category.title.toLowerCase().replace(/\s+/g, "-")}`}>
           <div className="mb-4">
