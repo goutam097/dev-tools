@@ -28,6 +28,7 @@ function loadTypeScriptModule(relativePath) {
 
 const { cleanCsv, parseCsv, stringifyCsv } = loadTypeScriptModule("lib/csvCleaner.ts");
 const { convertDateTime, convertTimestamp } = loadTypeScriptModule("lib/timestampConverter.ts");
+const { TARGET_SIZE_PRESETS, targetSizeToBytes } = loadTypeScriptModule("lib/image/targetSize.ts");
 
 test("CSV cleaning handles BOM, CRLF, escaped quotes, whitespace, duplicates, and empty values", () => {
   const csv = '\uFEFFname,notes\r\nAda,"Hello, ""world"""\r\n Ada ,"Hello, ""world"""\r\nGrace,\r\n,\r\n';
@@ -55,4 +56,18 @@ test("timestamp conversion supports seconds, milliseconds, UTC dates, and invali
   assert.equal(convertTimestamp("1700000000000", "milliseconds").iso, "2023-11-14T22:13:20.000Z");
   assert.equal(convertDateTime("2023-11-14T22:13:20", "utc").unixMilliseconds, 1700000000000);
   assert.throws(() => convertTimestamp("not-a-timestamp", "seconds"), /numeric Unix timestamp/);
+});
+
+test("image target-size presets cover requested KB and MB ranges", () => {
+  assert.deepEqual(TARGET_SIZE_PRESETS.KB, [
+    10, 50, 100, 150, 200, 250, 300, 350, 400, 450,
+    500, 550, 600, 650, 700, 750, 800, 850, 900, 950,
+  ]);
+  assert.deepEqual(TARGET_SIZE_PRESETS.MB, [
+    1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5,
+    6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10,
+  ]);
+  assert.equal(targetSizeToBytes(500, "KB"), 512000);
+  assert.equal(targetSizeToBytes(1.5, "MB"), 1572864);
+  assert.throws(() => targetSizeToBytes(0, "KB"), /greater than zero/);
 });

@@ -16,6 +16,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${SITE_URL}/image-tools`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/image-pdf-tools`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/pdf-tools`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: `${SITE_URL}/blog`,
       changeFrequency: "weekly",
       priority: 0.85,
@@ -81,5 +96,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...toolUrls, ...blogUrls];
+  const imageToolSlugs = [
+    "image-resizer",
+    "image-resizer-to-kb",
+    "image-resizer-to-pixels",
+    "image-resizer-for-social-media",
+    "image-compressor",
+    "compress-jpg",
+    "compress-png",
+    "compress-webp",
+    "compress-image-to-100kb",
+    "compress-image-to-50kb",
+    "resize-image-to-500-kb",
+    "bulk-image-compressor",
+    "image-converter",
+    "jpg-to-png",
+    "png-to-jpg",
+    "jpg-to-webp",
+    "png-to-webp",
+    "webp-to-jpg",
+    "webp-to-png",
+    "ai-image-upscaler",
+    "background-remover",
+    "ai-image-enhancer",
+    "ai-photo-editor",
+  ];
+  const pdfToolSlugs = ["merge-pdf", "split-pdf", "rotate-pdf", "jpg-to-pdf"];
+  const newToolUrls: MetadataRoute.Sitemap = [
+    ...imageToolSlugs.map((slug) => ({
+      url: `${SITE_URL}/image-tools/${slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...pdfToolSlugs.map((slug) => ({
+      url: `${SITE_URL}/pdf-tools/${slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+  ];
+
+  return [...staticPages, ...toolUrls, ...newToolUrls, ...blogUrls];
 }

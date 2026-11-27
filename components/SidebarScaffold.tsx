@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import {
   Binary,
@@ -22,6 +23,7 @@ import {
   Grid2X2,
   Tags,
   X,
+  ChevronDown,
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -38,6 +40,7 @@ type SidebarScaffoldProps = {
 const navLinks = [
   { href: "/", label: "Home", icon: Home },
   { href: "/tools", label: "All Tools", icon: Wrench },
+  { href: "/image-pdf-tools", label: "Image & PDF Tools Suite", icon: Wrench },
   { href: "/blog", label: "Blog", icon: BookOpen },
   { href: "/tools/json-formatter", label: "JSON Formatter", icon: Code2 },
   { href: "/tools/json-to-typescript", label: "JSON to TypeScript", icon: Braces },
@@ -56,9 +59,64 @@ const navLinks = [
   { href: "/tools/meta-tag-generator", label: "Meta Tag Generator", icon: Tags },
 ];
 
+const suiteHeaderLinks = [
+  { href: "/image-tools/image-resizer", label: "Image Resizer" },
+  { href: "/image-tools/image-compressor", label: "Compressor" },
+  { href: "/image-tools/image-converter", label: "Converter" },
+];
+
+const suiteMoreGroups = [
+  {
+    label: "Resize",
+    links: [
+      { href: "/image-tools/image-resizer-to-kb", label: "Resize Image To KB" },
+      { href: "/image-tools/image-resizer-for-social-media", label: "Resize For Social Media" },
+      { href: "/image-tools/image-resizer-to-pixels", label: "Resize Image To Pixels" },
+    ],
+  },
+  {
+    label: "PDF",
+    links: [
+      { href: "/pdf-tools/merge-pdf", label: "Merge PDF" },
+      { href: "/pdf-tools/split-pdf", label: "Split PDF" },
+      { href: "/pdf-tools/rotate-pdf", label: "Rotate PDF" },
+      { href: "/pdf-tools/jpg-to-pdf", label: "JPG To PDF" },
+    ],
+  },
+  {
+    label: "Compress",
+    links: [
+      { href: "/image-tools/compress-jpg", label: "Compress JPG" },
+      { href: "/image-tools/compress-png", label: "Compress PNG" },
+      { href: "/image-tools/compress-webp", label: "Compress WebP" },
+      { href: "/image-tools/compress-image-to-100kb", label: "Compress Image To 100KB" },
+      { href: "/image-tools/compress-image-to-50kb", label: "Compress Image To 50KB" },
+      { href: "/image-tools/resize-image-to-500-kb", label: "Resize Image To 500KB" },
+      { href: "/image-tools/bulk-image-compressor", label: "Bulk Image Compressor" },
+    ],
+  },
+  {
+    label: "Convert",
+    links: [
+      { href: "/image-tools/jpg-to-png", label: "JPG To PNG" },
+      { href: "/image-tools/png-to-jpg", label: "PNG To JPG" },
+      { href: "/image-tools/jpg-to-webp", label: "JPG To WebP" },
+      { href: "/image-tools/png-to-webp", label: "PNG To WebP" },
+      { href: "/image-tools/webp-to-jpg", label: "WebP To JPG" },
+      { href: "/image-tools/webp-to-png", label: "WebP To PNG" },
+    ],
+  },
+];
+
 export default function SidebarScaffold({ title, children }: SidebarScaffoldProps) {
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const pathname = usePathname();
+  const isSuitePage =
+    pathname === "/image-pdf-tools" ||
+    pathname.startsWith("/image-tools") ||
+    pathname.startsWith("/pdf-tools");
 
   useEffect(() => {
     const sidebarWidth = isDesktopSidebarOpen ? "16rem" : "5rem";
@@ -149,6 +207,57 @@ export default function SidebarScaffold({ title, children }: SidebarScaffoldProp
             </button>
             <p className="font-serif text-xl italic md:text-2xl">{title}</p>
           </div>
+          {isSuitePage && (
+            <nav aria-label="Image and PDF tools" className="relative hidden items-center gap-1 md:flex">
+              {suiteHeaderLinks.map((item) => {
+                const isActive =
+                  (item.href === "/image-tools/image-resizer" && pathname.startsWith("/image-tools/image-resizer")) ||
+                  (item.href === "/image-tools/image-compressor" && (pathname === "/image-tools/image-compressor" || pathname.startsWith("/image-tools/compress-") || pathname.includes("bulk-image-compressor"))) ||
+                  (item.href === "/image-tools/image-converter" && (pathname === "/image-tools/image-converter" || pathname.includes("-to-") || pathname.includes("webp-to-")));
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "rounded-lg px-3 py-2 text-sm font-medium transition",
+                      isActive ? "border-b-2 border-(--ink) text-(--ink)" : "text-(--muted) hover:bg-white hover:text-(--ink)",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <button
+                type="button"
+                onClick={() => setIsMoreOpen((open) => !open)}
+                className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-(--muted) transition hover:bg-white hover:text-(--ink)"
+                aria-expanded={isMoreOpen}
+              >
+                More Tools <ChevronDown size={14} className={isMoreOpen ? "rotate-180 transition" : "transition"} />
+              </button>
+              {isMoreOpen && (
+                <div className="absolute right-0 top-full mt-2 max-h-[70vh] w-80 overflow-y-auto rounded-2xl border border-(--border) bg-white p-2 shadow-xl">
+                  {suiteMoreGroups.map((group) => (
+                    <div key={group.label} className="border-b border-(--border) py-2 last:border-b-0">
+                      <p className="px-3 pb-1 font-mono text-[10px] uppercase tracking-widest text-(--muted)">
+                        {group.label}
+                      </p>
+                      {group.links.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={() => setIsMoreOpen(false)}
+                          className="block rounded-xl px-3 py-2 text-sm text-(--ink) transition hover:bg-slate-50"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </nav>
+          )}
         </header>
 
         <div className="mx-auto max-w-6xl p-4 sm:p-6 md:p-8">{children}</div>
